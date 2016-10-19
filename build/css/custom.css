@@ -1,0 +1,142 @@
+body {
+    background-color: #f5f5f5
+}
+
+#sidebar-wrapper {
+    background: #90BEDE !important;
+}
+
+#sidebar-brand {
+    color: white !important;
+}
+
+#home_page_navbar {
+    border-bottom: 1px solid black !important;
+    text-align: center;
+}
+
+
+#soundroom_title, #user_playlists {
+    color: white;
+}
+
+#user_icon {
+    margin-right: 10px;
+}
+
+#home_content{
+    margin-top: 200px;
+}
+
+#home_content a:hover{
+    text-decoration: none
+}
+
+#nav-item {
+    text-align: center;
+    display: inline;
+}
+
+.create_room_info {
+    margin-top: 10px;
+}
+
+.well {
+    border: 2px solid #e3e3e3 !important;
+    border-radius: 7px !important;
+}
+
+.panel-joinroom{
+  background-color: #DFEAF3;
+  margin-top: 120px;
+}
+
+.panel-joinroom .panel-body h3{
+  color:#333333;
+}
+
+.panel-joinroom .panel-body h5{
+  margin-top:40px;
+  color:#333333;
+}
+
+.panel-joinroom .panel-body button{
+  width:100%;
+  margin-top: 30px;
+  font-size: 20px;
+  background-color: #5CB85C;
+  color:white;
+  border: none;
+}
+
+table {
+    width:100%;
+}
+table, th, td {
+    border: 0px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: center;
+}
+table tr{
+    background-color: #f5f5f5;
+}
+
+tr:hover {
+  background-color: #BFDDF2;
+}
+
+table th {
+    background-color: #90BEDE;
+    color: black;
+}
+
+th, td {
+  text-align: left;
+}
+
+.panel-body {
+  padding: 0px;
+}
+
+.media-body {
+  padding-top: 20px;
+}
+
+
+#join_room_panel {
+  padding: 20px;
+}
+
+#join_room_text {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+#account_info_name {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+#account_info_pic {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#update_pic_button{
+  display: block;
+  margin: 30px auto;
+
+  text-align: center;
+}
+
+#country{
+  margin-bottom: 30px;
+}
+
+.current-song {
+  background: #BEFF33;
+}
