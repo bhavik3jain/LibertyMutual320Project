@@ -14,17 +14,17 @@ https://nodejs.org/en/download/
 
 Check npm version
 
-'''sh
+```sh
 $ npm -v
-'''
+```
 
 npm version should be greater than 3.3
 
 If not install it via:
 
-'''sh
+```sh
 $ npm install npm@3.3 -g
-'''
+```
 
 ####3.  Make sure you have [node](https://www.nodejs.org/) installed
 
