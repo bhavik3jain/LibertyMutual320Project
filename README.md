@@ -51,3 +51,11 @@ $ npm run build
 ```sh
 $ npm run clean
 ```
+
+#####6. To open the webapp
+```sh
+go to your web browser
+
+localhost:3001
+
+```
