@@ -52,7 +52,7 @@ $ npm run build
 $ npm run clean
 ```
 
-#####6. To open the webapp
+####6. To open the webapp
 ```sh
 go to your web browser
 
