@@ -59,3 +59,14 @@ go to your web browser
 localhost:3001
 
 ```
+
+####7. Changes you Make
+
+```sh
+
+$ As you make changes, they will all be live and will reflect in the browser right away
+
+$ Also whenever you push into the repo, let the rest of the team know so there will be
+  no merging issues
+  
+```
