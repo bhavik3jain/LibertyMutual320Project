@@ -56,7 +56,7 @@ $ npm run clean
 ```sh
 go to your web browser
 
-localhost:3001
+localhost:3000
 
 ```
 
@@ -68,5 +68,31 @@ localhost:3001
 
 ---Also whenever you push into the repo, let the rest of the team know so there will be
   no merging issues
+
+```
+
+####8. Code
+
+##8.1 Check code for errors
+
+```sh
+
+$ npm run lint
+
+```
+
+##8.2 Test code base
+
+```sh
+
+$ npm run test
+
+```
+
+##8.3 Deploy code
+
+```sh
+
+$ npm run deploy
 
 ```
