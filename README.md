@@ -73,7 +73,7 @@ localhost:3000
 
 ####8. Code
 
-##8.1 Check code for errors
+######8.1 Check code for errors
 
 ```sh
 
@@ -81,7 +81,7 @@ $ npm run lint
 
 ```
 
-##8.2 Test code base
+######8.2 Test code base
 
 ```sh
 
@@ -89,7 +89,7 @@ $ npm run test
 
 ```
 
-##8.3 Deploy code
+######8.3 Deploy code
 
 ```sh
 
