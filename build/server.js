@@ -21420,18 +21420,7 @@ module.exports =
         _react2.default.createElement(
           'h1',
           { className: 'login-brand-text' },
-          'SB Admin React'
-        ),
-        _react2.default.createElement(
-          'h3',
-          { className: 'text-muted' },
-          'Created by ',
-          _react2.default.createElement(
-            'a',
-            { href: 'http://startreact.com' },
-            'StartReact.com'
-          ),
-          ' team'
+          'Liberty Dash Login'
         )
       ),
       _react2.default.createElement(
