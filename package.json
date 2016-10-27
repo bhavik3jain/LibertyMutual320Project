@@ -43,7 +43,7 @@
     "recharts": "^0.15.1",
     "sequelize": "3.24.1",
     "source-map-support": "0.4.2",
-    "sqlite3": "3.1.4",
+    "sqlite3": "^3.1.4",
     "universal-router": "1.2.2",
     "whatwg-fetch": "1.0.0"
   },
