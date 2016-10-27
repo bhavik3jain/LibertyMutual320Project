@@ -7,11 +7,9 @@ class Sidebar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      uiElementsCollapsed: true,
-      chartsElementsCollapsed: true,
-      multiLevelDropdownCollapsed: true,
-      thirdLevelDropdownCollapsed: true,
-      samplePagesCollapsed: true,
+      accessDatabase: true,
+      peerReview: true,
+      processes: true,
     };
   }
 
@@ -33,214 +31,161 @@ class Sidebar extends Component {
 
             <li>
               <a href="" onClick={(e) => { e.preventDefault(); history.push('/'); }} >
-                <i className="fa fa-dashboard fa-fw" /> &nbsp;Dashboard
+                <i className="fa fa-dashboard fa-fw" /> &nbsp;Home
               </a>
             </li>
 
-            <li className={classNames({ active: !this.state.chartsElementsCollapsed })}>
+            <li className={classNames({ active: !this.state.accessDatabase })}>
               <a
                 href=""
                 onClick={(e) => {
                   e.preventDefault();
-                  this.setState({ chartsElementsCollapsed: !this.state.chartsElementsCollapsed });
+                  this.setState({ accessDatabase: !this.state.accessDatabase });
                   return false;
                 }}
               >
-                <i className="fa fa-bar-chart-o fa-fw" /> &nbsp;Charts
+                <i className="fa fa-bar-chart-o fa-fw" /> &nbsp;Access Database
                 <span className="fa arrow" />
               </a>
               <ul
                 className={
                   classNames({
                     'nav nav-second-level': true,
-                    collapse: this.state.chartsElementsCollapsed,
+                    collapse: this.state.accessDatabase,
                   })
-              }
+                }
               >
                 <li>
-                  <a href="" onClick={(e) => { e.preventDefault(); history.push('/flotcharts'); }} >
-                    FlotCharts
+                  <a
+                    href=""
+                    onClick={(e) => { e.preventDefault(); history.push('/databaseView'); }}
+                  >
+                    View Database
                   </a>
                 </li>
                 <li>
                   <a
                     href=""
-                    onClick={(e) => { e.preventDefault(); history.push('/morrisjscharts'); }}
+                    onClick={(e) => { e.preventDefault(); history.push('/databaseEdit'); }}
                   >
-                    Morrisjs Charts
+                    Edit Database
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href=""
+                    onClick={(e) => { e.preventDefault(); history.push('/databaseChangelog'); }}
+                  >
+                    Changelog
                   </a>
                 </li>
               </ul>
             </li>
 
-
-            <li>
-              <a href="" onClick={(e) => { e.preventDefault(); history.push('/table'); }} >
-                <i className="fa fa-table fa-fw" /> &nbsp;Tables
-              </a>
-            </li>
-
-            <li>
-              <a href="" onClick={(e) => { e.preventDefault(); history.push('/forms'); }} >
-                <i className="fa fa-table fa-fw" /> &nbsp;Forms
-              </a>
-            </li>
-
-            <li className={classNames({ active: !this.state.uiElementsCollapsed })}>
+            <li className={classNames({ active: !this.state.peerReview })}>
               <a
                 href=""
                 onClick={(e) => {
                   e.preventDefault();
-                  this.setState({ uiElementsCollapsed: !this.state.uiElementsCollapsed,
+                  this.setState({ peerReview: !this.state.peerReview,
                 }); return false;
                 }}
               >
-                <i className="fa fa-edit fa-fw" /> UI Elements<span className="fa arrow" />
+                <i className="fa fa-files-o fa-fw" /> Peer Review<span className="fa arrow" />
               </a>
 
               <ul
                 className={classNames({
                   'nav nav-second-level': true,
-                  collapse: this.state.uiElementsCollapsed,
+                  collapse: this.state.peerReview,
                 })}
               >
                 <li>
-                  <a href="" onClick={(e) => { e.preventDefault(); history.push('/panelwells'); }} >
-                    Panels And Wells
-                  </a>
-                </li>
-                <li>
-                  <a href="" onClick={(e) => { e.preventDefault(); history.push('/button'); }} >
-                    Buttons
+                  <a
+                    href=""
+                    onClick={(e) => { e.preventDefault(); history.push('/peerPendingReview'); }}
+                  >
+                    Pending Peer Review
                   </a>
                 </li>
                 <li>
                   <a
                     href=""
-                    onClick={(e) => { e.preventDefault(); history.push('/notification'); }}
+                    onClick={(e) => { e.preventDefault(); history.push('/peerSubmittedReview'); }}
                   >
-                    Notification
-                  </a>
-                </li>
-                <li>
-                  <a href="" onClick={(e) => { e.preventDefault(); history.push('/typography'); }} >
-                    Typography
-                  </a>
-                </li>
-                <li>
-                  <a href="" onClick={(e) => { e.preventDefault(); history.push('/icons'); }} >
-                    Icons
-                  </a>
-                </li>
-                <li>
-                  <a href="" onClick={(e) => { e.preventDefault(); history.push('/grid'); }} >
-                    Grid
+                    Submitted Peer Review
                   </a>
                 </li>
               </ul>
             </li>
 
-            <li className={classNames({ active: !this.state.multiLevelDropdownCollapsed })}>
+            <li className={classNames({ active: !this.state.processes })}>
               <a
                 href=""
                 onClick={(e) => {
                   e.preventDefault();
-                  this.setState({
-                    multiLevelDropdownCollapsed: !this.state.multiLevelDropdownCollapsed,
-                  });
-                  return false;
+                  this.setState({ processes: !this.state.processes,
+                }); return false;
                 }}
               >
-                <i className="fa fa-sitemap fa-fw" />
-                &nbsp;Multi-Level Dropdown
-                <span className="fa arrow" />
+                <i className="fa fa-edit fa-fw" /> Processes<span className="fa arrow" />
               </a>
+
               <ul
-                className={
-                  classNames({
-                    'nav nav-second-level': true, collapse: this.state.multiLevelDropdownCollapsed,
-                  })}
+                className={classNames({
+                  'nav nav-second-level': true,
+                  collapse: this.state.processes,
+                })}
               >
                 <li>
-                  <a href="" onClick={(e) => { e.preventDefault(); }}>Second Level Item</a>
-                </li>
-                <li>
-                  <a href="" onClick={(e) => { e.preventDefault(); }}>Second Level Item</a>
-                </li>
-                <li className={classNames({ active: !this.state.thirdLevelDropdownCollapsed })}>
                   <a
                     href=""
-                    onClick={(e) => {
-                      e.preventDefault();
-                      this.setState({
-                        thirdLevelDropdownCollapsed: !this.state.thirdLevelDropdownCollapsed,
-                      });
-                      return false;
-                    }}
+                    onClick={(e) => { e.preventDefault(); history.push('/processPending'); }}
                   >
-                    Third Level<span className="fa arrow" />
-                  </a>
-                  <ul
-                    className={
-                      classNames({
-                        'nav nav-second-level': true,
-                        collapse: this.state.thirdLevelDropdownCollapsed,
-                      })}
-                  >
-                    <li>
-                      <a href="" onClick={(e) => { e.preventDefault(); }}>Third Level Item</a>
-                    </li>
-                    <li>
-                      <a href="" onClick={(e) => { e.preventDefault(); }}>Third Level Item</a>
-                    </li>
-                    <li>
-                      <a href="" onClick={(e) => { e.preventDefault(); }}>Third Level Item</a>
-                    </li>
-                    <li>
-                      <a href="" onClick={(e) => { e.preventDefault(); }}>Third Level Item</a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-
-            <li className={classNames({ active: !this.state.samplePagesCollapsed })}>
-              <a
-                href=""
-                onClick={(e) => {
-                  e.preventDefault();
-                  this.setState({
-                    samplePagesCollapsed: !this.state.samplePagesCollapsed,
-                  });
-                  return false;
-                }}
-              >
-                <i className="fa fa-files-o fa-fw" />
-                &nbsp;Sample Pages
-                <span className="fa arrow" />
-              </a>
-              <ul
-                className={
-                  classNames({
-                    'nav nav-second-level': true,
-                    collapse: this.state.samplePagesCollapsed,
-                  })}
-              >
-                <li>
-                  <a href="" onClick={(e) => { e.preventDefault(); history.push('/blank'); }} >
-                    Blank
+                    Pending
                   </a>
                 </li>
                 <li>
-                  <a href="" onClick={(e) => { e.preventDefault(); history.push('/login'); }} >
-                    Login
+                  <a
+                    href=""
+                    onClick={(e) => { e.preventDefault(); history.push('/proccessHold'); }}
+                  >
+                    Hold
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href=""
+                    onClick={(e) => { e.preventDefault(); history.push('/processRunning'); }}
+                  >
+                    Running
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href=""
+                    onClick={(e) => { e.preventDefault(); history.push('/processSuccessful'); }}
+                  >
+                    Successful
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href=""
+                    onClick={(e) => { e.preventDefault(); history.push('/processFailed'); }}
+                  >
+                    Failed
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href=""
+                    onClick={(e) => { e.preventDefault(); history.push('/processSearch'); }}
+                  >
+                    Search
                   </a>
                 </li>
               </ul>
-            </li>
-
-            <li>
-              <a href="http://www.strapui.com/">Premium React Themes</a>
             </li>
           </ul>
         </div>
