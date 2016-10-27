@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import Panel from 'react-bootstrap/lib/Panel';
 import PageHeader from 'react-bootstrap/lib/PageHeader';
-import Donut from '../../../../components/Donut';
 
 import {
   LineChart, Tooltip,
@@ -84,14 +83,6 @@ function displayMorrisjsCharts(props, context) {
                   <Line type="monotone" dataKey="amt" stroke="#ffc658" />
                 </LineChart>
               </ResponsiveContainer>
-            </div>
-          </Panel>
-        </div>
-
-        <div className="col-lg-6">
-          <Panel header={<span>Donut Chart Example</span>} >
-            <div>
-              <Donut data={data} color="#8884d8" innerRadius="60" outerRadius="80" />
             </div>
           </Panel>
         </div>
