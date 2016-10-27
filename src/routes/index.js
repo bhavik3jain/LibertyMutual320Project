@@ -75,6 +75,8 @@ export default [
       processSuccessful,
       processFailed,
       processSearch,
+
+      // extras
       table,
       button,
       flotcharts,
