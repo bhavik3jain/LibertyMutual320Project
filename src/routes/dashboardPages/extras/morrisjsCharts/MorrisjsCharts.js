@@ -2,13 +2,13 @@ import React, { PropTypes } from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import Panel from 'react-bootstrap/lib/Panel';
 import PageHeader from 'react-bootstrap/lib/PageHeader';
-import Donut from '../../../components/Donut';
+import Donut from '../../../../components/Donut';
 
 import {
   LineChart, Tooltip,
   Line, XAxis, YAxis, Area,
   CartesianGrid, AreaChart, Bar, BarChart,
-  ResponsiveContainer } from '../../../vendor/recharts';
+  ResponsiveContainer } from '../../../../vendor/recharts';
 // ResponsiveContainer is broken so we have customise the ResponsiveContainer
 
 const title = 'MorrisjsCharts';
