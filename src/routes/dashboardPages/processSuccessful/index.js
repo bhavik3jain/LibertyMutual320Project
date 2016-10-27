@@ -1,13 +1,13 @@
 
 import React from 'react';
-import Notification from './Notification';
+import SuccessfulProcess from './processSuccessful';
 
 export default {
 
-  path: '/notification',
+  path: '/processSuccessful',
 
   action() {
-    return <Notification />;
+    return <SuccessfulProcess />;
   },
 
 };

@@ -1,13 +1,13 @@
 
 import React from 'react';
-import Notification from './Notification';
+import SearchProcess from './processSearch';
 
 export default {
 
-  path: '/notification',
+  path: '/processSearch',
 
   action() {
-    return <Notification />;
+    return <SearchProcess />;
   },
 
 };

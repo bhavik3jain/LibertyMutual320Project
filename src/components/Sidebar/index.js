@@ -148,7 +148,7 @@ class Sidebar extends Component {
                 <li>
                   <a
                     href=""
-                    onClick={(e) => { e.preventDefault(); history.push('/proccessHold'); }}
+                    onClick={(e) => { e.preventDefault(); history.push('/processHold'); }}
                   >
                     Hold
                   </a>

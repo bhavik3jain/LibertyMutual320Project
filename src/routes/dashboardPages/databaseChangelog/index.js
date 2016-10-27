@@ -1,13 +1,13 @@
 
 import React from 'react';
-import Notification from './Notification';
+import DatabaseChangelog from './databaseChangelog';
 
 export default {
 
-  path: '/notification',
+  path: '/databaseChangelog',
 
   action() {
-    return <Notification />;
+    return <DatabaseChangelog />;
   },
 
 };

@@ -25,6 +25,18 @@ import panelwells from './dashboardPages/panelWells';
 import typography from './dashboardPages/typography';
 import blank from './dashboardPages/blank';
 import error from './error';
+// added new routes
+import databaseView from './dashboardPages/databaseView';
+import databaseEdit from './dashboardPages/databaseEdit';
+import databaseChangelog from './dashboardPages/databaseChangelog';
+import peerPendingReview from './dashboardPages/peerPendingReview';
+import peerSubmittedReview from './dashboardPages/peerSubmittedReview';
+import processPending from './dashboardPages/processPending';
+import processHold from './dashboardPages/processHold';
+import processRunning from './dashboardPages/processRunning';
+import processSuccessful from './dashboardPages/processSuccessful';
+import processFailed from './dashboardPages/processFailed';
+import processSearch from './dashboardPages/processSearch';
 
 import Header from '../components/Header';
 
@@ -52,6 +64,17 @@ export default [
     children: [
       home,
       // contact,
+      databaseView,
+      databaseEdit,
+      databaseChangelog,
+      peerPendingReview,
+      peerSubmittedReview,
+      processPending,
+      processHold,
+      processRunning,
+      processSuccessful,
+      processFailed,
+      processSearch,
       table,
       button,
       flotcharts,

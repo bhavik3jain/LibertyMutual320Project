@@ -1,13 +1,13 @@
 
 import React from 'react';
-import Notification from './Notification';
+import PendingProcess from './processPending';
 
 export default {
 
-  path: '/notification',
+  path: '/processPending',
 
   action() {
-    return <Notification />;
+    return <PendingProcess />;
   },
 
 };

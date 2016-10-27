@@ -1,13 +1,13 @@
 
 import React from 'react';
-import Notification from './Notification';
+import RunningProcess from './processRunning';
 
 export default {
 
-  path: '/notification',
+  path: '/processRunning',
 
   action() {
-    return <Notification />;
+    return <RunningProcess />;
   },
 
 };

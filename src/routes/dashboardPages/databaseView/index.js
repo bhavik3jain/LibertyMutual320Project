@@ -1,13 +1,13 @@
 
 import React from 'react';
-import Notification from './Notification';
+import DatabaseView from './databaseView';
 
 export default {
 
-  path: '/notification',
+  path: '/databaseView',
 
   action() {
-    return <Notification />;
+    return <DatabaseView />;
   },
 
 };

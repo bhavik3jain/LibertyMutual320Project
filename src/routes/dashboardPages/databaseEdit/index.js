@@ -1,13 +1,13 @@
 
 import React from 'react';
-import Notification from './Notification';
+import DatabaseEdit from './databaseEdit';
 
 export default {
 
-  path: '/notification',
+  path: '/databaseEdit',
 
   action() {
-    return <Notification />;
+    return <DatabaseEdit />;
   },
 
 };

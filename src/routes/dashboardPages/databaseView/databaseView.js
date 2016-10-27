@@ -9,7 +9,7 @@ import Modal, { Footer, Header, Title, Body } from 'react-bootstrap/lib/Modal';
 import PageHeader from 'react-bootstrap/lib/PageHeader';
 
 
-class Notification extends Component {
+class DatabaseView extends Component {
 
   constructor(props) {
     super(props);
@@ -59,7 +59,7 @@ class Notification extends Component {
 
         <div className="row">
           <div className="col-lg-12">
-            <PageHeader>Notifications</PageHeader>
+            <PageHeader>View Database</PageHeader>
           </div>
         </div>
 
@@ -258,4 +258,4 @@ class Notification extends Component {
   }
 }
 
-export default Notification;
+export default DatabaseView;

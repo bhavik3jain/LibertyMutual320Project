@@ -1,13 +1,13 @@
 
 import React from 'react';
-import Notification from './Notification';
+import PendingPeerReview from './peerPendingReview';
 
 export default {
 
-  path: '/notification',
+  path: '/peerPendingReview',
 
   action() {
-    return <Notification />;
+    return <PendingPeerReview />;
   },
 
 };
