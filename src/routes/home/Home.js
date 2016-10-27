@@ -7,20 +7,8 @@ import {
 
 import s from './Home.css';
 import StatWidget from '../../components/Widget';
-import Donut from '../../components/Donut';
 
-const title = 'Sb Admin React';
-
-
-const data = [
-      { name: 'Page A', uv: 4000, pv: 2400, amt: 2400, value: 600 },
-      { name: 'Page B', uv: 3000, pv: 1398, amt: 2210, value: 300 },
-      { name: 'Page C', uv: 2000, pv: 9800, amt: 2290, value: 500 },
-      { name: 'Page D', uv: 2780, pv: 3908, amt: 2000, value: 400 },
-      { name: 'Page E', uv: 1890, pv: 4800, amt: 2181, value: 200 },
-      { name: 'Page F', uv: 2390, pv: 3800, amt: 2500, value: 700 },
-      { name: 'Page G', uv: 3490, pv: 4300, amt: 2100, value: 100 },
-];
+const title = 'Liberty Dash';
 
 function Home(props, context) {
   context.setTitle(title);
@@ -192,16 +180,6 @@ function Home(props, context) {
               </ListGroupItem>
             </ListGroup>
             <Button block>View All Alerts</Button>
-          </Panel>
-
-          <Panel
-            header={<span>
-              <i className="fa fa-bar-chart-o fa-fw" /> Donut Chart Example
-            </span>}
-          >
-            <div>
-              <Donut data={data} color="#8884d8" innerRadius="70%" outerRadius="90%" />
-            </div>
           </Panel>
 
         </div>
