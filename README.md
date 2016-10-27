@@ -56,7 +56,7 @@ $ npm run clean
 ```sh
 go to your web browser
 
-localhost:3000
+localhost:3001
 
 ```
 
