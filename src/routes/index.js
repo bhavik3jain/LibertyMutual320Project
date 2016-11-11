@@ -15,11 +15,9 @@ import home from './home';
 import login from './login';
 import table from './dashboardPages/extras/tables';
 import button from './dashboardPages/extras/buttons';
-import flotcharts from './dashboardPages/extras/flotCharts';
 import forms from './dashboardPages/extras/forms';
 import grid from './dashboardPages/extras/grid';
 import icons from './dashboardPages/extras/icons';
-import morrisjscharts from './dashboardPages/extras/morrisjsCharts';
 import notification from './dashboardPages/extras/notification';
 import panelwells from './dashboardPages/extras/panelWells';
 import typography from './dashboardPages/extras/typography';
@@ -79,11 +77,9 @@ export default [
       // extras
       table,
       button,
-      flotcharts,
       forms,
       grid,
       icons,
-      morrisjscharts,
       notification,
       panelwells,
       typography,
