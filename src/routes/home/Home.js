@@ -16,7 +16,7 @@ function Home(props, context) {
     <div>
       <div className="row">
         <div className="col-lg-12">
-          <PageHeader>Zachhhh</PageHeader>
+          <PageHeader>Dashboard</PageHeader>
         </div>
       </div>
 
