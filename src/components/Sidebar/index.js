@@ -60,15 +60,7 @@ class Sidebar extends Component {
                     href=""
                     onClick={(e) => { e.preventDefault(); history.push('/databaseView'); }}
                   >
-                    View Database
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href=""
-                    onClick={(e) => { e.preventDefault(); history.push('/databaseEdit'); }}
-                  >
-                    Edit Database
+                    Invoke Macro
                   </a>
                 </li>
                 <li>
