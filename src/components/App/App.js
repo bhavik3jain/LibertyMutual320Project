@@ -53,7 +53,8 @@ class App extends Component {
     this.removeCss();
   }
 
-  Adal.processAdalCallback();
+  Adal.processAdalCallback(); // TODO Uncomment and test against AD server
+                              // this should show the login page
 
   if (window === window.parent) {
     render() {
