@@ -11,6 +11,8 @@ import React, { Component, PropTypes } from 'react';
 import emptyFunction from 'fbjs/lib/emptyFunction';
 import s from './App.css';
 import Header from '../Header';
+
+var Adal = require('./adal/adal-request');
 // import Feedback from '../Feedback';
 // import Footer from '../Footer';
 
@@ -51,9 +53,13 @@ class App extends Component {
     this.removeCss();
   }
 
-  render() {
-    // console.log('\n********\n', this.props, '\n********12334\n');
-    return this.props.children;
+  Adal.processAdalCallback();
+
+  if (window === window.parent) {
+    render() {
+      // console.log('\n********\n', this.props, '\n********12334\n');
+      return this.props.children;
+    }
   }
 
 }
