@@ -1,0 +1,10 @@
+credit to https://blog.mastykarz.nl/building-office-365-web-applications-react/
+
+
+put in the componentDidMount() of the security gated component (likely app.js)
+var component = this;
+  component.serverRequest = Adal.adalRequest({
+    url: '', // resource url, this may possibly be empty
+    headers: {
+      'Accept': 'application/json;odata.metadata=full'
+    }
