@@ -1,63 +1,13 @@
 import React, { Component } from 'react';
 import Panel from 'react-bootstrap/lib/Panel';
-import Alert from 'react-bootstrap/lib/Alert';
-import Button from 'react-bootstrap/lib/Button';
-import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
-import Tooltip from 'react-bootstrap/lib/Tooltip';
-import Popover from 'react-bootstrap/lib/Popover';
-import Modal, { Footer, Header, Title, Body } from 'react-bootstrap/lib/Modal';
-import Pagination from 'react-bootstrap/lib/Pagination';
 import PageHeader from 'react-bootstrap/lib/PageHeader';
-
 
 class SubmittedPeerReview extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      alertVisibleA: true,
-      alertVisibleB: true,
-      alertVisibleC: true,
-      alertVisibleD: true,
-      showModal: false,
-    };
-    this.handleAlertDismiss = this.handleAlertDismiss.bind(this);
-  }
-
-  close() {
-    this.setState({ showModal: false });
-  }
-
-  open() {
-    this.setState({ showModal: true });
-  }
-  handleAlertDismiss(option) {
-    switch (option) {
-      case 'A':
-        this.setState({ alertVisibleA: false });
-        break;
-      case 'B':
-        this.setState({ alertVisibleB: false });
-        break;
-      case 'C':
-        this.setState({ alertVisibleC: false });
-        break;
-      case 'D':
-        this.setState({ alertVisibleD: false });
-        break;
-      default: this.setState({
-        alertVisibleA: false,
-        alertVisibleB: false,
-        alertVisibleC: false,
-        alertVisibleD: false,
-      });
-    }
-  }
   handleRowClick(e, index) {
-    e.preventDefault()
-    alert("row " + index + " clicked!");
+    e.preventDefault();
+    alert('row ' + index + ' clicked!');
   }
-
 
   render() {
     return (
@@ -73,30 +23,7 @@ class SubmittedPeerReview extends Component {
             <div className="dataTable_wrapper">
               <div
                 id="dataTables-example_wrapper"
-                className="dataTables_wrapper form-inline dt-bootstrap no-footer"
-              >
-
-                <div className="row">
-                  <div className="col-sm-9">
-                    <div className="dataTables_length" id="dataTables-example_length">
-                      <label htmlFor={'show'}> Show
-                        <select
-                          name="dataTables-example_length"
-                          aria-controls="dataTables-example"
-                          className="form-control input-sm"
-                          id="show"
-                        >
-                          <option value="10">10</option>
-                          <option value="25">25</option>
-                          <option value="50">50</option>
-                          <option value="100">100</option>
-                        </select>
-                        entries
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
+                className="dataTables_wrapper form-inline dt-bootstrap no-footer">
                 <div className="row">
                   <div className="col-sm-12">
                     <table
@@ -144,7 +71,8 @@ class SubmittedPeerReview extends Component {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr className="gradeA odd" role="row" onClick={(e) => this.handleRowClick(e, 1)}>
+                        <tr className="gradeA odd" role="row"
+                          onClick={(e) => this.handleRowClick(e, 1)}>
                           <td className="sorting_1">n</td>
                           <td>Nick W.</td>
                           <td>Gordon A.</td>
@@ -205,31 +133,6 @@ class SubmittedPeerReview extends Component {
                         </tr>
                       </tbody>
                     </table>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-sm-6">
-                    <div
-                      className="dataTables_info"
-                      id="dataTables-example_info"
-                      role="status"
-                      aria-live="polite"
-                    >
-                      Showing 1 to 10 of 57 entries
-                    </div>
-                  </div>
-                  <div className="col-sm-6 pullRight " >
-                    <Pagination
-                      activePage={1}
-                      items={6}
-                      first
-                      last
-                      prev
-                      next
-                      onSelect={() => {
-                        // function for Pagination
-                      }}
-                    />
                   </div>
                 </div>
               </div>
