@@ -554,3 +554,14 @@ table.dataTable thead .sorting:after {
         border-left-width: 0;
     }
 }
+
+input[type=text_1] {
+    padding:5px;
+    border:2px solid #ccc;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+input[type=text_1]:focus {
+    border-color:#333;
+}
