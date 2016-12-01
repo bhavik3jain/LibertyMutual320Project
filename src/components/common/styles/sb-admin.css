@@ -14,7 +14,7 @@ body {
 
 #page-wrapper {
     padding: 20px;
-    min-height: 568px;
+    overflow: auto;
     background-color: #fff;
 }
 
