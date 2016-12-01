@@ -12,23 +12,27 @@ class Review extends Component {
           <div className="col-lg-12">
             <PageHeader>Accept or Reject Peer Review</PageHeader></div></div>
             <Panel header={<span></span>} >
-              <div className="row">
-                <div className="col-lg-6 col-lg-offset-3">
-                  TEST
+              <div className="col-lg-6 col-lg-offset-3">
+                <div>
+                  <label for="review">Parameters</label>
                 </div>
-                <div className="col-lg-6 col-lg-offset-3">
-                  TEST
+                <div>
+                  <textarea cols="50" rows="5" id="review" readOnly>TEST</textarea>
                 </div>
-                <div className="col-lg-6 col-lg-offset-3">
-                  TEST
+                <div>
+                  <label class="checkbox-inline"><input type="checkbox" value="" />Accept</label>
+                  <label class="checkbox-inline"><input type="checkbox" value="" />Reject</label>
                 </div>
-                <div className="col-lg-6 col-lg-offset-3">
-                  TEST
+                <div>
+                  <textarea cols="50" rows="5">Notes</textarea>
+                </div>
+                <div>
+                  <a href="./peerPendingReview" className="btn btn-info" role="button">Submit</a>
                 </div>
               </div>
             </Panel>
-      </div>
-        );
+        </div>
+      );
   }
 }
 
