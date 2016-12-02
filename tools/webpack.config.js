@@ -11,6 +11,7 @@ import path from 'path';
 import webpack from 'webpack';
 import extend from 'extend';
 import AssetsPlugin from 'assets-webpack-plugin';
+var oracledblib = require('oracledb');
 
 const DEBUG = !process.argv.includes('--release');
 const VERBOSE = process.argv.includes('--verbose');
@@ -274,6 +275,7 @@ const serverConfig = extend(true, {}, config, {
   externals: [
     /^\.\/assets$/,
     /^[@a-z][a-z\/\.\-0-9]*$/i,
+    "oracledb": oracledblib
   ],
 
   plugins: [

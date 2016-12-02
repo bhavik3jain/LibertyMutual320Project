@@ -4,7 +4,7 @@ import {
   Panel, PageHeader, ListGroup, ListGroupItem, Button,
 } from 'react-bootstrap';
 
-import { connect_oracle } from '../../components/core/jdbc_connection.js'
+import { connect_oracle } from '../../core/jdbc_connection.js'
 
 
 import s from './Home.css';
@@ -22,7 +22,7 @@ function Home(props, context) {
           <PageHeader>Welcome</PageHeader>
         </div>
       </div>
-      <button type="button" class="btn btn-primary" onClick={(e) => {
+      <button type="button" className="btn btn-primary" onClick={(e) => {
           var connection = connect_oracle("admin", "12345678",
           "thebergdashboard.cx0wblasak2z.us-west-2.rds.amazonaws.com", "1521")
           connection.execute(
@@ -39,7 +39,7 @@ function Home(props, context) {
               alert(result.rows);
               doRelease(connection);
             });
-        }}
+        }}>Click Me</button>
       <img src={LMlogo} alt="LMlogo" height="90%" width="90%"/>
 
     </div>
