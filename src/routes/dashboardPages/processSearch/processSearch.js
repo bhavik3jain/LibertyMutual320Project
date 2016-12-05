@@ -62,12 +62,15 @@ class SearchProcess extends Component {
             <PageHeader>Search Process</PageHeader>
           </div>
         </div>
+        <div className = "center">
 
-        <input type="text_1" name="search" placeholder="Process ID or Tag"/>
+          <input type="text_1" name="search_bar" placeholder="Process ID or Tag..."/>
+          &nbsp;&nbsp;
+          <button className="button_1">Enter</button>
 
-        <Button bsStyle="primary" bsSize="large" onClick={this.open} >
-          Search
-        </Button>
+        </div>
+
+
       </div>
 
     );
