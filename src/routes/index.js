@@ -13,7 +13,6 @@ import App from '../components/App';
 // Child routes
 import home from './home';
 import login from './login';
-// import account from './account';
 import table from './dashboardPages/extras/tables';
 import button from './dashboardPages/extras/buttons';
 import forms from './dashboardPages/extras/forms';
@@ -109,19 +108,6 @@ export default [
       );
     },
   },
-  // {
-  //   path: '/account',
-  //   children: [
-  //     account,
-  //   ],
-  //   async action({ next, render, context }) {
-  //     const component = await next();
-  //     if (component === undefined) return component;
-  //     return render(
-  //       <App context={context}>{component}</App>
-  //     );
-  //   },
-  // },
   {
     path: '/error',
     children: [
