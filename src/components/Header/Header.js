@@ -94,7 +94,7 @@ function Header() {
           </NavDropdown>
 
           <NavDropdown title={<i className="fa fa-user fa-fw"></i> } id = 'navDropdown4'>
-            <MenuItem eventKey = "1">
+            <MenuItem eventKey = "1" onClick = {(event) => { history.push('/account');}}>
               <span> <i className="fa fa-user fa-fw"></i> User Profile </span>
             </MenuItem>
             <MenuItem eventKey="2">
