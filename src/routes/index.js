@@ -13,6 +13,7 @@ import App from '../components/App';
 // Child routes
 import home from './home';
 import login from './login';
+// import account from './account';
 import table from './dashboardPages/extras/tables';
 import button from './dashboardPages/extras/buttons';
 import forms from './dashboardPages/extras/forms';
@@ -35,6 +36,7 @@ import processRunning from './dashboardPages/processRunning';
 import processSuccessful from './dashboardPages/processSuccessful';
 import processFailed from './dashboardPages/processFailed';
 import processSearch from './dashboardPages/processSearch';
+import account from './dashboardPages/account';
 
 import Header from '../components/Header';
 
@@ -73,6 +75,7 @@ export default [
       processSuccessful,
       processFailed,
       processSearch,
+      account,
 
       // extras
       table,
@@ -106,6 +109,19 @@ export default [
       );
     },
   },
+  // {
+  //   path: '/account',
+  //   children: [
+  //     account,
+  //   ],
+  //   async action({ next, render, context }) {
+  //     const component = await next();
+  //     if (component === undefined) return component;
+  //     return render(
+  //       <App context={context}>{component}</App>
+  //     );
+  //   },
+  // },
   {
     path: '/error',
     children: [
