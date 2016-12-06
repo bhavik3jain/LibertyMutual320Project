@@ -14,7 +14,7 @@ oracledb.getConnection(
       return;
     }
     connection.execute(
-      "SELECT count(*) FROM C_DRIVER_SCHEDULE ",
+      "call PM_EDW_META_D.M_DL_DR_SCHED_RN('CLM_ACS_EXTR')",
       function(err, result)
       {
         if (err) {
