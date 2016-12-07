@@ -17,12 +17,20 @@ class DatabaseView extends Component {
       alertVisibleA: true,
       alertVisibleB: true,
       alertVisibleC: true,
-      alertVisibleD: true,
+      alertVisibleD: false,
+      driverScheduleUpdate: false,
+      driverScheduleDelete: false,
+      driverStepDelete: false,
+      driverStepDetailUpdate: false,
+      driverStepDetailDelete: false,
+      view: true,
+      edit: false,
+      delete: false,
       showModal: false,
     };
     this.handleAlertDismiss = this.handleAlertDismiss.bind(this);
   }
-
+  t
   close() {
     this.setState({ showModal: false });
   }
@@ -33,24 +41,78 @@ class DatabaseView extends Component {
   handleAlertDismiss(option) {
     switch (option) {
       case 'A':
-        this.setState({ alertVisibleA: false });
+        this.setState({driverScheduleDelete: true});
+        this.setState({driverScheduleUpdate: false});
+        this.setState({driverStepDelete: false});
+        this.setState({driverStepDetailUpdate: false});
+        this.setState({driverStepDetailDelete: false});
         break;
       case 'B':
-        this.setState({ alertVisibleB: false });
+        this.setState({driverScheduleDelete: false});
+        this.setState({driverScheduleUpdate: true});
+        this.setState({driverStepDelete: false});
+        this.setState({driverStepDetailUpdate: false});
+        this.setState({driverStepDetailDelete: false});
         break;
       case 'C':
-        this.setState({ alertVisibleC: false });
+        this.setState({driverScheduleDelete: false});
+        this.setState({driverScheduleUpdate: false});
+        this.setState({driverStepDelete: true});
+        this.setState({driverStepDetailUpdate: false});
+        this.setState({driverStepDetailDelete: false});
         break;
       case 'D':
-        this.setState({ alertVisibleD: false });
+        this.setState({driverScheduleDelete: false});
+        this.setState({driverScheduleUpdate: false});
+        this.setState({driverStepDelete: false});
+        this.setState({driverStepDetailUpdate: true});
+        this.setState({driverStepDetailDelete: false});
         break;
+      case 'E':
+        this.setState({driverScheduleDelete: false});
+        this.setState({driverScheduleUpdate: false});
+        this.setState({driverStepDelete: false});
+        this.setState({driverStepDetailUpdate: false});
+        this.setState({driverStepDetailDelete: true});
+        break;
+
       default: this.setState({
-        alertVisibleA: false,
-        alertVisibleB: false,
-        alertVisibleC: false,
-        alertVisibleD: false,
+        driverScheduleDelete: true,
+        driverStepDetailUpdate: false,
+        driverStepDelete: false,
+        driverScheduleUpdate: false,
+        driverScheduleUpdate: false,
       });
     }
+  }
+
+  handleMacroType(option){
+    switch(option){
+        case 'A':
+          this.setState({view : true});
+          this.setState({edit : false});
+          this.setState({delete : false});
+          break;
+
+        case 'B':
+          this.setState({view : false});
+          this.setState({edit : true});
+          this.setState({delete : false});
+          break;
+
+        case 'C':
+          this.setState({view : false});
+          this.setState({edit : false});
+          this.setState({delete : true});
+          break;
+
+      default: this.setState({
+        view : true,
+        edit : false,
+        delete : false,
+      });
+    }
+
   }
 
   render() {
@@ -59,201 +121,185 @@ class DatabaseView extends Component {
 
         <div className="row">
           <div className="col-lg-12">
-            <PageHeader>View Database</PageHeader>
+            <PageHeader>Invoke Macro</PageHeader>
           </div>
         </div>
 
         <div className="row">
-          <div className="col-lg-6">
-            <Panel header={<span>Alert Styles</span>} >
-              <Alert bsStyle="success">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                <a
-                  href=""
-                  onClick={(e) => { e.preventDefault(); }}
-                  className="alert-link"
-                >Alert Link</a>.
-              </Alert>
-              <Alert bsStyle="info">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                <a
-                  href=""
-                  onClick={(e) => { e.preventDefault(); }}
-                  className="alert-link"
-                >Alert Link</a>.
-              </Alert>
-              <Alert bsStyle="warning">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                <a
-                  href=""
-                  onClick={(e) => { e.preventDefault(); }}
-                  className="alert-link"
-                >Alert Link</a>.
-              </Alert>
-              <Alert bsStyle="danger">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                <a
-                  href=""
-                  onClick={(e) => { e.preventDefault(); }}
-                  className="alert-link"
-                >Alert Link</a>.
-              </Alert>
-            </Panel>
-          </div>
-
-          <div className="col-lg-6">
-            <Panel header={<span>Dismissable Alerts</span>} >
-              {this.state.alertVisibleA ?
-
-                <Alert bsStyle="success" onDismiss={() => this.handleAlertDismiss('A')} >
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  <a
-                    href=""
-                    onClick={(e) => { e.preventDefault(); }}
-                    className="alert-link"
-                  >Alert Link</a>.
-                </Alert>
-              : null}
-              {this.state.alertVisibleB ?
-                <Alert bsStyle="info" onDismiss={() => this.handleAlertDismiss('B')} >
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  <a
-                    href=""
-                    onClick={(e) => { e.preventDefault(); }}
-                    className="alert-link"
-                  >Alert Link</a>.
-                </Alert>
-              : null}
-              {this.state.alertVisibleC ?
-                <Alert bsStyle="warning" onDismiss={() => this.handleAlertDismiss('C')} >
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  <a
-                    href=""
-                    onClick={(e) => { e.preventDefault(); }}
-                    className="alert-link"
-                  >Alert Link</a>.
-                </Alert>
-              : null}
-              {this.state.alertVisibleD ?
-                <Alert bsStyle="danger" onDismiss={() => this.handleAlertDismiss('D')} >
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  <a
-                    href=""
-                    onClick={(e) => { e.preventDefault(); }}
-                    className="alert-link"
-                  >Alert Link</a>.
-                </Alert>
-              : null}
-            </Panel>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col-lg-6">
-            <Panel header={<span>Modals</span>} >
-              <Button bsStyle="primary" bsSize="large" onClick={this.open} >
-                Launch Demo Modal
+          <div className="col-lg-4 ">
+            <Panel header={<span>Actions</span>} >
+              <Button className="btn btn-default btn-block" onClick={() =>{this.handleMacroType('A')}}>
+                View
               </Button>
-              <Modal show={this.state.showModal} onHide={this.close}>
-                <Header closeButton>
-                  <Title>Modal Title</Title>
-                </Header>
-                <Body>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                  </p>
-                </Body>
-                <Footer>
-                  <Button onClick={this.close}>Close</Button>
-                  <Button bsStyle="primary"> Save changes</Button>
-                </Footer>
-              </Modal>
+              <Button className="btn btn-primary btn-block" onClick={() =>{this.handleMacroType('B')}}>
+                Edit
+              </Button>
+              <Button className="btn btn-danger btn-block" onClick={() =>{this.handleMacroType('C')}}>
+                Delete
+              </Button>
             </Panel>
           </div>
 
+        {this.state.view ?
           <div className="col-lg-6">
-            <Panel header={<span>Tooltips and Popovers</span>} >
-              <h4>Tooltip Demo</h4>
-              <div>
-                <OverlayTrigger
-                  placement="left"
-                  overlay={<Tooltip id="tooltip1">Check this out!</Tooltip>}
-                >
-                  <Button>Tooltip on left</Button>
-                </OverlayTrigger>
-                <OverlayTrigger
-                  placement="top"
-                  overlay={<Tooltip id="tooltip2">Check this out!</Tooltip>}
-                >
-                  <Button>Tooltip on top</Button>
-                </OverlayTrigger>
-                <OverlayTrigger
-                  placement="bottom"
-                  overlay={<Tooltip id="tooltip3">Check this out!</Tooltip>}
-                >
-                  <Button>Tooltip on bottom</Button>
-                </OverlayTrigger>
-                <OverlayTrigger
-                  placement="right"
-                  overlay={<Tooltip id="tooltip4">Check this out!</Tooltip>}
-                >
-                  <Button>Tooltip on right</Button>
-                </OverlayTrigger>
-              </div>
-              <br />
-              <h4>Clickable Popover Demo</h4>
-              <div>
-                <OverlayTrigger
-                  trigger="click"
-                  placement="left"
-                  overlay={
-                    <Popover id="popover1" title="Popover left">
-                      <strong>Hello!</strong> Check this info.
-                    </Popover>
-               }>
-                  <Button>Popover on left</Button>
-                </OverlayTrigger>
-                <OverlayTrigger
-                  trigger="click"
-                  placement="top"
-                  overlay={
-                    <Popover id="popover2" title="Popover top">
-                      <strong>Hello!</strong> Check this info.
-                    </Popover>
-                }
-                >
-                  <Button>Popover on top</Button>
-                </OverlayTrigger>
-                <OverlayTrigger
-                  trigger="click"
-                  placement="bottom"
-                  overlay={
-                    <Popover id="popover3" title="Popover bottom">
-                      <strong>Hello!</strong> Check this info.
-                    </Popover>
-               }>
-                  <Button>Popover on bottom</Button>
-                </OverlayTrigger>
-                <OverlayTrigger
-                  trigger="click"
-                  placement="right"
-                  overlay={
-                    <Popover id="popover4" title="Popover right">
-                      <strong>Hello!</strong> Check this info.
-                    </Popover>
-               }>
-                  <Button>Popover on right</Button>
-                </OverlayTrigger>
-              </div>
+            <Panel header={<span>Macros</span>} >
+            <input type="search" className="form-control" placeholder="Search...">
+            </input>
+            <select multiple className="form-control">
+              <option onClick={() =>{this.handleAlertDismiss('A')}}>Driver Schedule Delete</option>
+              <option onClick={() =>{this.handleAlertDismiss('B')}}>Driver Schedule Update</option>
+              <option onClick={() =>{this.handleAlertDismiss('C')}}>Driver Step Delete</option>
+              <option onClick={() =>{this.handleAlertDismiss('D')}}>Driver Step Detail Update</option>
+              <option onClick={() =>{this.handleAlertDismiss('E')}}>Driver Step Detail Delete</option>
+            </select>
             </Panel>
+          </div>:
+          null
+        }
+
+        {this.state.edit ?
+          <div className="col-lg-6">
+            <Panel header={<span>Macros</span>} >
+            <input type="search" className="form-control" placeholder="Search...">
+            </input>
+            <select multiple className="form-control">
+              <option onClick={() =>{this.handleAlertDismiss('A')}}>Edit Macro 1</option>
+              <option onClick={() =>{this.handleAlertDismiss('B')}}>Edit Macro 2</option>
+              <option onClick={() =>{this.handleAlertDismiss('C')}}>Edit Macro 3</option>
+              <option onClick={() =>{this.handleAlertDismiss('D')}}>Edit Macro 4</option>
+              <option onClick={() =>{this.handleAlertDismiss('E')}}>Edit Macro 5</option>
+            </select>
+            </Panel>
+          </div>:
+          null
+        }
+        {this.state.delete ?
+          <div className="col-lg-6">
+            <Panel header={<span>Macros</span>} >
+            <input type="search" className="form-control" placeholder="Search...">
+            </input>
+            <select multiple className="form-control">
+              <option onClick={() =>{this.handleAlertDismiss('A')}}>Delete Macro 1</option>
+              <option onClick={() =>{this.handleAlertDismiss('B')}}>Delete Macro 2</option>
+              <option onClick={() =>{this.handleAlertDismiss('C')}}>Delete Macro 3</option>
+              <option onClick={() =>{this.handleAlertDismiss('D')}}>Delete Macro 4</option>
+              <option onClick={() =>{this.handleAlertDismiss('E')}}>Delete Macro 5</option>
+            </select>
+            </Panel>
+          </div>:
+          null
+        }
+        </div>
+
+        {this.state.driverScheduleDelete ?
+        <div className="col-lg-10">
+          <Panel header={<span>Driver Schedule Delete</span>} >
+          <form className="form-inline">
+            <div className="form-group">
+              <label for="exampleInputName2">Param 1: </label>
+                <input type="text" className="form-control" id="param" placeholder="Run Name">
+                </input>
+              </div>
+              </form>
+          </Panel>
+        </div> :
+        null
+      }
+      {this.state.driverScheduleUpdate ?
+      <div className="col-lg-10">
+        <Panel header={<span>Driver Schedule Update</span>} >
+        <form className="form-inline">
+          <div className="form-group">
+            <label for="exampleInputName2">Param 1: </label>
+              <input type="text" className="form-control" id="param" placeholder="Run Name">
+              </input>
+            </div>
+            <div className="form-group">
+              <label for="exampleInputName2">Param 2: </label>
+                <input type="text" className="form-control" id="param" placeholder="Audit ID">
+                </input>
+            </div>
+            <div className="form-group">
+              <label for="exampleInputName2">Param 3: </label>
+                <input type="text" className="form-control" id="param" placeholder="Timestamp">
+                </input>
+              </div>
+            </form>
+        </Panel>
+      </div> :
+      null
+    }
+        {this.state.driverStepDelete ?
+          <div className="col-lg-10">
+          <Panel header={<span>Driver Step Delete</span>} >
+          <form className="form-inline">
+            <div className="form-group">
+              <label for="exampleInputName2">Param 1: </label>
+                <input type="text" className="form-control" id="param" placeholder="Run Name">
+                </input>
+                </div>
+                <div className="form-group">
+                <label for="exampleInputName2">Param 2: </label>
+                  <input type="text" className="form-control" id="param" placeholder="Group Number">
+                  </input>
+                  </div>
+                  </form>
+                  </Panel>
+                  </div> :
+                  null
+              }
+            {this.state.driverStepDetailUpdate ?
+    <div className="col-lg-10">
+      <Panel header={<span>Driver Step Detail Update</span>} >
+      <form className="form-inline">
+        <div className="form-group">
+          <label for="exampleInputName2">Param 1: </label>
+            <input type="text" className="form-control" id="param" placeholder="Run Name">
+            </input>
           </div>
+          <div className="form-group">
+            <label for="exampleInputName2">Param 2: </label>
+              <input type="text" className="form-control" id="param" placeholder="Group Number">
+              </input>
+          </div>
+          <div className="form-group">
+            <label for="exampleInputName2">Param 3: </label>
+              <input type="text" className="form-control" id="param" placeholder="Status">
+              </input>
+            </div>
+          </form>
+      </Panel>
+    </div> :
+    null
+  }
+  {this.state.driverStepDetailDelete ?
+  <div className="col-lg-10">
+    <Panel header={<span>Driver Step Detail Delete</span>} >
+    <form className="form-inline">
+      <div className="form-group">
+        <label for="exampleInputName2">Param 1: </label>
+          <input type="text" className="form-control" id="param" placeholder="Run Name">
+          </input>
+          </div>
+        </form>
+    </Panel>
+  </div> :
+  null
+}
+        <div className="col-lg-8 col-lg-offset-4">
+          <div className="checkbox">
+            <label>
+              <input type="checkbox" id="blankCheckbox" value="option1" aria-label="Peer Review"></input>
+              Peer Review
+            </label>
+          </div>
+        </div>
+        <div className="col-lg-8 col-lg-offset-4">
+        <Button className="btn btn-primary" id="submitButton">
+          Enter
+        </Button>
         </div>
       </div>
-
     );
   }
 }
