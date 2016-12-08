@@ -14,10 +14,6 @@ class DatabaseView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      alertVisibleA: true,
-      alertVisibleB: true,
-      alertVisibleC: true,
-      alertVisibleD: false,
       driverScheduleUpdate: false,
       driverScheduleDelete: false,
       driverStepDelete: false,
@@ -28,7 +24,8 @@ class DatabaseView extends Component {
       delete: false,
       showModal: false,
     };
-    this.handleAlertDismiss = this.handleAlertDismiss.bind(this);
+    this.handleMacroFormType = this.handleMacroFormType.bind(this);
+    this.handleMacroType = this.handleMacroType.bind(this);
   }
   t
   close() {
@@ -38,7 +35,7 @@ class DatabaseView extends Component {
   open() {
     this.setState({ showModal: true });
   }
-  handleAlertDismiss(option) {
+  handleMacroFormType(option) {
     switch (option) {
       case 'A':
         this.setState({driverScheduleDelete: true});
@@ -146,11 +143,11 @@ class DatabaseView extends Component {
             <input type="search" className="form-control" placeholder="Search...">
             </input>
             <select multiple className="form-control">
-              <option onClick={() =>{this.handleAlertDismiss('A')}}>Driver Schedule Delete</option>
-              <option onClick={() =>{this.handleAlertDismiss('B')}}>Driver Schedule Update</option>
-              <option onClick={() =>{this.handleAlertDismiss('C')}}>Driver Step Delete</option>
-              <option onClick={() =>{this.handleAlertDismiss('D')}}>Driver Step Detail Update</option>
-              <option onClick={() =>{this.handleAlertDismiss('E')}}>Driver Step Detail Delete</option>
+              <option onClick={() =>{this.handleMacroFormType('A')}}>Driver Schedule Delete</option>
+              <option onClick={() =>{this.handleMacroFormType('B')}}>Driver Schedule Update</option>
+              <option onClick={() =>{this.handleMacroFormType('C')}}>Driver Step Delete</option>
+              <option onClick={() =>{this.handleMacroFormType('D')}}>Driver Step Detail Update</option>
+              <option onClick={() =>{this.handleMacroFormType('E')}}>Driver Step Detail Delete</option>
             </select>
             </Panel>
           </div>:
@@ -163,11 +160,11 @@ class DatabaseView extends Component {
             <input type="search" className="form-control" placeholder="Search...">
             </input>
             <select multiple className="form-control">
-              <option onClick={() =>{this.handleAlertDismiss('A')}}>Edit Macro 1</option>
-              <option onClick={() =>{this.handleAlertDismiss('B')}}>Edit Macro 2</option>
-              <option onClick={() =>{this.handleAlertDismiss('C')}}>Edit Macro 3</option>
-              <option onClick={() =>{this.handleAlertDismiss('D')}}>Edit Macro 4</option>
-              <option onClick={() =>{this.handleAlertDismiss('E')}}>Edit Macro 5</option>
+              <option onClick={() =>{this.handleMacroFormType('A')}}>Edit Macro 1</option>
+              <option onClick={() =>{this.handleMacroFormType('B')}}>Edit Macro 2</option>
+              <option onClick={() =>{this.handleMacroFormType('C')}}>Edit Macro 3</option>
+              <option onClick={() =>{this.handleMacroFormType('D')}}>Edit Macro 4</option>
+              <option onClick={() =>{this.handleMacroFormType('E')}}>Edit Macro 5</option>
             </select>
             </Panel>
           </div>:
@@ -179,11 +176,11 @@ class DatabaseView extends Component {
             <input type="search" className="form-control" placeholder="Search...">
             </input>
             <select multiple className="form-control">
-              <option onClick={() =>{this.handleAlertDismiss('A')}}>Delete Macro 1</option>
-              <option onClick={() =>{this.handleAlertDismiss('B')}}>Delete Macro 2</option>
-              <option onClick={() =>{this.handleAlertDismiss('C')}}>Delete Macro 3</option>
-              <option onClick={() =>{this.handleAlertDismiss('D')}}>Delete Macro 4</option>
-              <option onClick={() =>{this.handleAlertDismiss('E')}}>Delete Macro 5</option>
+              <option onClick={() =>{this.handleMacroFormType('A')}}>Delete Macro 1</option>
+              <option onClick={() =>{this.handleMacroFormType('B')}}>Delete Macro 2</option>
+              <option onClick={() =>{this.handleMacroFormType('C')}}>Delete Macro 3</option>
+              <option onClick={() =>{this.handleMacroFormType('D')}}>Delete Macro 4</option>
+              <option onClick={() =>{this.handleMacroFormType('E')}}>Delete Macro 5</option>
             </select>
             </Panel>
           </div>:
