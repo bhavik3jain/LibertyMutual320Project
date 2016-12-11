@@ -70,6 +70,17 @@ class SubmittedPeerReview extends Component {
                           >
                           Reviewer
                           </th>
+                          <th
+                            className="sorting"
+                            tabIndex="0"
+                            aria-controls="dataTables-example"
+                            rowSpan="1"
+                            colSpan="1"
+                            aria-label="Platform(s): activate to sort column ascending"
+                            style={{ width: 299 }}
+                          >
+                          Status
+                          </th>
                         </tr>
                       </thead>
                       <tbody>
@@ -78,69 +89,70 @@ class SubmittedPeerReview extends Component {
                           <td className="sorting_1">n</td>
                           <td>Nick W.</td>
                           <td>Gordon A.</td>
+                          <td>Pending</td>
                         </tr>
                         <tr className="gradeA even" role="row">
                           <td><a href="./review">View</a></td>
                           <td className="sorting_1">n</td>
                           <td>Nick W.</td>
                           <td>Gordon A.</td>
-
+                          <td>Accepted</td>
                         </tr>
                         <tr className="gradeA odd" role="row">
                           <td><a href="./review">View</a></td>
                           <td className="sorting_1">n</td>
                           <td>Nick W.</td>
                           <td>Gordon A.</td>
-
+                          <td>Pending</td>
                         </tr>
                         <tr className="gradeA even" role="row">
                           <td><a href="./review">View</a></td>
                           <td className="sorting_1">n</td>
                           <td>Nick W.</td>
                           <td>Gordon A.</td>
-
+                          <td>Pending</td>
                         </tr>
                         <tr className="gradeA odd" role="row">
                           <td><a href="./review">View</a></td>
                           <td className="sorting_1">n</td>
                           <td>Nick W.</td>
                           <td>Gordon A.</td>
-
+                          <td>Rejected</td>
                         </tr>
                         <tr className="gradeA even" role="row">
                           <td><a href="./review">View</a></td>
                           <td className="sorting_1">n</td>
                           <td>Nick W.</td>
                           <td>Gordon A.</td>
-
+                          <td>Accepted</td>
                         </tr>
                         <tr className="gradeA odd" role="row">
                           <td><a href="./review">View</a></td>
                           <td className="sorting_1">n</td>
                           <td>Nick W.</td>
                           <td>Gordon A.</td>
-
+                          <td>Pending</td>
                         </tr>
                         <tr className="gradeA even" role="row">
                           <td><a href="./review">View</a></td>
                           <td className="sorting_1">n</td>
                           <td>Nick W.</td>
                           <td>Gordon A.</td>
-
+                          <td>Pending</td>
                         </tr>
                         <tr className="gradeA odd" role="row">
                           <td><a href="./review">View</a></td>
                           <td className="sorting_1">n</td>
                           <td>Nick W.</td>
                           <td>Gordon A.</td>
-
+                          <td>Accepted</td>
                         </tr>
                         <tr className="gradeA even" role="row">
                           <td><a href="./review">View</a></td>
                           <td className="sorting_1">n</td>
                           <td>Nick W.</td>
                           <td>Gordon A.</td>
-
+                          <td>Rejected</td>
                         </tr>
                       </tbody>
                     </table>

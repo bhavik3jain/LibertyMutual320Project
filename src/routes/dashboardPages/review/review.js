@@ -20,8 +20,12 @@ class Review extends Component {
                   <textarea cols="50" rows="5" id="review" readOnly>TEST</textarea>
                 </div>
                 <div>
-                  <label class="checkbox-inline"><input type="checkbox" value="" />Accept</label>
-                  <label class="checkbox-inline"><input type="checkbox" value="" />Reject</label>
+                  <span>
+                    <label class="radio-inline">
+                      <input type="radio" name="optradio"/>Accept
+                      <input type="radio" name="optradio"/>Reject
+                    </label>
+                  </span>
                 </div>
                 <div>
                   <textarea cols="50" rows="5">Notes</textarea>
