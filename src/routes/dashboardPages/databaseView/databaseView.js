@@ -23,17 +23,15 @@ class DatabaseView extends Component {
       edit: false,
       delete: false,
       showModal: false,
+      param1: '',
     };
     this.handleMacroFormType = this.handleMacroFormType.bind(this);
     this.handleMacroType = this.handleMacroType.bind(this);
   }
-  t
-  close() {
-    this.setState({ showModal: false });
-  }
 
-  open() {
-    this.setState({ showModal: true });
+  runMacro(option) {
+    var test = document.getElementById('form-inline').submit();
+    window.alert(33);
   }
   handleMacroFormType(option) {
     switch (option) {
@@ -292,7 +290,7 @@ class DatabaseView extends Component {
           </div>
         </div>
         <div className="col-lg-8 col-lg-offset-4">
-        <Button className="btn btn-primary" id="submitButton">
+        <Button className="btn btn-primary" id="submitButton" onClick={() =>{this.runMacro('A')}}>
           Enter
         </Button>
         </div>
