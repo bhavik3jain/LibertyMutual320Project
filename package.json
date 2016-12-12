@@ -35,7 +35,7 @@
     "mysql": "^2.11.1",
     "node-fetch": "1.6.0",
     "normalize.css": "4.2.0",
-    "oracledb": "^1.11.0",
+    "mysql": "^1.11.0",
     "passport": "0.3.2",
     "passport-facebook": "2.1.1",
     "pretty-error": "2.0.0",
