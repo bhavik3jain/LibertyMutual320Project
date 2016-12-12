@@ -14,8 +14,9 @@ body {
 
 #page-wrapper {
     padding: 20px;
-    min-height: 568px;
+    overflow: auto;
     background-color: #fff;
+    min-height: 640px;
 }
 
 @media(min-width:768px) {
@@ -552,4 +553,32 @@ table.dataTable thead .sorting:after {
         border-right-width: 14px;
         border-left-width: 0;
     }
+}
+
+/*Zach's super special css additions*/
+input[type=text_1] {
+    padding:5px;
+    border:2px solid #ccc;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding-right: 30px;
+}
+
+input[type=text_1]:focus {
+    border-color:#999999;
+}
+.center{
+  text-align: center;
+  padding: 10px;
+
+}
+.button_1{
+  font-size: 16px;
+  color: white;
+  background-color: #2e6da4;
+  margin-bottom: 0;
+  border: none;
+  width: 100px;
+  height: 34px;
+  border-radius: 6px;
 }

@@ -35,6 +35,8 @@ import processRunning from './dashboardPages/processRunning';
 import processSuccessful from './dashboardPages/processSuccessful';
 import processFailed from './dashboardPages/processFailed';
 import processSearch from './dashboardPages/processSearch';
+import account from './dashboardPages/account';
+import review from './dashboardPages/review';
 
 import Header from '../components/Header';
 
@@ -67,12 +69,14 @@ export default [
       databaseChangelog,
       peerPendingReview,
       peerSubmittedReview,
+      review,
       processPending,
       processHold,
       processRunning,
       processSuccessful,
       processFailed,
       processSearch,
+      account,
 
       // extras
       table,
