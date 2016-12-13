@@ -14,16 +14,25 @@ class DatabaseView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      driverScheduleUpdate: false,
-      driverScheduleDelete: false,
-      driverStepDelete: false,
-      driverStepDetailUpdate: false,
-      driverStepDetailDelete: false,
+      M_DL_DR_SCHED_RN: false,
+      M_DL_DR_STEP_RN: false,
+      M_DL_DR_STEP_RN_GN: false,
+      M_DL_DR_STEP_RN_SID: false,
+      M_DL_DR_STEP_DTL_RN: false,
+      M_UD_DR_SCHED_STTS_RN_AID : false,
+      M_UD_DR_SCHED_VAL_END_RN_AID : false,
+      M_UD_DR_SCHED_VAL_START_RN_AID : false,
+      M_UD_DR_SCHED_SLA_AID : false,
+      M_UD_DR_SCHED_SLA_RN : false,
+      M_UD_DR_STEP_DTL_RN_GN : false,
+      M_UD_DR_STEP_DTL_RN_STPDTLID : false,
+      M_UD_DR_STEP_ASI_SID : false,
+      M_UD_DR_STEP_ASI_RN_SID : false,
+      M_UD_DR_STEP_ASI_RN_GN : false,
       view: true,
       edit: false,
       delete: false,
       showModal: false,
-      param1: 'Test',
     };
     this.handleMacroFormType = this.handleMacroFormType.bind(this);
     this.handleMacroType = this.handleMacroType.bind(this);
@@ -35,48 +44,310 @@ class DatabaseView extends Component {
   }
   handleMacroFormType(option) {
     switch (option) {
-      case 'A':
-        this.setState({driverScheduleDelete: true});
-        this.setState({driverScheduleUpdate: false});
-        this.setState({driverStepDelete: false});
-        this.setState({driverStepDetailUpdate: false});
-        this.setState({driverStepDetailDelete: false});
+      case 'M_DL_DR_SCHED_RN':
+        this.setState({M_DL_DR_SCHED_RN: true});
+        this.setState({M_DL_DR_STEP_RN: false});
+        this.setState({M_DL_DR_STEP_RN_GN: false});
+        this.setState({M_DL_DR_STEP_RN_SID: false});
+        this.setState({M_DL_DR_STEP_DTL_RN: false});
+        this.setState({M_UD_DR_SCHED_STTS_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_END_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_START_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_RN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_GN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_STPDTLID: false});
+        this.setState({M_UD_DR_STEP_ASI_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_GN: false});
         break;
-      case 'B':
-        this.setState({driverScheduleDelete: false});
-        this.setState({driverScheduleUpdate: true});
-        this.setState({driverStepDelete: false});
-        this.setState({driverStepDetailUpdate: false});
-        this.setState({driverStepDetailDelete: false});
+      case 'M_DL_DR_STEP_RN':
+        this.setState({M_DL_DR_SCHED_RN: false});
+        this.setState({M_DL_DR_STEP_RN: true});
+        this.setState({M_DL_DR_STEP_RN_GN: false});
+        this.setState({M_DL_DR_STEP_RN_SID: false});
+        this.setState({M_DL_DR_STEP_DTL_RN: false});
+        this.setState({M_UD_DR_SCHED_STTS_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_END_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_START_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_RN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_GN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_STPDTLID: false});
+        this.setState({M_UD_DR_STEP_ASI_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_GN: false});
         break;
-      case 'C':
-        this.setState({driverScheduleDelete: false});
-        this.setState({driverScheduleUpdate: false});
-        this.setState({driverStepDelete: true});
-        this.setState({driverStepDetailUpdate: false});
-        this.setState({driverStepDetailDelete: false});
+      case 'M_DL_DR_STEP_RN_GN':
+        this.setState({M_DL_DR_SCHED_RN: false});
+        this.setState({M_DL_DR_STEP_RN: false});
+        this.setState({M_DL_DR_STEP_RN_GN: true});
+        this.setState({M_DL_DR_STEP_RN_SID: false});
+        this.setState({M_DL_DR_STEP_DTL_RN: false});
+        this.setState({M_UD_DR_SCHED_STTS_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_END_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_START_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_RN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_GN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_STPDTLID: false});
+        this.setState({M_UD_DR_STEP_ASI_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_GN: false});
         break;
-      case 'D':
-        this.setState({driverScheduleDelete: false});
-        this.setState({driverScheduleUpdate: false});
-        this.setState({driverStepDelete: false});
-        this.setState({driverStepDetailUpdate: true});
-        this.setState({driverStepDetailDelete: false});
+      case 'M_DL_DR_STEP_RN_SID':
+        this.setState({M_DL_DR_SCHED_RN: false});
+        this.setState({M_DL_DR_STEP_RN: false});
+        this.setState({M_DL_DR_STEP_RN_GN: false});
+        this.setState({M_DL_DR_STEP_RN_SID: true});
+        this.setState({M_DL_DR_STEP_DTL_RN: false});
+        this.setState({M_UD_DR_SCHED_STTS_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_END_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_START_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_RN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_GN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_STPDTLID: false});
+        this.setState({M_UD_DR_STEP_ASI_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_GN: false});
         break;
-      case 'E':
-        this.setState({driverScheduleDelete: false});
-        this.setState({driverScheduleUpdate: false});
-        this.setState({driverStepDelete: false});
-        this.setState({driverStepDetailUpdate: false});
-        this.setState({driverStepDetailDelete: true});
+      case 'M_DL_DR_STEP_DTL_RN':
+        this.setState({M_DL_DR_SCHED_RN: false});
+        this.setState({M_DL_DR_STEP_RN: false});
+        this.setState({M_DL_DR_STEP_RN_GN: false});
+        this.setState({M_DL_DR_STEP_RN_SID: false});
+        this.setState({M_DL_DR_STEP_DTL_RN: true});
+        this.setState({M_UD_DR_SCHED_STTS_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_END_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_START_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_RN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_GN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_STPDTLID: false});
+        this.setState({M_UD_DR_STEP_ASI_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_GN: false});
         break;
-
+      case 'M_UD_DR_SCHED_STTS_RN_AID':
+        this.setState({M_DL_DR_SCHED_RN: false});
+        this.setState({M_DL_DR_STEP_RN: false});
+        this.setState({M_DL_DR_STEP_RN_GN: false});
+        this.setState({M_DL_DR_STEP_RN_SID: false});
+        this.setState({M_DL_DR_STEP_DTL_RN: false});
+        this.setState({M_UD_DR_SCHED_STTS_RN_AID: true});
+        this.setState({M_UD_DR_SCHED_VAL_END_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_START_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_RN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_GN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_STPDTLID: false});
+        this.setState({M_UD_DR_STEP_ASI_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_GN: false});
+        break;
+      case 'M_UD_DR_SCHED_VAL_END_RN_AID':
+        this.setState({M_DL_DR_SCHED_RN: false});
+        this.setState({M_DL_DR_STEP_RN: false});
+        this.setState({M_DL_DR_STEP_RN_GN: false});
+        this.setState({M_DL_DR_STEP_RN_SID: false});
+        this.setState({M_DL_DR_STEP_DTL_RN: false});
+        this.setState({M_UD_DR_SCHED_STTS_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_END_RN_AID: true});
+        this.setState({M_UD_DR_SCHED_VAL_START_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_RN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_GN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_STPDTLID: false});
+        this.setState({M_UD_DR_STEP_ASI_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_GN: false});
+        break;
+      case 'M_UD_DR_SCHED_VAL_START_RN_AID':
+        this.setState({M_DL_DR_SCHED_RN: false});
+        this.setState({M_DL_DR_STEP_RN: false});
+        this.setState({M_DL_DR_STEP_RN_GN: false});
+        this.setState({M_DL_DR_STEP_RN_SID: false});
+        this.setState({M_DL_DR_STEP_DTL_RN: false});
+        this.setState({M_UD_DR_SCHED_STTS_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_END_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_START_RN_AID: true});
+        this.setState({M_UD_DR_SCHED_SLA_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_RN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_GN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_STPDTLID: false});
+        this.setState({M_UD_DR_STEP_ASI_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_GN: false});
+        break;
+      case 'M_UD_DR_SCHED_SLA_AID':
+        this.setState({M_DL_DR_SCHED_RN: false});
+        this.setState({M_DL_DR_STEP_RN: false});
+        this.setState({M_DL_DR_STEP_RN_GN: false});
+        this.setState({M_DL_DR_STEP_RN_SID: false});
+        this.setState({M_DL_DR_STEP_DTL_RN: false});
+        this.setState({M_UD_DR_SCHED_STTS_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_END_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_START_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_AID: true});
+        this.setState({M_UD_DR_SCHED_SLA_RN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_GN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_STPDTLID: false});
+        this.setState({M_UD_DR_STEP_ASI_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_GN: false});
+        break;
+      case 'M_UD_DR_SCHED_SLA_RN':
+        this.setState({M_DL_DR_SCHED_RN: false});
+        this.setState({M_DL_DR_STEP_RN: false});
+        this.setState({M_DL_DR_STEP_RN_GN: false});
+        this.setState({M_DL_DR_STEP_RN_SID: false});
+        this.setState({M_DL_DR_STEP_DTL_RN: false});
+        this.setState({M_UD_DR_SCHED_STTS_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_END_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_START_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_RN: true});
+        this.setState({M_UD_DR_STEP_DTL_RN_GN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_STPDTLID: false});
+        this.setState({M_UD_DR_STEP_ASI_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_GN: false});
+        break;
+      case 'M_UD_DR_STEP_DTL_RN_GN':
+        this.setState({M_DL_DR_SCHED_RN: false});
+        this.setState({M_DL_DR_STEP_RN: false});
+        this.setState({M_DL_DR_STEP_RN_GN: false});
+        this.setState({M_DL_DR_STEP_RN_SID: false});
+        this.setState({M_DL_DR_STEP_DTL_RN: false});
+        this.setState({M_UD_DR_SCHED_STTS_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_END_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_START_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_RN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_GN: true});
+        this.setState({M_UD_DR_STEP_DTL_RN_STPDTLID: false});
+        this.setState({M_UD_DR_STEP_ASI_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_GN: false});
+        break;
+      case 'M_UD_DR_STEP_DTL_RN_STPDTLID':
+        this.setState({M_DL_DR_SCHED_RN: false});
+        this.setState({M_DL_DR_STEP_RN: false});
+        this.setState({M_DL_DR_STEP_RN_GN: false});
+        this.setState({M_DL_DR_STEP_RN_SID: false});
+        this.setState({M_DL_DR_STEP_DTL_RN: false});
+        this.setState({M_UD_DR_SCHED_STTS_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_END_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_START_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_RN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_GN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_STPDTLID: true});
+        this.setState({M_UD_DR_STEP_ASI_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_GN: false});
+        break;
+      case 'M_UD_DR_STEP_ASI_SID':
+        this.setState({M_DL_DR_SCHED_RN: false});
+        this.setState({M_DL_DR_STEP_RN: false});
+        this.setState({M_DL_DR_STEP_RN_GN: false});
+        this.setState({M_DL_DR_STEP_RN_SID: false});
+        this.setState({M_DL_DR_STEP_DTL_RN: false});
+        this.setState({M_UD_DR_SCHED_STTS_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_END_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_START_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_RN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_GN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_STPDTLID: false});
+        this.setState({M_UD_DR_STEP_ASI_SID: true});
+        this.setState({M_UD_DR_STEP_ASI_RN_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_GN: false});
+        break;
+      case 'M_UD_DR_STEP_ASI_RN_SID':
+        this.setState({M_DL_DR_SCHED_RN: false});
+        this.setState({M_DL_DR_STEP_RN: false});
+        this.setState({M_DL_DR_STEP_RN_GN: false});
+        this.setState({M_DL_DR_STEP_RN_SID: false});
+        this.setState({M_DL_DR_STEP_DTL_RN: false});
+        this.setState({M_UD_DR_SCHED_STTS_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_END_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_START_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_RN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_GN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_STPDTLID: false});
+        this.setState({M_UD_DR_STEP_ASI_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_SID: true});
+        this.setState({M_UD_DR_STEP_ASI_RN: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_GN: false});
+        break;
+      case 'M_UD_DR_STEP_ASI_RN':
+        this.setState({M_DL_DR_SCHED_RN: false});
+        this.setState({M_DL_DR_STEP_RN: false});
+        this.setState({M_DL_DR_STEP_RN_GN: false});
+        this.setState({M_DL_DR_STEP_RN_SID: false});
+        this.setState({M_DL_DR_STEP_DTL_RN: false});
+        this.setState({M_UD_DR_SCHED_STTS_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_END_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_START_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_RN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_GN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_STPDTLID: false});
+        this.setState({M_UD_DR_STEP_ASI_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN: true});
+        this.setState({M_UD_DR_STEP_ASI_RN_GN: false});
+        break;
+      case 'M_UD_DR_STEP_ASI_GN':
+        this.setState({M_DL_DR_SCHED_RN: false});
+        this.setState({M_DL_DR_STEP_RN: false});
+        this.setState({M_DL_DR_STEP_RN_GN: false});
+        this.setState({M_DL_DR_STEP_RN_SID: false});
+        this.setState({M_DL_DR_STEP_DTL_RN: false});
+        this.setState({M_UD_DR_SCHED_STTS_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_END_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_VAL_START_RN_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_AID: false});
+        this.setState({M_UD_DR_SCHED_SLA_RN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_GN: false});
+        this.setState({M_UD_DR_STEP_DTL_RN_STPDTLID: false});
+        this.setState({M_UD_DR_STEP_ASI_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_SID: false});
+        this.setState({M_UD_DR_STEP_ASI_RN: false});
+        this.setState({M_UD_DR_STEP_ASI_RN_GN: true});
+        break;
       default: this.setState({
-        driverScheduleDelete: true,
-        driverStepDetailUpdate: false,
-        driverStepDelete: false,
-        driverScheduleUpdate: false,
-        driverScheduleUpdate: false,
+        M_DL_DR_SCHED_RN: false,
+        M_DL_DR_STEP_RN: false,
+        M_DL_DR_STEP_RN_GN: false,
+        M_DL_DR_STEP_RN_SID: false,
+        M_DL_DR_STEP_DTL_RN: false,
+        M_UD_DR_SCHED_STTS_RN_AID : false,
+        M_UD_DR_SCHED_VAL_END_RN_AID : false,
+        M_UD_DR_SCHED_VAL_START_RN_AID : false,
+        M_UD_DR_SCHED_SLA_AID : false,
+        M_UD_DR_SCHED_SLA_RN : false,
+        M_UD_DR_STEP_DTL_RN_GN : false,
+        M_UD_DR_STEP_DTL_RN_STPDTLID : false,
+        M_UD_DR_STEP_ASI_SID : false,
+        M_UD_DR_STEP_ASI_RN_SID : false,
+        M_UD_DR_STEP_ASI_RN_GN : false,
       });
     }
   }
@@ -84,16 +355,16 @@ class DatabaseView extends Component {
   handleMacroType(option){
     switch(option){
         case 'A':
-          this.setState({view : true});
-          this.setState({edit : false});
-          this.setState({delete : false});
-          break;
+         this.setState({view : true});
+         this.setState({edit : false});
+         this.setState({delete : false});
+         break;
 
         case 'B':
-          this.setState({view : false});
-          this.setState({edit : true});
-          this.setState({delete : false});
-          break;
+         this.setState({view : false});
+         this.setState({edit : true});
+         this.setState({delete : false});
+         break;
 
         case 'C':
           this.setState({view : false});
@@ -158,11 +429,11 @@ class DatabaseView extends Component {
             <input type="search" className="form-control" placeholder="Search...">
             </input>
             <select multiple className="form-control">
-              <option onClick={() =>{this.handleMacroFormType('A')}}>Delete Driver Schedule Run</option>
-              <option onClick={() =>{this.handleMacroFormType('B')}}>Delete Driver Step</option>
-              <option onClick={() =>{this.handleMacroFormType('C')}}>Delete Driver Step by Group</option>
-              <option onClick={() =>{this.handleMacroFormType('D')}}>Delete Driver Step by Driver Step ID</option>
-              <option onClick={() =>{this.handleMacroFormType('E')}}>Delete Driver Step Detail by Run Name</option>
+              <option onClick={() =>{this.handleMacroFormType('M_DL_DR_SCHED_RN')}}>M_DL_DR_SCHED_RN</option>
+              <option onClick={() =>{this.handleMacroFormType('M_DL_DR_STEP_RN')}}>M_DL_DR_STEP_RN</option>
+              <option onClick={() =>{this.handleMacroFormType('M_DL_DR_STEP_RN_GN')}}>M_DL_DR_STEP_RN_GN </option>
+              <option onClick={() =>{this.handleMacroFormType('M_DL_DR_STEP_RN_SID')}}>M_DL_DR_STEP_RN_SID</option>
+              <option onClick={() =>{this.handleMacroFormType('M_DL_DR_STEP_DTL_RN')}}>M_DL_DR_STEP_DTL_RN </option>
             </select>
             </Panel>
           </div>:
@@ -174,17 +445,17 @@ class DatabaseView extends Component {
             <input type="search" className="form-control" placeholder="Search...">
             </input>
             <select multiple className="form-control">
-              <option onClick={() =>{this.handleMacroFormType('A')}}>Update Driver Schedule Table Scheduled Start Time by Run Name and Audit Id</option>
-              <option onClick={() =>{this.handleMacroFormType('B')}}>Update Driver Table Status Code by Run Name and Audit ID </option>
-              <option onClick={() =>{this.handleMacroFormType('C')}}>Update Driver Schedule Table Valuation Start Data by Run Name</option>
-              <option onClick={() =>{this.handleMacroFormType('D')}}>Update Driver Table SLA Date and Time by Run Name and Time</option>
-              <option onClick={() =>{this.handleMacroFormType('E')}}>Update Driver Step Detail Table Run Status Code by Run Name and Group Number</option>
-              <option onClick={() =>{this.handleMacroFormType('E')}}>Update Driver Step Detail Table Run Status Code by Run Name and Driver Step Detail ID</option>
-              <option onClick={() =>{this.handleMacroFormType('E')}}>Update Driver Step Detail Table Run Status Code by Run Name and Driver Step ID</option>
-              <option onClick={() =>{this.handleMacroFormType('E')}}>Update Driver Step Table Active Step Indicator by Driver Step ID</option>
-              <option onClick={() =>{this.handleMacroFormType('E')}}>Update Driver Step Table Active Step Indicator by Run Name and Driver Step ID</option>
-              <option onClick={() =>{this.handleMacroFormType('E')}}>Update Driver Step Table Active Atep Indicator by Run Name</option>
-              <option onClick={() =>{this.handleMacroFormType('E')}}>Update Driver Step Table Active Step Indicator by Run Name and Group Number</option>
+              <option onClick={() =>{this.handleMacroFormType('M_UD_DR_SCHED_STTS_RN_AID')}}>M_UD_DR_SCHED_STTS_RN_AID</option>
+              <option onClick={() =>{this.handleMacroFormType('M_UD_DR_SCHED_VAL_END_RN_AID')}}>M_UD_DR_SCHED_VAL_END_RN_AID</option>
+              <option onClick={() =>{this.handleMacroFormType('M_UD_DR_SCHED_VAL_START_RN_AID')}}>M_UD_DR_SCHED_VAL_START_RN_AID</option>
+              <option onClick={() =>{this.handleMacroFormType('M_UD_DR_SCHED_SLA_AID')}}>M_UD_DR_SCHED_SLA_AID</option>
+              <option onClick={() =>{this.handleMacroFormType('M_UD_DR_SCHED_SLA_RN')}}>M_UD_DR_SCHED_SLA_RN</option>
+              <option onClick={() =>{this.handleMacroFormType('M_UD_DR_STEP_DTL_RN_GN')}}>M_UD_DR_STEP_DTL_RN_GN</option>
+              <option onClick={() =>{this.handleMacroFormType('M_UD_DR_STEP_DTL_RN_STPDTLID')}}>M_UD_DR_STEP_DTL_RN_STPDTLID</option>
+              <option onClick={() =>{this.handleMacroFormType('M_UD_DR_STEP_ASI_SID')}}>M_UD_DR_STEP_ASI_SID</option>
+              <option onClick={() =>{this.handleMacroFormType('M_UD_DR_STEP_ASI_RN_SID')}}>M_UD_DR_STEP_ASI_RN_SID</option>
+              <option onClick={() =>{this.handleMacroFormType('M_UD_DR_STEP_ASI_RN')}}>M_UD_DR_STEP_ASI_RN</option>
+              <option onClick={() =>{this.handleMacroFormType('M_UD_DR_STEP_ASI_RN_GN')}}>M_UD_DR_STEP_ASI_RN_GN</option>
 
             </select>
             </Panel>
@@ -193,7 +464,7 @@ class DatabaseView extends Component {
         }
         </div>
 
-        {this.state.driverScheduleDelete ?
+        {this.state.M_DL_DR_SCHED_RN ?
         <div className="col-lg-10">
           <Panel header={<span>Driver Schedule Delete</span>} >
           <form className="form-inline">
@@ -207,7 +478,7 @@ class DatabaseView extends Component {
         </div> :
         null
       }
-      {this.state.driverScheduleUpdate ?
+      {this.state.M_DL_DR_STEP_RN ?
       <div className="col-lg-10">
         <Panel header={<span>Driver Schedule Update</span>} >
         <form className="form-inline">
@@ -231,7 +502,7 @@ class DatabaseView extends Component {
       </div> :
       null
     }
-        {this.state.driverStepDelete ?
+        {this.state.M_DL_DR_STEP_RN_GN ?
           <div className="col-lg-10">
           <Panel header={<span>Driver Step Delete</span>} >
           <form className="form-inline">
@@ -250,7 +521,7 @@ class DatabaseView extends Component {
                   </div> :
                   null
               }
-            {this.state.driverStepDetailUpdate ?
+            {this.state.M_DL_DR_STEP_RN_SID ?
     <div className="col-lg-10">
       <Panel header={<span>Driver Step Detail Update</span>} >
       <form className="form-inline">
@@ -274,7 +545,7 @@ class DatabaseView extends Component {
     </div> :
     null
   }
-  {this.state.driverStepDetailDelete ?
+  {this.state.M_DL_DR_STEP_DTL_RN ?
   <div className="col-lg-10">
     <Panel header={<span>Driver Step Detail Delete</span>} >
     <form className="form-inline">
@@ -287,6 +558,166 @@ class DatabaseView extends Component {
     </Panel>
   </div> :
   null
+}
+{this.state.M_UD_DR_SCHED_STTS_RN_AID ?
+<div className="col-lg-10">
+  <Panel header={<span>Driver Step Detail Delete</span>} >
+  <form className="form-inline">
+    <div className="form-group">
+      <label for="exampleInputName2">Param 1: </label>
+        <input type="text" className="form-control" id="param" placeholder="Run Name">
+        </input>
+        </div>
+      </form>
+  </Panel>
+</div> :
+null
+}
+{this.state.M_UD_DR_SCHED_VAL_END_RN_AID ?
+<div className="col-lg-10">
+  <Panel header={<span>Driver Step Detail Delete</span>} >
+  <form className="form-inline">
+    <div className="form-group">
+      <label for="exampleInputName2">Param 1: </label>
+        <input type="text" className="form-control" id="param" placeholder="Run Name">
+        </input>
+        </div>
+      </form>
+  </Panel>
+</div> :
+null
+}
+{this.state.M_UD_DR_SCHED_VAL_START_RN_AID ?
+<div className="col-lg-10">
+  <Panel header={<span>Driver Step Detail Delete</span>} >
+  <form className="form-inline">
+    <div className="form-group">
+      <label for="exampleInputName2">Param 1: </label>
+        <input type="text" className="form-control" id="param" placeholder="Run Name">
+        </input>
+        </div>
+      </form>
+  </Panel>
+</div> :
+null
+}
+{this.state.M_UD_DR_SCHED_SLA_AID ?
+<div className="col-lg-10">
+  <Panel header={<span>Driver Step Detail Delete</span>} >
+  <form className="form-inline">
+    <div className="form-group">
+      <label for="exampleInputName2">Param 1: </label>
+        <input type="text" className="form-control" id="param" placeholder="Run Name">
+        </input>
+        </div>
+      </form>
+  </Panel>
+</div> :
+null
+}
+{this.state.M_UD_DR_SCHED_SLA_RN ?
+<div className="col-lg-10">
+  <Panel header={<span>Driver Step Detail Delete</span>} >
+  <form className="form-inline">
+    <div className="form-group">
+      <label for="exampleInputName2">Param 1: </label>
+        <input type="text" className="form-control" id="param" placeholder="Run Name">
+        </input>
+        </div>
+      </form>
+  </Panel>
+</div> :
+null
+}
+{this.state.M_UD_DR_STEP_DTL_RN_GN ?
+<div className="col-lg-10">
+  <Panel header={<span>Driver Step Detail Delete</span>} >
+  <form className="form-inline">
+    <div className="form-group">
+      <label for="exampleInputName2">Param 1: </label>
+        <input type="text" className="form-control" id="param" placeholder="Run Name">
+        </input>
+        </div>
+      </form>
+  </Panel>
+</div> :
+null
+}
+{this.state.M_UD_DR_STEP_DTL_RN_STPDTLID ?
+<div className="col-lg-10">
+  <Panel header={<span>Driver Step Detail Delete</span>} >
+  <form className="form-inline">
+    <div className="form-group">
+      <label for="exampleInputName2">Param 1: </label>
+        <input type="text" className="form-control" id="param" placeholder="Run Name">
+        </input>
+        </div>
+      </form>
+  </Panel>
+</div> :
+null
+}
+{this.state.M_UD_DR_STEP_ASI_SID ?
+<div className="col-lg-10">
+  <Panel header={<span>Driver Step Detail Delete</span>} >
+  <form className="form-inline">
+    <div className="form-group">
+      <label for="exampleInputName2">Param 1: </label>
+        <input type="text" className="form-control" id="param" placeholder="Run Name">
+        </input>
+        </div>
+      </form>
+  </Panel>
+</div> :
+null
+}
+{this.state.M_UD_DR_STEP_ASI_RN ?
+<div className="col-lg-10">
+  <Panel header={<span>Driver Step Detail Delete</span>} >
+  <form className="form-inline">
+    <div className="form-group">
+      <label for="exampleInputName2">Param 1: </label>
+        <input type="text" className="form-control" id="param" placeholder="Run Name">
+        </input>
+        </div>
+      </form>
+  </Panel>
+</div> :
+null
+}
+{this.state.M_UD_DR_STEP_ASI_RN_SID ?
+<div className="col-lg-10">
+  <Panel header={<span>Driver Step Detail Delete</span>} >
+  <form className="form-inline">
+    <div className="form-group">
+      <label for="exampleInputName2">Param 1: </label>
+        <input type="text" className="form-control" id="param" placeholder="Run Name">
+        </input>
+        <label for="exampleInputName2">Param 1: </label>
+          <input type="text" className="form-control" id="param" placeholder="Run Name">
+          </input>
+        </div>
+      </form>
+  </Panel>
+</div> :
+null
+}
+{this.state.M_UD_DR_STEP_ASI_RN_GN ?
+<div className="col-lg-10">
+  <Panel header={<span>Driver Step Detail Delete</span>} >
+  <form className="form-inline">
+    <div className="form-group">
+      <label for="exampleInputName2">Param 1: </label>
+        <input type="text" className="form-control" id="param" placeholder="Run Name">
+        </input>
+        <label for="exampleInputName2">Param 1: </label>
+          <input type="text" className="form-control" id="param" placeholder="Run Name">
+          </input>
+        </div>
+      </form>
+  </Panel>
+</div> :
+null
 }
         <div className="col-lg-8 col-lg-offset-4">
           <div className="checkbox">
