@@ -7,6 +7,7 @@ import {
 
 import s from './Home.css';
 import StatWidget from '../../components/Widget';
+import { sendXHR } from '../../core/util.js'
 
 const title = 'Liberty Dash';
 const LMlogo = require('./LMlogo.png');
@@ -20,7 +21,14 @@ function Home(props, context) {
           <PageHeader>Welcome</PageHeader>
         </div>
       </div>
-
+      <button type="button" className="btn btn-primary" onClick={(e) =>
+                {
+                  e.preventDefault();
+                  console.log("Hi there!");
+                  sendXHR("POST", "http://localhost:3001/sql_request", 'CALL M_DL_DR_SCHED_RN(\'CLM_LDW_EXTR\')', (xhr) => {
+                  console.log(JSON.parse(xhr.responseText));
+                })}
+              }>Click Me</button>
       <img src={LMlogo} alt="LMlogo" height="90%" width="90%"/>
 
     </div>
