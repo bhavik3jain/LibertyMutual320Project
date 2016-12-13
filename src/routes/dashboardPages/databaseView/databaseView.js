@@ -23,7 +23,7 @@ class DatabaseView extends Component {
       edit: false,
       delete: false,
       showModal: false,
-      param1: '',
+      param1: 'Test',
     };
     this.handleMacroFormType = this.handleMacroFormType.bind(this);
     this.handleMacroType = this.handleMacroType.bind(this);
@@ -141,44 +141,51 @@ class DatabaseView extends Component {
             <input type="search" className="form-control" placeholder="Search...">
             </input>
             <select multiple className="form-control">
-              <option onClick={() =>{this.handleMacroFormType('A')}}>Driver Schedule Delete</option>
-              <option onClick={() =>{this.handleMacroFormType('B')}}>Driver Schedule Update</option>
-              <option onClick={() =>{this.handleMacroFormType('C')}}>Driver Step Delete</option>
-              <option onClick={() =>{this.handleMacroFormType('D')}}>Driver Step Detail Update</option>
-              <option onClick={() =>{this.handleMacroFormType('E')}}>Driver Step Detail Delete</option>
+              <option onClick={() =>{this.handleMacroFormType('A')}}>TBD</option>
+              <option onClick={() =>{this.handleMacroFormType('B')}}>TBD</option>
+              <option onClick={() =>{this.handleMacroFormType('C')}}>TBD</option>
+              <option onClick={() =>{this.handleMacroFormType('D')}}>TBD</option>
+              <option onClick={() =>{this.handleMacroFormType('E')}}>TBD</option>
             </select>
             </Panel>
           </div>:
           null
         }
 
-        {this.state.edit ?
-          <div className="col-lg-6">
-            <Panel header={<span>Macros</span>} >
-            <input type="search" className="form-control" placeholder="Search...">
-            </input>
-            <select multiple className="form-control">
-              <option onClick={() =>{this.handleMacroFormType('A')}}>Edit Macro 1</option>
-              <option onClick={() =>{this.handleMacroFormType('B')}}>Edit Macro 2</option>
-              <option onClick={() =>{this.handleMacroFormType('C')}}>Edit Macro 3</option>
-              <option onClick={() =>{this.handleMacroFormType('D')}}>Edit Macro 4</option>
-              <option onClick={() =>{this.handleMacroFormType('E')}}>Edit Macro 5</option>
-            </select>
-            </Panel>
-          </div>:
-          null
-        }
         {this.state.delete ?
           <div className="col-lg-6">
             <Panel header={<span>Macros</span>} >
             <input type="search" className="form-control" placeholder="Search...">
             </input>
             <select multiple className="form-control">
-              <option onClick={() =>{this.handleMacroFormType('A')}}>Delete Macro 1</option>
-              <option onClick={() =>{this.handleMacroFormType('B')}}>Delete Macro 2</option>
-              <option onClick={() =>{this.handleMacroFormType('C')}}>Delete Macro 3</option>
-              <option onClick={() =>{this.handleMacroFormType('D')}}>Delete Macro 4</option>
-              <option onClick={() =>{this.handleMacroFormType('E')}}>Delete Macro 5</option>
+              <option onClick={() =>{this.handleMacroFormType('A')}}>Delete Driver Schedule Run</option>
+              <option onClick={() =>{this.handleMacroFormType('B')}}>Delete Driver Step</option>
+              <option onClick={() =>{this.handleMacroFormType('C')}}>Delete Driver Step by Group</option>
+              <option onClick={() =>{this.handleMacroFormType('D')}}>Delete Driver Step by Driver Step ID</option>
+              <option onClick={() =>{this.handleMacroFormType('E')}}>Delete Driver Step Detail by Run Name</option>
+            </select>
+            </Panel>
+          </div>:
+          null
+        }
+        {this.state.edit ?
+          <div className="col-lg-6">
+            <Panel header={<span>Macros</span>} >
+            <input type="search" className="form-control" placeholder="Search...">
+            </input>
+            <select multiple className="form-control">
+              <option onClick={() =>{this.handleMacroFormType('A')}}>Update Driver Schedule Table Scheduled Start Time by Run Name and Audit Id</option>
+              <option onClick={() =>{this.handleMacroFormType('B')}}>Update Driver Table Status Code by Run Name and Audit ID </option>
+              <option onClick={() =>{this.handleMacroFormType('C')}}>Update Driver Schedule Table Valuation Start Data by Run Name</option>
+              <option onClick={() =>{this.handleMacroFormType('D')}}>Update Driver Table SLA Date and Time by Run Name and Time</option>
+              <option onClick={() =>{this.handleMacroFormType('E')}}>Update Driver Step Detail Table Run Status Code by Run Name and Group Number</option>
+              <option onClick={() =>{this.handleMacroFormType('E')}}>Update Driver Step Detail Table Run Status Code by Run Name and Driver Step Detail ID</option>
+              <option onClick={() =>{this.handleMacroFormType('E')}}>Update Driver Step Detail Table Run Status Code by Run Name and Driver Step ID</option>
+              <option onClick={() =>{this.handleMacroFormType('E')}}>Update Driver Step Table Active Step Indicator by Driver Step ID</option>
+              <option onClick={() =>{this.handleMacroFormType('E')}}>Update Driver Step Table Active Step Indicator by Run Name and Driver Step ID</option>
+              <option onClick={() =>{this.handleMacroFormType('E')}}>Update Driver Step Table Active Atep Indicator by Run Name</option>
+              <option onClick={() =>{this.handleMacroFormType('E')}}>Update Driver Step Table Active Step Indicator by Run Name and Group Number</option>
+
             </select>
             </Panel>
           </div>:
