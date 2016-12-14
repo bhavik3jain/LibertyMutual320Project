@@ -143,60 +143,60 @@ class DatabaseChangelog extends Component {
                         <tbody>
                           <tr className="gradeA odd" role="row">
                             <td className="sorting_1">n</td>
-                            <td>Nick W.</td>
+                            <td>Matt Damon</td>
                             <td>Blah blah blah</td>
                           </tr>
                           <tr className="gradeA even" role="row">
                             <td className="sorting_1">n</td>
-                            <td>Nick W.</td>
+                            <td>Matt Damon</td>
                             <td>Blah blah blah</td>
 
                           </tr>
                           <tr className="gradeA odd" role="row">
                             <td className="sorting_1">n</td>
-                            <td>Nick W.</td>
+                            <td>Matt Damon</td>
                             <td>Blah blah blah</td>
 
                           </tr>
                           <tr className="gradeA even" role="row">
                             <td className="sorting_1">n</td>
-                            <td>Nick W.</td>
+                            <td>Matt Damon</td>
                             <td>Blah blah blah</td>
 
                           </tr>
                           <tr className="gradeA odd" role="row">
                             <td className="sorting_1">n</td>
-                            <td>Nick W.</td>
+                            <td>Matt Damon</td>
                             <td>Blah blah blah</td>
 
                           </tr>
                           <tr className="gradeA even" role="row">
                             <td className="sorting_1">n</td>
-                            <td>Nick W.</td>
+                            <td>Matt Damon</td>
                             <td>Blah blah blah</td>
 
                           </tr>
                           <tr className="gradeA odd" role="row">
                             <td className="sorting_1">n</td>
-                            <td>Nick W.</td>
+                            <td>Matt Damon</td>
                             <td>Blah blah blah</td>
 
                           </tr>
                           <tr className="gradeA even" role="row">
                             <td className="sorting_1">n</td>
-                            <td>Nick W.</td>
+                            <td>Matt Damon</td>
                             <td>Blah blah blah</td>
 
                           </tr>
                           <tr className="gradeA odd" role="row">
                             <td className="sorting_1">n</td>
-                            <td>Nick W.</td>
+                            <td>Matt Damon</td>
                             <td>Blah blah blah</td>
 
                           </tr>
                           <tr className="gradeA even" role="row">
                             <td className="sorting_1">n</td>
-                            <td>Nick W.</td>
+                            <td>Matt Damon</td>
                             <td>Blah blah blah</td>
 
                           </tr>
@@ -231,17 +231,6 @@ class DatabaseChangelog extends Component {
                   </div>
                 </div>
               </div>
-              <Well>
-                <h4>DataTables Usage Information</h4>
-                <p>DataTables is a very flexible, advanced tables plugin for jQuery.
-                  In SB Admin, we are using a specialized version of DataTables built for Bootstrap 3.
-                  We have also customized the table headings to use Font Awesome icons in
-                  place of images. For complete documentation on DataTables, visit their website
-                  at <a target="_blank" rel="noopener noreferrer" href="https://datatables.net/">'https://datatables.net/'</a>.
-                </p>
-                <Button bsSize="large" block href="https://datatables.net/">View DataTables Documentation</Button>
-              </Well>
-
             </div>
           </Panel>
         </div>
