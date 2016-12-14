@@ -487,16 +487,6 @@ class DatabaseView extends Component {
               <input type="text" className="form-control" id="param" placeholder="Run Name">
               </input>
             </div>
-            <div className="form-group">
-              <label for="exampleInputName2">Param 2: </label>
-                <input type="text" className="form-control" id="param" placeholder="Audit ID">
-                </input>
-            </div>
-            <div className="form-group">
-              <label for="exampleInputName2">Param 3: </label>
-                <input type="text" className="form-control" id="param" placeholder="Timestamp">
-                </input>
-              </div>
             </form>
         </Panel>
       </div> :
@@ -537,7 +527,7 @@ class DatabaseView extends Component {
           </div>
           <div className="form-group">
             <label for="exampleInputName2">Param 3: </label>
-              <input type="text" className="form-control" id="param" placeholder="Status">
+              <input type="text" className="form-control" id="param" placeholder="Driver Step ID">
               </input>
             </div>
           </form>
@@ -554,6 +544,7 @@ class DatabaseView extends Component {
           <input type="text" className="form-control" id="param" placeholder="Run Name">
           </input>
           </div>
+
         </form>
     </Panel>
   </div> :
@@ -568,6 +559,16 @@ class DatabaseView extends Component {
         <input type="text" className="form-control" id="param" placeholder="Run Name">
         </input>
         </div>
+        <div className="form-group">
+          <label for="exampleInputName2">Param 2: </label>
+            <input type="text" className="form-control" id="param" placeholder="Audit ID">
+            </input>
+          </div>
+          <div className="form-group">
+            <label for="exampleInputName2">Param 3: </label>
+              <input type="text" className="form-control" id="param" placeholder="Status">
+              </input>
+              </div>
       </form>
   </Panel>
 </div> :
@@ -582,6 +583,16 @@ null
         <input type="text" className="form-control" id="param" placeholder="Run Name">
         </input>
         </div>
+        <div className="form-group">
+          <label for="exampleInputName2">Param 2: </label>
+            <input type="text" className="form-control" id="param" placeholder="Audit ID">
+            </input>
+            </div>
+            <div className="form-group">
+              <label for="exampleInputName2">Param 3: </label>
+                <input type="text" className="form-control" id="param" placeholder="End Time">
+                </input>
+              </div>
       </form>
   </Panel>
 </div> :
@@ -596,6 +607,16 @@ null
         <input type="text" className="form-control" id="param" placeholder="Run Name">
         </input>
         </div>
+      <div className="form-group">
+        <label for="exampleInputName2">Param 2: </label>
+          <input type="text" className="form-control" id="param" placeholder="Audit ID">
+          </input>
+          </div>
+      <div className="form-group">
+        <label for="exampleInputName2">Param 3: </label>
+            <input type="text" className="form-control" id="param" placeholder="Start Time">
+            </input>
+            </div>
       </form>
   </Panel>
 </div> :
@@ -607,9 +628,24 @@ null
   <form className="form-inline">
     <div className="form-group">
       <label for="exampleInputName2">Param 1: </label>
-        <input type="text" className="form-control" id="param" placeholder="Run Name">
+        <input type="text" className="form-control" id="param" placeholder="SLA Date">
         </input>
         </div>
+        <div className="form-group">
+          <label for="exampleInputName2">Param 2: </label>
+            <input type="text" className="form-control" id="param" placeholder="SLA Time">
+            </input>
+            </div>
+        <div className="form-group">
+            <label for="exampleInputName2">Param 3: </label>
+            <input type="text" className="form-control" id="param" placeholder="Audit ID">
+            </input>
+        </div>
+        <div className="form-group">
+          <label for="exampleInputName2">Param 4: </label>
+            <input type="text" className="form-control" id="param" placeholder="Perf Detail Desc.">
+            </input>
+            </div>
       </form>
   </Panel>
 </div> :
@@ -621,9 +657,14 @@ null
   <form className="form-inline">
     <div className="form-group">
       <label for="exampleInputName2">Param 1: </label>
-        <input type="text" className="form-control" id="param" placeholder="Run Name">
+        <input type="text" className="form-control" id="param" placeholder="SLA Time">
         </input>
         </div>
+      <div className="form-group">
+        <label for="exampleInputName2">Param 2: </label>
+          <input type="text" className="form-control" id="param" placeholder="Run Name">
+          </input>
+          </div>
       </form>
   </Panel>
 </div> :
@@ -638,6 +679,16 @@ null
         <input type="text" className="form-control" id="param" placeholder="Run Name">
         </input>
         </div>
+        <div className="form-group">
+          <label for="exampleInputName2">Param 2: </label>
+            <input type="text" className="form-control" id="param" placeholder="Group Number">
+            </input>
+            </div>
+            <div className="form-group">
+              <label for="exampleInputName2">Param 3: </label>
+                <input type="text" className="form-control" id="param" placeholder="Status">
+                </input>
+              </div>
       </form>
   </Panel>
 </div> :
@@ -652,6 +703,16 @@ null
         <input type="text" className="form-control" id="param" placeholder="Run Name">
         </input>
         </div>
+        <div className="form-group">
+          <label for="exampleInputName2">Param 2: </label>
+            <input type="text" className="form-control" id="param" placeholder="Driver Step Detail ID">
+            </input>
+            </div>
+            <div className="form-group">
+              <label for="exampleInputName2">Param 3: </label>
+                <input type="text" className="form-control" id="param" placeholder="Status">
+                </input>
+                </div>
       </form>
   </Panel>
 </div> :
@@ -663,9 +724,14 @@ null
   <form className="form-inline">
     <div className="form-group">
       <label for="exampleInputName2">Param 1: </label>
-        <input type="text" className="form-control" id="param" placeholder="Run Name">
+        <input type="text" className="form-control" id="param" placeholder="Driver Step ID">
         </input>
         </div>
+        <div className="form-group">
+          <label for="exampleInputName2">Param 2: </label>
+            <input type="text" className="form-control" id="param" placeholder="Active Step Indicator">
+            </input>
+            </div>
       </form>
   </Panel>
 </div> :
@@ -680,6 +746,11 @@ null
         <input type="text" className="form-control" id="param" placeholder="Run Name">
         </input>
         </div>
+        <div className="form-group">
+          <label for="exampleInputName2">Param 2: </label>
+            <input type="text" className="form-control" id="param" placeholder="Active Step Indicator">
+            </input>
+            </div>
       </form>
   </Panel>
 </div> :
@@ -693,10 +764,15 @@ null
       <label for="exampleInputName2">Param 1: </label>
         <input type="text" className="form-control" id="param" placeholder="Run Name">
         </input>
-        <label for="exampleInputName2">Param 1: </label>
-          <input type="text" className="form-control" id="param" placeholder="Run Name">
+        <label for="exampleInputName2">Param 2: </label>
+          <input type="text" className="form-control" id="param" placeholder="Driver Step ID">
           </input>
         </div>
+        <div className="form-group">
+          <label for="exampleInputName2">Param 3: </label>
+            <input type="text" className="form-control" id="param" placeholder="Active Step Indicator">
+            </input>
+            </div>
       </form>
   </Panel>
 </div> :
@@ -710,10 +786,15 @@ null
       <label for="exampleInputName2">Param 1: </label>
         <input type="text" className="form-control" id="param" placeholder="Run Name">
         </input>
-        <label for="exampleInputName2">Param 1: </label>
-          <input type="text" className="form-control" id="param" placeholder="Run Name">
+        <label for="exampleInputName2">Param 2: </label>
+          <input type="text" className="form-control" id="param" placeholder="Group Number">
           </input>
         </div>
+        <div className="form-group">
+          <label for="exampleInputName2">Param 3: </label>
+            <input type="text" className="form-control" id="param" placeholder="Active Step Index">
+            </input>
+            </div>
       </form>
   </Panel>
 </div> :
