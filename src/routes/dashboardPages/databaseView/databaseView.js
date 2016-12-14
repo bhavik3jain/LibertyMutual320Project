@@ -466,7 +466,7 @@ class DatabaseView extends Component {
 
         {this.state.M_DL_DR_SCHED_RN ?
         <div className="col-lg-10">
-          <Panel header={<span>Driver Schedule Delete</span>} >
+          <Panel header={<span>Delete Drive Schedule by Run Name</span>} >
           <form className="form-inline">
             <div className="form-group">
               <label for="exampleInputName2">Param 1: </label>
@@ -480,23 +480,13 @@ class DatabaseView extends Component {
       }
       {this.state.M_DL_DR_STEP_RN ?
       <div className="col-lg-10">
-        <Panel header={<span>Driver Schedule Update</span>} >
+        <Panel header={<span>Delete Driver Step by Run Name</span>} >
         <form className="form-inline">
           <div className="form-group">
             <label for="exampleInputName2">Param 1: </label>
               <input type="text" className="form-control" id="param" placeholder="Run Name">
               </input>
             </div>
-            <div className="form-group">
-              <label for="exampleInputName2">Param 2: </label>
-                <input type="text" className="form-control" id="param" placeholder="Audit ID">
-                </input>
-            </div>
-            <div className="form-group">
-              <label for="exampleInputName2">Param 3: </label>
-                <input type="text" className="form-control" id="param" placeholder="Timestamp">
-                </input>
-              </div>
             </form>
         </Panel>
       </div> :
@@ -504,7 +494,7 @@ class DatabaseView extends Component {
     }
         {this.state.M_DL_DR_STEP_RN_GN ?
           <div className="col-lg-10">
-          <Panel header={<span>Driver Step Delete</span>} >
+          <Panel header={<span>Delete Driver Step by Run Name and Group Number</span>} >
           <form className="form-inline">
             <div className="form-group">
               <label for="exampleInputName2">Param 1: </label>
@@ -523,7 +513,7 @@ class DatabaseView extends Component {
               }
             {this.state.M_DL_DR_STEP_RN_SID ?
     <div className="col-lg-10">
-      <Panel header={<span>Driver Step Detail Update</span>} >
+      <Panel header={<span>Delete Driver Step by Run Name and Driver Step ID</span>} >
       <form className="form-inline">
         <div className="form-group">
           <label for="exampleInputName2">Param 1: </label>
@@ -537,7 +527,7 @@ class DatabaseView extends Component {
           </div>
           <div className="form-group">
             <label for="exampleInputName2">Param 3: </label>
-              <input type="text" className="form-control" id="param" placeholder="Status">
+              <input type="text" className="form-control" id="param" placeholder="Driver Step ID">
               </input>
             </div>
           </form>
@@ -547,13 +537,14 @@ class DatabaseView extends Component {
   }
   {this.state.M_DL_DR_STEP_DTL_RN ?
   <div className="col-lg-10">
-    <Panel header={<span>Driver Step Detail Delete</span>} >
+    <Panel header={<span>Delete Driver Step Detail Entry by Run Name</span>} >
     <form className="form-inline">
       <div className="form-group">
         <label for="exampleInputName2">Param 1: </label>
           <input type="text" className="form-control" id="param" placeholder="Run Name">
           </input>
           </div>
+
         </form>
     </Panel>
   </div> :
@@ -561,13 +552,23 @@ class DatabaseView extends Component {
 }
 {this.state.M_UD_DR_SCHED_STTS_RN_AID ?
 <div className="col-lg-10">
-  <Panel header={<span>Driver Step Detail Delete</span>} >
+  <Panel header={<span>Update Driver Schedule Statusby Run Name and Audit ID</span>} >
   <form className="form-inline">
     <div className="form-group">
       <label for="exampleInputName2">Param 1: </label>
         <input type="text" className="form-control" id="param" placeholder="Run Name">
         </input>
         </div>
+        <div className="form-group">
+          <label for="exampleInputName2">Param 2: </label>
+            <input type="text" className="form-control" id="param" placeholder="Audit ID">
+            </input>
+          </div>
+          <div className="form-group">
+            <label for="exampleInputName2">Param 3: </label>
+              <input type="text" className="form-control" id="param" placeholder="Status">
+              </input>
+              </div>
       </form>
   </Panel>
 </div> :
@@ -575,13 +576,23 @@ null
 }
 {this.state.M_UD_DR_SCHED_VAL_END_RN_AID ?
 <div className="col-lg-10">
-  <Panel header={<span>Driver Step Detail Delete</span>} >
+  <Panel header={<span>Update Driver Schedule Table Valuation End Date by Run Name and Audit ID</span>} >
   <form className="form-inline">
     <div className="form-group">
       <label for="exampleInputName2">Param 1: </label>
         <input type="text" className="form-control" id="param" placeholder="Run Name">
         </input>
         </div>
+        <div className="form-group">
+          <label for="exampleInputName2">Param 2: </label>
+            <input type="text" className="form-control" id="param" placeholder="Audit ID">
+            </input>
+            </div>
+            <div className="form-group">
+              <label for="exampleInputName2">Param 3: </label>
+                <input type="text" className="form-control" id="param" placeholder="End Time">
+                </input>
+              </div>
       </form>
   </Panel>
 </div> :
@@ -589,13 +600,23 @@ null
 }
 {this.state.M_UD_DR_SCHED_VAL_START_RN_AID ?
 <div className="col-lg-10">
-  <Panel header={<span>Driver Step Detail Delete</span>} >
+  <Panel header={<span>Update Driver Schedule Table Valuation Start Date by Run Name and Audit ID</span>} >
   <form className="form-inline">
     <div className="form-group">
       <label for="exampleInputName2">Param 1: </label>
         <input type="text" className="form-control" id="param" placeholder="Run Name">
         </input>
         </div>
+      <div className="form-group">
+        <label for="exampleInputName2">Param 2: </label>
+          <input type="text" className="form-control" id="param" placeholder="Audit ID">
+          </input>
+          </div>
+      <div className="form-group">
+        <label for="exampleInputName2">Param 3: </label>
+            <input type="text" className="form-control" id="param" placeholder="Start Time">
+            </input>
+            </div>
       </form>
   </Panel>
 </div> :
@@ -603,13 +624,28 @@ null
 }
 {this.state.M_UD_DR_SCHED_SLA_AID ?
 <div className="col-lg-10">
-  <Panel header={<span>Driver Step Detail Delete</span>} >
+  <Panel header={<span>Update Driver Schedule SLA Date and Time by Audit ID</span>} >
   <form className="form-inline">
     <div className="form-group">
       <label for="exampleInputName2">Param 1: </label>
-        <input type="text" className="form-control" id="param" placeholder="Run Name">
+        <input type="text" className="form-control" id="param" placeholder="SLA Date">
         </input>
         </div>
+        <div className="form-group">
+          <label for="exampleInputName2">Param 2: </label>
+            <input type="text" className="form-control" id="param" placeholder="SLA Time">
+            </input>
+            </div>
+        <div className="form-group">
+            <label for="exampleInputName2">Param 3: </label>
+            <input type="text" className="form-control" id="param" placeholder="Audit ID">
+            </input>
+        </div>
+        <div className="form-group">
+          <label for="exampleInputName2">Param 4: </label>
+            <input type="text" className="form-control" id="param" placeholder="Perf Detail Desc.">
+            </input>
+            </div>
       </form>
   </Panel>
 </div> :
@@ -617,13 +653,18 @@ null
 }
 {this.state.M_UD_DR_SCHED_SLA_RN ?
 <div className="col-lg-10">
-  <Panel header={<span>Driver Step Detail Delete</span>} >
+  <Panel header={<span>Update Driver Schedule SLA Date and Time by Run Name and Time</span>} >
   <form className="form-inline">
     <div className="form-group">
       <label for="exampleInputName2">Param 1: </label>
-        <input type="text" className="form-control" id="param" placeholder="Run Name">
+        <input type="text" className="form-control" id="param" placeholder="SLA Time">
         </input>
         </div>
+      <div className="form-group">
+        <label for="exampleInputName2">Param 2: </label>
+          <input type="text" className="form-control" id="param" placeholder="Run Name">
+          </input>
+          </div>
       </form>
   </Panel>
 </div> :
@@ -631,13 +672,23 @@ null
 }
 {this.state.M_UD_DR_STEP_DTL_RN_GN ?
 <div className="col-lg-10">
-  <Panel header={<span>Driver Step Detail Delete</span>} >
+  <Panel header={<span>Update Driver Step Status by Run Name and Group Number</span>} >
   <form className="form-inline">
     <div className="form-group">
       <label for="exampleInputName2">Param 1: </label>
         <input type="text" className="form-control" id="param" placeholder="Run Name">
         </input>
         </div>
+        <div className="form-group">
+          <label for="exampleInputName2">Param 2: </label>
+            <input type="text" className="form-control" id="param" placeholder="Group Number">
+            </input>
+            </div>
+            <div className="form-group">
+              <label for="exampleInputName2">Param 3: </label>
+                <input type="text" className="form-control" id="param" placeholder="Status">
+                </input>
+              </div>
       </form>
   </Panel>
 </div> :
@@ -645,13 +696,23 @@ null
 }
 {this.state.M_UD_DR_STEP_DTL_RN_STPDTLID ?
 <div className="col-lg-10">
-  <Panel header={<span>Driver Step Detail Delete</span>} >
+  <Panel header={<span>Update Driver Step Detail Run Status by Run Name and Driver Step Detail ID</span>} >
   <form className="form-inline">
     <div className="form-group">
       <label for="exampleInputName2">Param 1: </label>
         <input type="text" className="form-control" id="param" placeholder="Run Name">
         </input>
         </div>
+        <div className="form-group">
+          <label for="exampleInputName2">Param 2: </label>
+            <input type="text" className="form-control" id="param" placeholder="Driver Step Detail ID">
+            </input>
+            </div>
+            <div className="form-group">
+              <label for="exampleInputName2">Param 3: </label>
+                <input type="text" className="form-control" id="param" placeholder="Status">
+                </input>
+                </div>
       </form>
   </Panel>
 </div> :
@@ -659,13 +720,18 @@ null
 }
 {this.state.M_UD_DR_STEP_ASI_SID ?
 <div className="col-lg-10">
-  <Panel header={<span>Driver Step Detail Delete</span>} >
+  <Panel header={<span>Update Driver Step Table Active Step Indicator by Driver Step ID</span>} >
   <form className="form-inline">
     <div className="form-group">
       <label for="exampleInputName2">Param 1: </label>
-        <input type="text" className="form-control" id="param" placeholder="Run Name">
+        <input type="text" className="form-control" id="param" placeholder="Driver Step ID">
         </input>
         </div>
+        <div className="form-group">
+          <label for="exampleInputName2">Param 2: </label>
+            <input type="text" className="form-control" id="param" placeholder="Active Step Indicator">
+            </input>
+            </div>
       </form>
   </Panel>
 </div> :
@@ -673,13 +739,18 @@ null
 }
 {this.state.M_UD_DR_STEP_ASI_RN ?
 <div className="col-lg-10">
-  <Panel header={<span>Driver Step Detail Delete</span>} >
+  <Panel header={<span>Update Driver Table Active Step Indicator by Run Name</span>} >
   <form className="form-inline">
     <div className="form-group">
       <label for="exampleInputName2">Param 1: </label>
         <input type="text" className="form-control" id="param" placeholder="Run Name">
         </input>
         </div>
+        <div className="form-group">
+          <label for="exampleInputName2">Param 2: </label>
+            <input type="text" className="form-control" id="param" placeholder="Active Step Indicator">
+            </input>
+            </div>
       </form>
   </Panel>
 </div> :
@@ -687,16 +758,21 @@ null
 }
 {this.state.M_UD_DR_STEP_ASI_RN_SID ?
 <div className="col-lg-10">
-  <Panel header={<span>Driver Step Detail Delete</span>} >
+  <Panel header={<span>Update Driver Table Active Step Indicator by Run Name and Step ID</span>} >
   <form className="form-inline">
     <div className="form-group">
       <label for="exampleInputName2">Param 1: </label>
         <input type="text" className="form-control" id="param" placeholder="Run Name">
         </input>
-        <label for="exampleInputName2">Param 1: </label>
-          <input type="text" className="form-control" id="param" placeholder="Run Name">
+        <label for="exampleInputName2">Param 2: </label>
+          <input type="text" className="form-control" id="param" placeholder="Driver Step ID">
           </input>
         </div>
+        <div className="form-group">
+          <label for="exampleInputName2">Param 3: </label>
+            <input type="text" className="form-control" id="param" placeholder="Active Step Indicator">
+            </input>
+            </div>
       </form>
   </Panel>
 </div> :
@@ -704,16 +780,21 @@ null
 }
 {this.state.M_UD_DR_STEP_ASI_RN_GN ?
 <div className="col-lg-10">
-  <Panel header={<span>Driver Step Detail Delete</span>} >
+  <Panel header={<span>Update Driver Table Active Step Indicator by Run Name and Group Number</span>} >
   <form className="form-inline">
     <div className="form-group">
       <label for="exampleInputName2">Param 1: </label>
         <input type="text" className="form-control" id="param" placeholder="Run Name">
         </input>
-        <label for="exampleInputName2">Param 1: </label>
-          <input type="text" className="form-control" id="param" placeholder="Run Name">
+        <label for="exampleInputName2">Param 2: </label>
+          <input type="text" className="form-control" id="param" placeholder="Group Number">
           </input>
         </div>
+        <div className="form-group">
+          <label for="exampleInputName2">Param 3: </label>
+            <input type="text" className="form-control" id="param" placeholder="Active Step Index">
+            </input>
+            </div>
       </form>
   </Panel>
 </div> :
