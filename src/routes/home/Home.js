@@ -25,7 +25,7 @@ function Home(props, context) {
                 {
                   e.preventDefault();
                   console.log("Hi there!");
-                  sendXHR("POST", "http://localhost:3001/sql_request", 'CALL M_DL_DR_SCHED_RN(\'CLM_LDW_EXTR\')', (xhr) => {
+                  sendXHR("POST", "http://localhost:3001/sql_request", 'select * from C_DRIVER_SCHEDULE', (xhr) => {
                   console.log(JSON.parse(xhr.responseText));
                 })}
               }>Click Me</button>

@@ -8,6 +8,7 @@ import Tooltip from 'react-bootstrap/lib/Tooltip';
 import Popover from 'react-bootstrap/lib/Popover';
 import Modal, { Footer, Header, Title, Body } from 'react-bootstrap/lib/Modal';
 import PageHeader from 'react-bootstrap/lib/PageHeader';
+import { sendXHR } from '../../../core/util.js';
 
 
 class DatabaseView extends Component {
@@ -38,6 +39,7 @@ class DatabaseView extends Component {
       edit: false,
       delete: false,
       showModal: false,
+      change_log: []
     };
     this.handleMacroFormType = this.handleMacroFormType.bind(this);
     this.handleMacroType = this.handleMacroType.bind(this);
@@ -53,11 +55,24 @@ class DatabaseView extends Component {
     }
   }
 
-  runMacro(option) {
-    console.log(option);
+  runMacro() {
     var macroName = this.getTrueState();
     var test = $("#" + macroName).serializeArray();
-    console.log(test);
+    var parameters = [];
+    for(var val in test) {
+      var value = test[val].value;
+      if(isNaN(parseInt(value))) {
+        value = "\'" + value + "\'";
+        parameters.push(value);
+      }
+      else {
+        parameters.push(value);
+      }
+    }
+    var sql_call = 'CALL ' + macroName + "(" + parameters.join(", ") + ")";
+    sendXHR("POST", "http://localhost:3001/sql_request", sql_call, (xhr) => {
+      JSON.parse(xhr.responseText);
+    })
 
   }
 
@@ -400,6 +415,7 @@ class DatabaseView extends Component {
   }
 
   render() {
+    console.log("State:", this.state.change_log);
     return (
       <div>
         <div className="row">
