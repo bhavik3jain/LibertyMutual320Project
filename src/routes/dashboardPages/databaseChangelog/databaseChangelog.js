@@ -24,7 +24,8 @@ class DatabaseChangelog extends Component {
       alertVisibleC: true,
       alertVisibleD: true,
       showModal: false,
-      change_log: []
+      change_log: [],
+      user_id: ""
     };
     this.handleAlertDismiss = this.handleAlertDismiss.bind(this);
   }
@@ -65,11 +66,22 @@ class DatabaseChangelog extends Component {
       });
   }
 
+  getUserId(cb){
+    sendXHR("POST", "http://localhost:3001/readfile", "", (xhr) => {
+          console.log("entering XHR");
+           cb(JSON.parse(xhr.responseText));
+      });
+  }
+
 
   componentDidMount() {
 
     this.getChangeLog((results) => {
           this.setState({"change_log": results});
+    });
+
+    this.getUserId((data) => {
+          this.setState({"user_id": data});
     });
 
     $(document).ready(function() {
@@ -88,6 +100,7 @@ class DatabaseChangelog extends Component {
 
   render() {
     var ids = this.state.change_log;
+    console.log(this.state.user_id.user_id);
     const opts = {
       page: 1,  // which page you want to show as default
       sizePerPageList: [ {
