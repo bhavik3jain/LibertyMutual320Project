@@ -21,7 +21,8 @@ const title = 'Log In';
 
 function submitHandler(e) {
   e.preventDefault();
-  history.push('/');
+  console.log(window.a);
+  history.push('/app');
 }
 
 function Login(props, context) {

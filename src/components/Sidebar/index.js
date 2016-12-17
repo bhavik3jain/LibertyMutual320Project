@@ -18,9 +18,9 @@ class Sidebar extends Component {
       <div className="navbar-default sidebar" style={{ marginLeft: '-20px' }} role="navigation">
         <div className="sidebar-nav navbar-collapse collapse">
           <ul className="nav in" id="side-menu">
-            
+
             <li>
-              <a href="" onClick={(e) => { e.preventDefault(); history.push('/'); }} >
+              <a href="" onClick={(e) => { e.preventDefault(); history.push('/app'); }} >
                 <i className="fa fa-dashboard fa-fw" /> &nbsp;Home
               </a>
             </li>
@@ -48,7 +48,7 @@ class Sidebar extends Component {
                 <li>
                   <a
                     href=""
-                    onClick={(e) => { e.preventDefault(); history.push('/databaseView'); }}
+                    onClick={(e) => { e.preventDefault(); history.push('/app/databaseView'); }}
                   >
                     Invoke Macro
                   </a>
@@ -56,7 +56,7 @@ class Sidebar extends Component {
                 <li>
                   <a
                     href=""
-                    onClick={(e) => { e.preventDefault(); history.push('/databaseChangelog'); }}
+                    onClick={(e) => { e.preventDefault(); history.push('/app/databaseChangelog'); }}
                   >
                     Changelog
                   </a>
@@ -85,7 +85,7 @@ class Sidebar extends Component {
                 <li>
                   <a
                     href=""
-                    onClick={(e) => { e.preventDefault(); history.push('/peerPendingReview'); }}
+                    onClick={(e) => { e.preventDefault(); history.push('/app/peerPendingReview'); }}
                   >
                     Pending Peer Review
                   </a>
@@ -93,7 +93,7 @@ class Sidebar extends Component {
                 <li>
                   <a
                     href=""
-                    onClick={(e) => { e.preventDefault(); history.push('/peerSubmittedReview'); }}
+                    onClick={(e) => { e.preventDefault(); history.push('/app/peerSubmittedReview'); }}
                   >
                     Submitted Peer Review
                   </a>
@@ -122,7 +122,7 @@ class Sidebar extends Component {
                 <li>
                   <a
                     href=""
-                    onClick={(e) => { e.preventDefault(); history.push('/processPending'); }}
+                    onClick={(e) => { e.preventDefault(); history.push('/app/processPending'); }}
                   >
                     Pending
                   </a>
@@ -130,7 +130,7 @@ class Sidebar extends Component {
                 <li>
                   <a
                     href=""
-                    onClick={(e) => { e.preventDefault(); history.push('/processHold'); }}
+                    onClick={(e) => { e.preventDefault(); history.push('/app/processHold'); }}
                   >
                     Hold
                   </a>
@@ -138,7 +138,7 @@ class Sidebar extends Component {
                 <li>
                   <a
                     href=""
-                    onClick={(e) => { e.preventDefault(); history.push('/processRunning'); }}
+                    onClick={(e) => { e.preventDefault(); history.push('/app/processRunning'); }}
                   >
                     Running
                   </a>
@@ -146,7 +146,7 @@ class Sidebar extends Component {
                 <li>
                   <a
                     href=""
-                    onClick={(e) => { e.preventDefault(); history.push('/processSuccessful'); }}
+                    onClick={(e) => { e.preventDefault(); history.push('/app/processSuccessful'); }}
                   >
                     Successful
                   </a>
@@ -154,7 +154,7 @@ class Sidebar extends Component {
                 <li>
                   <a
                     href=""
-                    onClick={(e) => { e.preventDefault(); history.push('/processFailed'); }}
+                    onClick={(e) => { e.preventDefault(); history.push('/app/processFailed'); }}
                   >
                     Failed
                   </a>
@@ -162,7 +162,7 @@ class Sidebar extends Component {
                 <li>
                   <a
                     href=""
-                    onClick={(e) => { e.preventDefault(); history.push('/processSearch'); }}
+                    onClick={(e) => { e.preventDefault(); history.push('/app/processSearch'); }}
                   >
                     Search
                   </a>
