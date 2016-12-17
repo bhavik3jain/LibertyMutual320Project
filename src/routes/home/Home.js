@@ -21,14 +21,6 @@ function Home(props, context) {
           <PageHeader>Welcome</PageHeader>
         </div>
       </div>
-      <button type="button" className="btn btn-primary" onClick={(e) =>
-                {
-                  e.preventDefault();
-                  console.log("Hi there!");
-                  sendXHR("POST", "http://localhost:3001/sql_request", 'select * from C_DRIVER_SCHEDULE', (xhr) => {
-                  console.log(JSON.parse(xhr.responseText));
-                })}
-              }>Click Me</button>
       <img src={LMlogo} alt="LMlogo" height="90%" width="90%"/>
 
     </div>

@@ -43,7 +43,7 @@ import Header from '../components/Header';
 export default [
 
   {
-    path: '/login',
+    path: '/',
     children: [
       login,
     ],
@@ -58,7 +58,7 @@ export default [
 
 
   {
-    path: '/',
+    path: '/app',
 
   // keep in mind, routes are evaluated in order
     children: [

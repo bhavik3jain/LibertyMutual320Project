@@ -39,7 +39,6 @@ class DatabaseView extends Component {
       edit: false,
       delete: false,
       showModal: false,
-      change_log: []
     };
     this.handleMacroFormType = this.handleMacroFormType.bind(this);
     this.handleMacroType = this.handleMacroType.bind(this);
@@ -61,7 +60,8 @@ class DatabaseView extends Component {
     var parameters = [];
     for(var val in test) {
       var value = test[val].value;
-      if(isNaN(parseInt(value))) {
+
+      if(isNaN(parseInt(value)) || value.includes("-") || value.includes(":")) {
         value = "\'" + value + "\'";
         parameters.push(value);
       }
@@ -70,6 +70,7 @@ class DatabaseView extends Component {
       }
     }
     var sql_call = 'CALL ' + macroName + "(" + parameters.join(", ") + ")";
+    //console.log(sql_call);
     sendXHR("POST", "http://localhost:3001/sql_request", sql_call, (xhr) => {
       JSON.parse(xhr.responseText);
     })
@@ -415,7 +416,6 @@ class DatabaseView extends Component {
   }
 
   render() {
-    console.log("State:", this.state.change_log);
     return (
       <div>
         <div className="row">
