@@ -15,14 +15,35 @@ import { FormControl, Checkbox } from 'react-bootstrap';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Login.css';
 import history from '../../core/history';
+import $ from "jquery";
+import { sendXHR } from '../../core/util.js';
 
 const title = 'Log In';
 
+function getLoginCheck(email, password, cb) {
+  var user = "select user_name from Active_Directory where email = " + "\'" + email + "\'" + ' and pass_word = ' + "\'"+password + "\'";
+  sendXHR("POST", "http://localhost:3001/sql_request", user, (xhr) => {
+         cb(JSON.parse(xhr.responseText));
+    });
+}
+
+function sendUserNameToFile(username, cb){
+  sendXHR("POST", "http://localhost:3001/writefile", username, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
+}
 
 function submitHandler(e) {
   e.preventDefault();
-  console.log(window.a);
-  history.push('/app');
+  var login = $("#login").serializeArray();
+  var email = login[0].value;
+  var password = login[1].value;
+  getLoginCheck(email, password, (results) => {
+        var username = results[0].user_name;
+        sendUserNameToFile(username, (results) => {
+        });
+        history.push('/app');
+  });
 }
 
 function Login(props, context) {
@@ -35,7 +56,7 @@ function Login(props, context) {
 
       <Panel header={<h3>Please Sign In</h3>} className="login-panel">
 
-        <form role="form" onSubmit={(e) => { submitHandler(e); }}>
+        <form role="form" id="login" onSubmit={(e) => { submitHandler(e); }}>
           <fieldset>
             <div className="form-group">
               <FormControl

@@ -29,11 +29,8 @@ function Header() {
               <MenuItem eventKey = "1" onClick = {(event) => { history.push('/app/account');}}>
                 <span> <i className="fa fa-user fa-fw"></i> User Profile </span>
               </MenuItem>
-              <MenuItem eventKey="2">
-                <span><i className="fa fa-gear fa-fw"></i> Settings </span>
-              </MenuItem>
               <MenuItem divider />
-                <MenuItem eventKey = "3" onClick = {(event) => { history.push('/');}}>
+                <MenuItem eventKey = "2" onClick = {(event) => { history.push('/');}}>
                   <span> <i className = "fa fa-sign-out fa-fw" /> Logout </span>
                 </MenuItem>
               </NavDropdown>
