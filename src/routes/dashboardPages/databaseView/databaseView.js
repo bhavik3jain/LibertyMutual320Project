@@ -70,7 +70,7 @@ class DatabaseView extends Component {
       }
     }
     var sql_call = 'CALL ' + macroName + "(" + parameters.join(", ") + ")";
-    //console.log(sql_call);
+    console.log(sql_call);
     sendXHR("POST", "http://localhost:3001/sql_request", sql_call, (xhr) => {
       JSON.parse(xhr.responseText);
     });
@@ -544,10 +544,6 @@ class DatabaseView extends Component {
                 </div>
                 <div className="form-group">
                   <label for="exampleInputName2">Param 2: </label>
-                    <input type="text" className="form-control" name="M_DL_DR_STEP_RN_SID_GROUP_NUMBER" id="M_DL_DR_STEP_RN_SID_GROUP_NUMBER" placeholder="Group Number"></input>
-                </div>
-                <div className="form-group">
-                  <label for="exampleInputName2">Param 3: </label>
                     <input type="text" className="form-control" name="M_DL_DR_STEP_RN_SID_DRIVER_STEP_IP" id="M_DL_DR_STEP_RN_SID_DRIVER_STEP_IP" placeholder="Driver Step ID"></input>
                 </div>
               </form>
