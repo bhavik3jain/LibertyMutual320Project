@@ -19,45 +19,9 @@ class DatabaseChangelog extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      alertVisibleA: true,
-      alertVisibleB: true,
-      alertVisibleC: true,
-      alertVisibleD: true,
-      showModal: false,
       change_log: [],
       user_id: ""
     };
-    this.handleAlertDismiss = this.handleAlertDismiss.bind(this);
-  }
-
-  close() {
-    this.setState({ showModal: false });
-  }
-
-  open() {
-    this.setState({ showModal: true });
-  }
-  handleAlertDismiss(option) {
-    switch (option) {
-      case 'A':
-        this.setState({ alertVisibleA: false });
-        break;
-      case 'B':
-        this.setState({ alertVisibleB: false });
-        break;
-      case 'C':
-        this.setState({ alertVisibleC: false });
-        break;
-      case 'D':
-        this.setState({ alertVisibleD: false });
-        break;
-      default: this.setState({
-        alertVisibleA: false,
-        alertVisibleB: false,
-        alertVisibleC: false,
-        alertVisibleD: false,
-      });
-    }
   }
 
   getChangeLog(cb) {
