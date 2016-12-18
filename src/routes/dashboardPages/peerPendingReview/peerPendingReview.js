@@ -98,12 +98,12 @@ class SubmittedPeerReview extends Component {
             data={ ids }
             pagination={true}
             options={opts}>
-            <TableHeaderColumn dataAlign="center" dataField='PeerReviewID' isKey>Audit ID</TableHeaderColumn>
-            <TableHeaderColumn dataAlign="center" dataField='MacroInstanceID'>Audit ID</TableHeaderColumn>
-            <TableHeaderColumn dataAlign="center" dataField='ReviewerID'>Audit ID</TableHeaderColumn>
-            <TableHeaderColumn dataAlign="center" dataField='State'>Audit ID</TableHeaderColumn>
-            <TableHeaderColumn dataAlign="center" dataField='PeerReviewComment'>Audit ID</TableHeaderColumn>
-            <TableHeaderColumn dataAlign="center" dataField='DateReviewed'>Audit ID</TableHeaderColumn>
+            <TableHeaderColumn dataAlign="center" dataField='PeerReviewID' isKey>Peer Review ID</TableHeaderColumn>
+            <TableHeaderColumn dataAlign="center" dataField='MacroInstanceID'>Macro Instance ID</TableHeaderColumn>
+            <TableHeaderColumn dataAlign="center" dataField='ReviewerID'>Reviewer ID</TableHeaderColumn>
+            <TableHeaderColumn dataAlign="center" dataField='State'>State</TableHeaderColumn>
+            <TableHeaderColumn dataAlign="center" dataField='PeerReviewComment'>Peer Review Comment</TableHeaderColumn>
+            <TableHeaderColumn dataAlign="center" dataField='DateReviewed'>Date Reviewed</TableHeaderColumn>
           </BootstrapTable>
         </div>
       </div>

@@ -4,9 +4,6 @@ var bodyParser = require('body-parser')
 var cors = require('cors')
 var fs = require('fs')
 
-
-
-
 // Creates an Express server.
 var app = express();
 
@@ -22,13 +19,13 @@ app.use(express.static('../client/build'));
 
 var mysql = require('mysql');
 
+// SQL Server Configuration goes here
 var connection = mysql.createConnection({
   host     : 'theberg.cx0wblasak2z.us-west-2.rds.amazonaws.com',
   user     : 'admin',
   password : '12345678',
   database : 'libdb'
 });
-
 
 app.post('/sql_request', function(req, res){
   var queryText = req.body.trim();
@@ -55,22 +52,6 @@ app.post('/readfile', function(req, res){
     if (err) throw err;
     res.send({user_id: data});
   });
-});
-
-app.put('/sql_end', function(req, res) {
-  connection.end();
-  console.log("Sql connection ended");
-
-  res.set("Access-Control-Allow-Origin", "http://localhost:3002");
-  res.status(200).end();
-});
-
-app.put('/sql_connect', function(req, res) {
-  connection.connect();
-  console.log("Sql connection established");
-
-  res.set("Access-Control-Allow-Origin", "http://localhost:3002");
-  res.status(200).end();
 });
 
   /**
