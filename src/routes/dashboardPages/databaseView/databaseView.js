@@ -73,7 +73,7 @@ class DatabaseView extends Component {
     //console.log(sql_call);
     sendXHR("POST", "http://localhost:3001/sql_request", sql_call, (xhr) => {
       JSON.parse(xhr.responseText);
-    })
+    });
 
   }
 

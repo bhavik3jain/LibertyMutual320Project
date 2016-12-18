@@ -36,7 +36,7 @@ app.post('/sql_request', function(req, res){
   connection.query(queryText, function(err, results) {
     if (err) res.send("An error has occured" + err.toString());
 
-    //console.log('The solution is: ', results.toString());
+    console.log('The solution is: ', results.toString());
 
     res.set("Access-Control-Allow-Origin", "http://localhost:3002");
     res.send(results);
