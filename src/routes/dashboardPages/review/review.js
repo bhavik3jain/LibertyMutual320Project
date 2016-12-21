@@ -27,9 +27,18 @@ class Review extends Component {
   }
 
   submitReview() {
-    this.sendSQLCall((results) => {
-    });
-    history.push('/app/peerPendingReview');
+    if($('#accept').is(':checked')){
+      this.sendSQLCall((results) => {
+      });
+      this.updateAccepted((results) => {
+      });
+      history.push('/app/peerPendingReview');
+    }
+    if($('#reject').is(':checked')){
+      this.updateRejected((results) => {
+      });
+      history.push('/app/peerPendingReview');
+    }
   }
 
   getPeerReviewComments(cb) {
@@ -40,6 +49,26 @@ class Review extends Component {
 
   getSQLCall(cb){
     sendXHR("POST", "http://localhost:3001/sql_request", 'select SQL_CALL from PeerReview where PeerReviewID = ' + this.state.peer_id, (xhr) => {
+          cb(JSON.parse(xhr.responseText));
+      });
+  }
+
+  deletePeerReview(cb){
+    sendXHR("POST", "http://localhost:3001/sql_request", 'delete from PeerReview where PeerReviewID = ' + this.state.peer_id, (xhr) => {
+          cb(JSON.parse(xhr.responseText));
+      });
+  }
+
+  updateAccepted(cb){
+    var state = "Accepted";
+    sendXHR("POST", "http://localhost:3001/sql_request", 'update PeerReview set State = ' + "'" + state + "'" + ' where PeerReviewID = ' + this.state.peer_id, (xhr) => {
+          cb(JSON.parse(xhr.responseText));
+      });
+  }
+
+  updateRejected(cb){
+    var state = "Rejected";
+    sendXHR("POST", "http://localhost:3001/sql_request", 'update PeerReview set State = ' + "'" + state + "'" + ' where PeerReviewID = ' + this.state.peer_id, (xhr) => {
           cb(JSON.parse(xhr.responseText));
       });
   }
@@ -83,10 +112,10 @@ class Review extends Component {
             <div className="col-lg-6 col-lg-offset-3">
             <span>
               <label className="radio-inline">
-                <input type="radio" value="accept" name="optradio"/>Accept
+                <input type="radio" id="accept" value="accept" name="opt"/>Accept
               </label>
               <label className="radio-inline">
-                <input type="radio" name="optradio" value="reject" />Reject
+                <input type="radio" id="reject" value="reject" name="opt" />Reject
               </label>
             </span>
           </div>
