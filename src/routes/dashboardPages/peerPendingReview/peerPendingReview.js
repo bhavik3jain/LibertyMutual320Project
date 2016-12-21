@@ -27,6 +27,7 @@ class SubmittedPeerReview extends Component {
 
   getPeerReview(query, cb) {
     sendXHR("POST", "http://localhost:3001/sql_request", query, (xhr) => {
+            console.log(xhr.responseText);
            cb(JSON.parse(xhr.responseText));
       });
   }
@@ -55,7 +56,9 @@ class SubmittedPeerReview extends Component {
   }
 
   getNewData(){
-    var query = 'select PeerReviewID, MacroInstanceID, State, PeerReviewComment, DateReviewed from PeerReview where ReviewerID = ' + "'" + this.state.user_id + "'"
+    var status = "Under Review";
+    var query = 'select PeerReviewID, MacroInstanceID, State, PeerReviewComment, DateReviewed from PeerReview where ReviewerID = ' + "'" + this.state.user_id + "'" + ' and State = ' + "'" + status + "'"
+    console.log(query);
     this.getPeerReview(query, (results) => {
           this.setState({"peer_review": results});
     });

@@ -9,7 +9,8 @@ import Popover from 'react-bootstrap/lib/Popover';
 import Modal, { Footer, Header, Title, Body } from 'react-bootstrap/lib/Modal';
 import PageHeader from 'react-bootstrap/lib/PageHeader';
 import { sendXHR } from '../../../core/util.js';
-import s from './dbView.css'
+import s from './dbView.css';
+import history from '../../../core/history';
 
 
 class DatabaseView extends Component {
@@ -170,6 +171,7 @@ class DatabaseView extends Component {
       });
     }
     alert("Success");
+    history.push('/app');
   }
 
   handleMacroFormType(option) {
