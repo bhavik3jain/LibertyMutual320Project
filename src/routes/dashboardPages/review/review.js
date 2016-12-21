@@ -1,17 +1,76 @@
 import React, { Component } from 'react';
 import Panel from 'react-bootstrap/lib/Panel';
-import PageHeader from 'react-bootstrap/lib/PageHeader';
+import Alert from 'react-bootstrap/lib/Alert';
 import Button from 'react-bootstrap/lib/Button';
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import Tooltip from 'react-bootstrap/lib/Tooltip';
+import Popover from 'react-bootstrap/lib/Popover';
+import Modal, { Footer, Header, Title, Body } from 'react-bootstrap/lib/Modal';
+import Pagination from 'react-bootstrap/lib/Pagination';
+import PageHeader from 'react-bootstrap/lib/PageHeader';
+import Well from 'react-bootstrap/lib/Well';
+import { sendXHR } from '../../../core/util.js';
+import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
+import $ from "jquery";
 import history from '../../../core/history';
 
 
 class Review extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      peer_id: history.getCurrentLocation().query.id,
+      peer_comment: "",
+      sql_call: ""
+    };
+  }
+
   submitReview() {
+    this.sendSQLCall((results) => {
+      console.log("Sending call: ", results);
+    });
     history.push('/app/peerPendingReview');
   }
 
+  getPeerReviewComments(cb) {
+    // sendXHR("POST", "http://localhost:3001/sql_request", 'select PeerReviewComment from PeerReview where PeerReviewID = ' + peer_id, (xhr) => {
+    //        cb(JSON.parse(xhr.responseText));
+    //   });
+
+    sendXHR("POST", "http://localhost:3001/sql_request", 'select PeerReviewComment from PeerReview where PeerReviewID = ' + this.state.peer_id, (xhr) => {
+           cb(JSON.parse(xhr.responseText));
+      });
+  }
+
+  getSQLCall(cb){
+    sendXHR("POST", "http://localhost:3001/sql_request", 'select SQL_CALL from PeerReview where PeerReviewID = ' + this.state.peer_id, (xhr) => {
+          cb(JSON.parse(xhr.responseText));
+      });
+  }
+
+  sendSQLCall(cb){
+    sendXHR("POST", "http://localhost:3001/sql_request", this.state.sql_call, (xhr) => {
+          cb(JSON.parse(xhr.responseText));
+      });
+  }
+
+  componentDidMount() {
+    console.log("we are here");
+    this.getPeerReviewComments((results) => {
+          this.setState({"peer_comment": results[0].PeerReviewComment});
+    });
+
+    this.getSQLCall((results) => {
+          this.setState({"sql_call": results[0].SQL_CALL});
+    });
+
+  }
+
   render() {
+    console.log("I am going to be rendering now: ");
+    console.log(this.state.sql_call);
+    console.log(this.state.peer_comment);
     return (
       <div>
         <div className="row">
@@ -21,25 +80,25 @@ class Review extends Component {
         </div>
         <div className="col-lg-6 col-lg-offset-3">
           <div>
-            <label for="review">Parameters</label>
+            <label for="review">Query: </label><br/>
+            <div className="well well-sm">{this.state.sql_call}</div>
+            <label for="comments">Notes:</label><br/>
+            <div className="well">{this.state.peer_comment}</div>
+
           </div>
           <div>
-            <textarea cols="50" rows="5" id="review" readOnly>TEST</textarea>
           </div>
           <div className="row">
             <div className="col-lg-6 col-lg-offset-3">
             <span>
               <label className="radio-inline">
-                <input type="radio" name="optradio"/>Accept
+                <input type="radio" value="accept" name="optradio"/>Accept
               </label>
               <label className="radio-inline">
-                <input type="radio" name="optradio"/>Reject
+                <input type="radio" name="optradio" value="reject" />Reject
               </label>
             </span>
           </div>
-          </div>
-          <div>
-            <textarea cols="50" rows="5">Notes</textarea>
           </div>
           <div className="row">
             <div className="col-lg-6 col-lg-offset-4">

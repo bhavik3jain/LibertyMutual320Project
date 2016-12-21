@@ -26,14 +26,13 @@ class SubmittedPeerReview extends Component {
   }
 
   getPeerReview(cb) {
-    sendXHR("POST", "http://localhost:3001/sql_request", 'select * from PeerReview', (xhr) => {
+    sendXHR("POST", "http://localhost:3001/sql_request", 'select PeerReviewID, MacroInstanceID, ReviewerID, State, PeerReviewComment, DateReviewed from PeerReview', (xhr) => {
            cb(JSON.parse(xhr.responseText));
       });
   }
 
   getUserId(cb){
     sendXHR("POST", "http://localhost:3001/readfile", "", (xhr) => {
-          console.log("entering XHR");
            cb(JSON.parse(xhr.responseText));
       });
   }
@@ -50,7 +49,7 @@ class SubmittedPeerReview extends Component {
 
     $(document).ready(function() {
       $('#dataTables-example').DataTable();
-  });
+    });
 
   }
 
@@ -86,7 +85,7 @@ class SubmittedPeerReview extends Component {
       lastPage: 'Last', // Last page button text
       paginationShowsTotal: this.renderShowsTotal,  // Accept bool or function
       onRowClick: function(row) {
-        history.push('/app/review');
+        history.push('/app/review?id=' + row.PeerReviewID);
       }
     };
 
