@@ -79,6 +79,8 @@ class DatabaseView extends Component {
   }
 
   runMacro() {
+    var textbox = $('#ta').val();
+    console.log(textbox);
     var macroName = this.getTrueState();
     var test = $("#" + macroName).serializeArray();
     console.log(test);
@@ -97,11 +99,33 @@ class DatabaseView extends Component {
     var sql_call = 'CALL ' + macroName + "(" + parameters.join(", ") + ")";
 
     if(document.getElementById('blankCheckbox').checked) {
-      sendXHR("POST", "http://localhost:3001/sql_request", sql_call, (xhr) => {
+      console.log("here");
+      const new_parameters = parameters.map((value) => {return "'" + value + "'"});
+      console.log(new_parameters)
+      var new_sql_call = 'CALL ' + macroName + "(" + new_parameters + ")";
+      var query = "INSERT INTO PeerReview (MacroInstanceID, ReviewerID, State, PeerReviewComment, SQL_CALL, SubmittedBy)" +
+                      "values " +
+                      "( " +
+                      101 +
+                      ", " +
+                      "'" + "maya.bergandy" + "'" +
+                      ", " +
+                      "'" + "Under Review" + "'" +
+                      ", " +
+                      "'" + textbox + "'" +
+                      ", " +
+                      "'" + new_sql_call + "'" +
+                      ", " +
+                      "'" + this.state.user_id + "'" +
+                      ");"
+      console.log(query);
+      sendXHR("POST", "http://localhost:3001/sql_request", query, (xhr) => {
+        console.log(xhr.responseText);
         JSON.parse(xhr.responseText);
       });
     }
     else {
+      console.log("here2");
       sendXHR("POST", "http://localhost:3001/sql_request", sql_call, (xhr) => {
         JSON.parse(xhr.responseText);
       });
@@ -830,7 +854,7 @@ class DatabaseView extends Component {
         <br/>
         {this.state.hiddenTextBox ?
           <div className="col-lg-10">
-            <textarea rows="4" cols="50" placeholder="Enter some comments">
+            <textarea id='ta' rows="4" cols="50" placeholder="Enter some comments">
             </textarea>
           </div> :
           null
