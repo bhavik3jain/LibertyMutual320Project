@@ -1,0 +1,4 @@
+INSERT INTO libdb.CHANGE_LOG (DATE_TIME, Owner, MacroName, Parameters, PeerReviewedBy) VALUES ('2016-12-21 04:54:37', 'bhavik.jain', 'M_DL_DR_SCHED_RN', 'CLM_REPORTING_HUB', 'No Peer Review');
+INSERT INTO libdb.CHANGE_LOG (DATE_TIME, Owner, MacroName, Parameters, PeerReviewedBy) VALUES ('2016-12-21 05:14:44', 'bhavik.jain', 'M_DL_DR_SCHED_RN', 'CLM_SMARTADV_EXTR', 'No Peer Review');
+INSERT INTO libdb.CHANGE_LOG (DATE_TIME, Owner, MacroName, Parameters, PeerReviewedBy) VALUES ('2016-12-21 15:41:41', 'bhavik.jain', 'M_DL_DR_SCHED_RN', 'ACXIOM_CONSUMER_EXTR_INCR', 'No Peer Review');
+INSERT INTO libdb.CHANGE_LOG (DATE_TIME, Owner, MacroName, Parameters, PeerReviewedBy) VALUES ('2016-12-21 16:31:12', 'bhavik.jain', 'M_DL_DR_SCHED_RN', 'ARMS_TO_ODS', 'No Peer Review');

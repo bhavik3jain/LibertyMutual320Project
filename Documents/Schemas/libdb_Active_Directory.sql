@@ -1,0 +1,10 @@
+INSERT INTO libdb.Active_Directory (pass_word, last_name, email, first_name, admin, user_name, environment) VALUES ('theberg', 'Jain', 'bjain@umass.edu', 'Bhavik', 1, 'bhavik.jain', 'development');
+INSERT INTO libdb.Active_Directory (pass_word, last_name, email, first_name, admin, user_name, environment) VALUES ('theberg', 'Bergandy', 'mbergandy@umass.edu', 'Maya', 1, 'maya.bergandy', 'development');
+INSERT INTO libdb.Active_Directory (pass_word, last_name, email, first_name, admin, user_name, environment) VALUES ('theberg', 'Hinsley', 'mhinsley@umass.edu', 'Matthew', 0, 'matthew.hinsley', 'development');
+INSERT INTO libdb.Active_Directory (pass_word, last_name, email, first_name, admin, user_name, environment) VALUES ('theberg', 'Gao', 'zijiangao@umass.edu', 'Tony', 0, 'tony.gao', 'development');
+INSERT INTO libdb.Active_Directory (pass_word, last_name, email, first_name, admin, user_name, environment) VALUES ('theberg', 'Tousignant', 'ztousignant@umass.edu', 'Zachary', 0, 'zachary.tousignant', 'development');
+INSERT INTO libdb.Active_Directory (pass_word, last_name, email, first_name, admin, user_name, environment) VALUES ('theberg', 'Bodley-Gomes', 'bbodleygomes@umass.edu', 'Bryce', 0, 'bryce.bodleygomes', 'development');
+INSERT INTO libdb.Active_Directory (pass_word, last_name, email, first_name, admin, user_name, environment) VALUES ('theberg', 'Poveda McKay', 'apovedamckay@umass.edu', 'Adrian', 0, 'adrian.povedamckay', 'development');
+INSERT INTO libdb.Active_Directory (pass_word, last_name, email, first_name, admin, user_name, environment) VALUES ('theberg', 'Huang', 'chenhaohuang@umass.edu', 'Chenhao', 0, 'chenhao.huang', 'development');
+INSERT INTO libdb.Active_Directory (pass_word, last_name, email, first_name, admin, user_name, environment) VALUES ('theberg', 'Schiller', 'mschiller@umass.edu', 'Michael', 0, 'michael.schiller', 'development');
+INSERT INTO libdb.Active_Directory (pass_word, last_name, email, first_name, admin, user_name, environment) VALUES ('theberg', 'Silva', 'kevinsilva@umass.edu', 'Kevin', 0, 'kevin.silva', 'development');
