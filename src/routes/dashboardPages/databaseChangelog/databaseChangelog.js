@@ -25,14 +25,7 @@ class DatabaseChangelog extends Component {
   }
 
   getChangeLog(cb) {
-    sendXHR("POST", "http://localhost:3001/sql_request", 'select AUDIT_ID from C_DRIVER_SCHEDULE', (xhr) => {
-           cb(JSON.parse(xhr.responseText));
-      });
-  }
-
-  getUserId(cb){
-    sendXHR("POST", "http://localhost:3001/readfile", "", (xhr) => {
-          console.log("entering XHR");
+    sendXHR("POST", "http://localhost:3001/sql_request", 'select * from CHANGE_LOG', (xhr) => {
            cb(JSON.parse(xhr.responseText));
       });
   }
@@ -42,10 +35,7 @@ class DatabaseChangelog extends Component {
 
     this.getChangeLog((results) => {
           this.setState({"change_log": results});
-    });
-
-    this.getUserId((data) => {
-          this.setState({"user_id": data});
+          console.log(this.state.change_log);
     });
 
     $(document).ready(function() {
@@ -64,7 +54,6 @@ class DatabaseChangelog extends Component {
 
   render() {
     var ids = this.state.change_log;
-    console.log(this.state.user_id.user_id);
     const opts = {
       page: 1,  // which page you want to show as default
       sizePerPageList: [ {
@@ -98,7 +87,12 @@ class DatabaseChangelog extends Component {
             data={ ids }
             pagination={true}
             options={opts}>
-            <TableHeaderColumn dataField='AUDIT_ID' isKey>Audit ID</TableHeaderColumn>
+            <TableHeaderColumn dataField='ID' isKey>Audit ID</TableHeaderColumn>
+            <TableHeaderColumn dataField='DATE_TIME'>Audit ID</TableHeaderColumn>
+            <TableHeaderColumn dataField='Owner'>Audit ID</TableHeaderColumn>
+            <TableHeaderColumn dataField='MacroName'>Audit ID</TableHeaderColumn>
+            <TableHeaderColumn dataField='Parameters'>Audit ID</TableHeaderColumn>
+            <TableHeaderColumn dataField='PeerReviewedBy'>Audit ID</TableHeaderColumn>
           </BootstrapTable>
         </div>
       </div>

@@ -37,6 +37,8 @@ class DatabaseView extends Component {
       M_UD_DR_STEP_ASI_RN: false,
       hiddenTextBox: false,
 
+      user_id: "",
+
       view: true,
       edit: false,
       delete: false,
@@ -44,6 +46,18 @@ class DatabaseView extends Component {
     };
     this.handleMacroFormType = this.handleMacroFormType.bind(this);
     this.handleMacroType = this.handleMacroType.bind(this);
+  }
+
+  getUserId(cb){
+    sendXHR("POST", "http://localhost:3001/readfile", "", (xhr) => {
+           cb(JSON.parse(xhr.responseText));
+      });
+  }
+
+  componentDidMount() {
+    this.getUserId((data) => {
+          this.setState({"user_id": data.user_id});
+    });
   }
 
   getTrueState(){
@@ -67,7 +81,6 @@ class DatabaseView extends Component {
   runMacro() {
     var macroName = this.getTrueState();
     var test = $("#" + macroName).serializeArray();
-    console.log(test);
     var parameters = [];
     for(var val in test) {
       var value = test[val].value;
@@ -81,7 +94,6 @@ class DatabaseView extends Component {
       }
     }
     var sql_call = 'CALL ' + macroName + "(" + parameters.join(", ") + ")";
-    console.log(sql_call);
 
     if(document.getElementById('blankCheckbox').checked) {
       sendXHR("POST", "http://localhost:3001/sql_request", sql_call, (xhr) => {
@@ -90,6 +102,11 @@ class DatabaseView extends Component {
     }
     else {
       sendXHR("POST", "http://localhost:3001/sql_request", sql_call, (xhr) => {
+        JSON.parse(xhr.responseText);
+      });
+      const new_parameters = parameters.map((value) => {return "'" + value + "'"});
+      var query = "INSERT INTO CHANGE_LOG (DATE_TIME, Owner, MacroName, Parameters, PeerReviewedBy) values ( NOW() " + ", " + "'" + this.state.user_id + "'" + ", " + "'" + macroName + "'" + ", " + parameters.join(", ") + ", " + "'" + "No Peer Review" + "'" + ");"
+      sendXHR("POST", "http://localhost:3001/sql_request", query, (xhr) => {
         JSON.parse(xhr.responseText);
       });
     }
@@ -514,7 +531,7 @@ class DatabaseView extends Component {
               <form className="form-inline" id="M_DL_DR_SCHED_RN">
                 <div className="form-group">
                   <label for="exampleInputName2">Param 1: </label>
-                  <input type="text" className="form-control" name="M_DL_DR_SCHED_RN_RUN_NAME" id="M_DL_DR_SCHED_RN_RUN_NAME" placeholder="Run Name"></input>
+                  <input type="text" className="form-control" name="RUN_NAME" id="RUN_NAME" placeholder="Run Name"></input>
                 </div>
               </form>
             </Panel>
