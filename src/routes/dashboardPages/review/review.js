@@ -61,14 +61,14 @@ class Review extends Component {
 
   updateAccepted(cb){
     var state = "Accepted";
-    sendXHR("POST", "http://localhost:3001/sql_request", 'update PeerReview set State = ' + "'" + state + "'" + ' where PeerReviewID = ' + this.state.peer_id, (xhr) => {
+    sendXHR("POST", "http://localhost:3001/sql_request", 'update PeerReview set DateReviewed = NOW(), State = ' + "'" + state + "'" + ' where PeerReviewID = ' + this.state.peer_id, (xhr) => {
           cb(JSON.parse(xhr.responseText));
       });
   }
 
   updateRejected(cb){
     var state = "Rejected";
-    sendXHR("POST", "http://localhost:3001/sql_request", 'update PeerReview set State = ' + "'" + state + "'" + ' where PeerReviewID = ' + this.state.peer_id, (xhr) => {
+    sendXHR("POST", "http://localhost:3001/sql_request", 'update PeerReview set DateReviewed = NOW(), State = ' + "'" + state + "'" + ' where PeerReviewID = ' + this.state.peer_id, (xhr) => {
           cb(JSON.parse(xhr.responseText));
       });
   }
