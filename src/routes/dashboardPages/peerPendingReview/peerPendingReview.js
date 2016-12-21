@@ -25,8 +25,8 @@ class SubmittedPeerReview extends Component {
     };
   }
 
-  getPeerReview(cb) {
-    sendXHR("POST", "http://localhost:3001/sql_request", 'select PeerReviewID, MacroInstanceID, ReviewerID, State, PeerReviewComment, DateReviewed from PeerReview', (xhr) => {
+  getPeerReview(query, cb) {
+    sendXHR("POST", "http://localhost:3001/sql_request", query, (xhr) => {
            cb(JSON.parse(xhr.responseText));
       });
   }
@@ -38,13 +38,8 @@ class SubmittedPeerReview extends Component {
   }
 
   componentDidMount() {
-
-    this.getPeerReview((results) => {
-          this.setState({"peer_review": results});
-    });
-
     this.getUserId((data) => {
-          this.setState({"user_id": data});
+          this.setState({"user_id": data.user_id});
     });
 
   }
@@ -59,10 +54,17 @@ class SubmittedPeerReview extends Component {
     return this.state.peer_review;
   }
 
+  getNewData(){
+    var query = 'select PeerReviewID, MacroInstanceID, State, PeerReviewComment, DateReviewed from PeerReview where ReviewerID = ' + "'" + this.state.user_id + "'"
+    this.getPeerReview(query, (results) => {
+          this.setState({"peer_review": results});
+    });
+  }
+
 
   render() {
+    this.getNewData();
     var ids = this.state.peer_review;
-    console.log(ids);
     const opts = {
       page: 1,  // which page you want to show as default
       sizePerPageList: [ {
@@ -100,7 +102,6 @@ class SubmittedPeerReview extends Component {
             options={opts}>
             <TableHeaderColumn  dataField='PeerReviewID' isKey>Peer Review ID</TableHeaderColumn>
             <TableHeaderColumn  dataField='MacroInstanceID'>Macro Instance ID</TableHeaderColumn>
-            <TableHeaderColumn  dataField='ReviewerID' width='100'>Reviewer ID</TableHeaderColumn>
             <TableHeaderColumn  dataField='State' width='100'>State</TableHeaderColumn>
             <TableHeaderColumn  dataField='PeerReviewComment'>Peer Review Comment</TableHeaderColumn>
             <TableHeaderColumn  dataField='DateReviewed'>Date Reviewed</TableHeaderColumn>

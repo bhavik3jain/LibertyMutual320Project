@@ -26,9 +26,8 @@ class SubmittedPeerReview extends Component {
     };
   }
 
-  getPeerReview(cb) {
-    sendXHR("POST", "http://localhost:3001/sql_request", 'select PeerReviewID, MacroInstanceID, ReviewerID, State, PeerReviewComment, DateReviewed from PeerReview where SubmittedBy = ' + "'" + this.state.user_id + "'", (xhr) => {
-           console.log(xhr.responseText);
+  getPeerReview(query, cb) {
+    sendXHR("POST", "http://localhost:3001/sql_request", query, (xhr) => {
            cb(JSON.parse(xhr.responseText));
       });
   }
@@ -40,15 +39,11 @@ class SubmittedPeerReview extends Component {
   }
 
   componentDidMount() {
-
-    this.getPeerReview((results) => {
-          this.setState({"peer_review": results});
-    });
-
     this.getUserId((data) => {
           this.setState({"user_id": data.user_id});
     });
 
+    this.setState({"peer_review": []});
   }
 
 
@@ -64,7 +59,10 @@ class SubmittedPeerReview extends Component {
 
   render() {
     var ids = this.state.peer_review;
-    console.log(this.state.user_id);
+    var query = 'select PeerReviewID, MacroInstanceID, ReviewerID, State, PeerReviewComment, DateReviewed from PeerReview where SubmittedBy = ' + "'" + this.state.user_id + "'"
+    this.getPeerReview(query, (results) => {
+          this.setState({"peer_review": results});
+    });
     const opts = {
       page: 1,  // which page you want to show as default
       sizePerPageList: [ {
@@ -81,17 +79,14 @@ class SubmittedPeerReview extends Component {
       nextPage: 'Next', // Next page button text
       firstPage: 'First', // First page button text
       lastPage: 'Last', // Last page button text
-      paginationShowsTotal: this.renderShowsTotal,  // Accept bool or function
-      onRowClick: function(row) {
-        history.push('/app/review?id=' + row.PeerReviewID);
-      }
+      paginationShowsTotal: this.renderShowsTotal // Accept bool or function
     };
 
     return (
       <div>
         <div className="row">
           <div className="col-lg-12">
-            <PageHeader>Pending Peer Review</PageHeader>
+            <PageHeader>Submitted Peer Review</PageHeader>
           </div>
         </div>
 

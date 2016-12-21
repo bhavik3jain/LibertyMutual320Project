@@ -36,8 +36,10 @@ class DatabaseView extends Component {
       //to do//
       M_UD_DR_STEP_ASI_RN: false,
       hiddenTextBox: false,
+      hiddenDropBox: false,
 
       user_id: "",
+      reviewer: "",
 
       view: true,
       edit: false,
@@ -46,6 +48,43 @@ class DatabaseView extends Component {
     };
     this.handleMacroFormType = this.handleMacroFormType.bind(this);
     this.handleMacroType = this.handleMacroType.bind(this);
+  }
+
+  handleReviewer(id){
+    switch(id){
+      case 'A':
+        this.setState({reviewer: 'bhavik.jain'});
+        break;
+      case 'B':
+        this.setState({reviewer: 'maya.bergandy'});
+        break;
+      case 'C':
+        this.setState({reviewer: 'matthew.hinsley'});
+        break;
+      case 'D':
+        this.setState({reviewer: 'tony.gao'});
+        break;
+      case 'E':
+        this.setState({reviewer: 'zachary.tousignant'});
+        break;
+      case 'F':
+        this.setState({reviewer: 'bryce.bodleygomes'});
+        break;
+      case 'G':
+        this.setState({reviewer: 'adrian.povedamckay'});
+        break;
+      case 'H':
+        this.setState({reviewer: 'chenhao.huang'});
+        break;
+      case 'I':
+        this.setState({reviewer: 'michael.schiller'});
+        break;
+      case 'J':
+        this.setState({reviewer: 'kevin.silva'});
+        break;
+      default:
+        this.setState({reviewer: 'bhavik.jain'});
+    }
   }
 
   getUserId(cb){
@@ -73,17 +112,17 @@ class DatabaseView extends Component {
   tb(){
     if (document.getElementById('blankCheckbox').checked){
         this.setState({hiddenTextBox: true});
+        this.setState({hiddenDropBox: true});
     } else {
         this.setState({hiddenTextBox: false});
+        this.setState({hiddenDropBox: false});
     }
   }
 
   runMacro() {
     var textbox = $('#ta').val();
-    console.log(textbox);
     var macroName = this.getTrueState();
     var test = $("#" + macroName).serializeArray();
-    console.log(test);
     var parameters = [];
     for(var val in test) {
       var value = test[val].value;
@@ -99,16 +138,14 @@ class DatabaseView extends Component {
     var sql_call = 'CALL ' + macroName + "(" + parameters.join(", ") + ")";
 
     if(document.getElementById('blankCheckbox').checked) {
-      console.log("here");
       const new_parameters = parameters.map((value) => {return "'" + value + "'"});
-      console.log(new_parameters)
       var new_sql_call = 'CALL ' + macroName + "(" + new_parameters + ")";
       var query = "INSERT INTO PeerReview (MacroInstanceID, ReviewerID, State, PeerReviewComment, SQL_CALL, SubmittedBy)" +
                       "values " +
                       "( " +
-                      101 +
+                      "(select MAX(MacroInstanceID) + 100 as MacroInstanceID from PeerReview AS MacroInstanceID) " +
                       ", " +
-                      "'" + "maya.bergandy" + "'" +
+                      "'" + this.state.reviewer + "'" +
                       ", " +
                       "'" + "Under Review" + "'" +
                       ", " +
@@ -118,14 +155,11 @@ class DatabaseView extends Component {
                       ", " +
                       "'" + this.state.user_id + "'" +
                       ");"
-      console.log(query);
       sendXHR("POST", "http://localhost:3001/sql_request", query, (xhr) => {
-        console.log(xhr.responseText);
         JSON.parse(xhr.responseText);
       });
     }
     else {
-      console.log("here2");
       sendXHR("POST", "http://localhost:3001/sql_request", sql_call, (xhr) => {
         JSON.parse(xhr.responseText);
       });
@@ -135,6 +169,7 @@ class DatabaseView extends Component {
         JSON.parse(xhr.responseText);
       });
     }
+    alert("Success");
   }
 
   handleMacroFormType(option) {
@@ -853,10 +888,30 @@ class DatabaseView extends Component {
         </div>
         <br/>
         {this.state.hiddenTextBox ?
-          <div className="col-lg-10">
-            <textarea id='ta' rows="4" cols="50" placeholder="Enter some comments">
-            </textarea>
+          <div className="col-lg-5">
+            <Panel header={<span>Enter Comments</span>} >
+              <textarea id='ta' rows="4" cols="50" placeholder="Enter some comments"></textarea>
+              </Panel>
           </div> :
+          null
+        }
+        {this.state.hiddenDropBox ?
+          <div className="col-lg-7">
+            <Panel header={<span>Select Reviewer</span>} >
+              <select multiple id="myOptions" className="form-control">
+                <option value='bhavik.jain' onClick={() =>{this.handleReviewer('A')}}>bhavik.jain</option>
+                <option value='maya.bergandy' onClick={() =>{this.handleReviewer('B')}}>maya.bergandy</option>
+                <option value='matthew.hinsley' onClick={() =>{this.handleReviewer('C')}}>matthew.hinsley</option>
+                <option value='tony.gao' onClick={() =>{this.handleReviewer('D')}}>tony.gao</option>
+                <option value='zachary.tousignant' onClick={() =>{this.handleReviewer('E')}}>zachary.tousignant</option>
+                <option value='bryce.bodleygomes' onClick={() =>{this.handleReviewer('F')}}>bryce.bodleygomes</option>
+                <option value='adrian.povedamckay' onClick={() =>{this.handleReviewer('G')}}>adrian.povedamckay</option>
+                <option value='chenhao.huang' onClick={() =>{this.handleReviewer('H')}}>chenhao.huang</option>
+                <option value='michael.schiller' onClick={() =>{this.handleReviewer('I')}}>michael.schiller</option>
+                <option value='kevin.silva' onClick={() =>{this.handleReviewer('J')}}>kevin.silva</option>
+              </select>
+            </Panel>
+          </div>:
           null
         }
         <div className="col-lg-8 col-lg-offset-4">

@@ -35,11 +35,6 @@ class DatabaseChangelog extends Component {
 
     this.getChangeLog((results) => {
           this.setState({"change_log": results});
-          console.log(this.state.change_log);
-    });
-
-    $(document).ready(function() {
-      $('#dataTables-example').DataTable();
     });
 
   }
@@ -73,7 +68,6 @@ class DatabaseChangelog extends Component {
       paginationShowsTotal: this.renderShowsTotal  // Accept bool or function
       // hideSizePerPage: true > You can hide the dropdown for sizePerPage
     };
-    // console.log(ids);
     return (
       <div>
         <div className="row">

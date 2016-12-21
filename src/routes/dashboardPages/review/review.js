@@ -28,16 +28,11 @@ class Review extends Component {
 
   submitReview() {
     this.sendSQLCall((results) => {
-      console.log("Sending call: ", results);
     });
     history.push('/app/peerPendingReview');
   }
 
   getPeerReviewComments(cb) {
-    // sendXHR("POST", "http://localhost:3001/sql_request", 'select PeerReviewComment from PeerReview where PeerReviewID = ' + peer_id, (xhr) => {
-    //        cb(JSON.parse(xhr.responseText));
-    //   });
-
     sendXHR("POST", "http://localhost:3001/sql_request", 'select PeerReviewComment from PeerReview where PeerReviewID = ' + this.state.peer_id, (xhr) => {
            cb(JSON.parse(xhr.responseText));
       });
@@ -56,7 +51,6 @@ class Review extends Component {
   }
 
   componentDidMount() {
-    console.log("we are here");
     this.getPeerReviewComments((results) => {
           this.setState({"peer_comment": results[0].PeerReviewComment});
     });
@@ -68,9 +62,6 @@ class Review extends Component {
   }
 
   render() {
-    console.log("I am going to be rendering now: ");
-    console.log(this.state.sql_call);
-    console.log(this.state.peer_comment);
     return (
       <div>
         <div className="row">
