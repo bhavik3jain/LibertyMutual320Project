@@ -42,6 +42,24 @@ $ npm install
 $ npm start
 ```
 
+####4. On the command prompt run the following commands
+
+```sh
+$ cd `project-directory`
+```
+```sh
+$ cd SQL_Server
+```
+```sh
+$ node sql_thing.js
+```
+```sh
+$ npm install
+```
+```sh
+$ npm start
+```
+
 ####4. To build
 ```sh
 $ npm run build
@@ -56,7 +74,7 @@ $ npm run clean
 ```sh
 go to your web browser
 
-localhost:3001
+localhost:3002
 
 ```
 
