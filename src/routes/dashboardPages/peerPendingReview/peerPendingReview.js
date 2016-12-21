@@ -25,32 +25,22 @@ class SubmittedPeerReview extends Component {
     };
   }
 
-  getPeerReview(cb) {
-    sendXHR("POST", "http://localhost:3001/sql_request", 'select * from PeerReview', (xhr) => {
+  getPeerReview(query, cb) {
+    sendXHR("POST", "http://localhost:3001/sql_request", query, (xhr) => {
            cb(JSON.parse(xhr.responseText));
       });
   }
 
   getUserId(cb){
     sendXHR("POST", "http://localhost:3001/readfile", "", (xhr) => {
-          console.log("entering XHR");
            cb(JSON.parse(xhr.responseText));
       });
   }
 
   componentDidMount() {
-
-    this.getPeerReview((results) => {
-          this.setState({"peer_review": results});
-    });
-
     this.getUserId((data) => {
-          this.setState({"user_id": data});
+          this.setState({"user_id": data.user_id});
     });
-
-    $(document).ready(function() {
-      $('#dataTables-example').DataTable();
-  });
 
   }
 
@@ -64,10 +54,17 @@ class SubmittedPeerReview extends Component {
     return this.state.peer_review;
   }
 
+  getNewData(){
+    var query = 'select PeerReviewID, MacroInstanceID, State, PeerReviewComment, DateReviewed from PeerReview where ReviewerID = ' + "'" + this.state.user_id + "'"
+    this.getPeerReview(query, (results) => {
+          this.setState({"peer_review": results});
+    });
+  }
+
 
   render() {
+    this.getNewData();
     var ids = this.state.peer_review;
-    console.log(ids);
     const opts = {
       page: 1,  // which page you want to show as default
       sizePerPageList: [ {
@@ -86,7 +83,7 @@ class SubmittedPeerReview extends Component {
       lastPage: 'Last', // Last page button text
       paginationShowsTotal: this.renderShowsTotal,  // Accept bool or function
       onRowClick: function(row) {
-        history.push('/app/review');
+        history.push('/app/review?id=' + row.PeerReviewID);
       }
     };
 
@@ -102,14 +99,12 @@ class SubmittedPeerReview extends Component {
           <BootstrapTable
             data={ ids }
             pagination={true}
-            options={opts}
-            id='table1'>
-            <TableHeaderColumn dataAlign="center" dataField='PeerReviewID' isKey>Peer Review ID</TableHeaderColumn>
-            <TableHeaderColumn dataAlign="center" dataField='MacroInstanceID'>Macro Instance ID</TableHeaderColumn>
-            <TableHeaderColumn dataAlign="center" dataField='ReviewerID'>Reviewer ID</TableHeaderColumn>
-            <TableHeaderColumn dataAlign="center" dataField='State'>State</TableHeaderColumn>
-            <TableHeaderColumn dataAlign="center" dataField='PeerReviewComment'>Peer Review Comment</TableHeaderColumn>
-            <TableHeaderColumn dataAlign="center" dataField='DateReviewed'>Date Reviewed</TableHeaderColumn>
+            options={opts}>
+            <TableHeaderColumn  dataField='PeerReviewID' isKey>Peer Review ID</TableHeaderColumn>
+            <TableHeaderColumn  dataField='MacroInstanceID'>Macro Instance ID</TableHeaderColumn>
+            <TableHeaderColumn  dataField='State' width='100'>State</TableHeaderColumn>
+            <TableHeaderColumn  dataField='PeerReviewComment'>Peer Review Comment</TableHeaderColumn>
+            <TableHeaderColumn  dataField='DateReviewed'>Date Reviewed</TableHeaderColumn>
           </BootstrapTable>
         </div>
       </div>

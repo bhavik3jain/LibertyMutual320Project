@@ -21,7 +21,7 @@ export function sendXHR(verb, resource, body, cb) {
       // The server may have included some response text with details concerning
       // the error.
       var responseText = xhr.responseText;
-      FacebookError('Could not ' + verb + " " + resource + ": Received " + statusCode + " " + statusText + ": " + responseText);
+      console.log('Could not ' + verb + " " + resource + ": Received " + statusCode + " " + statusText + ": " + responseText);
     }
   });
 
@@ -30,12 +30,12 @@ export function sendXHR(verb, resource, body, cb) {
 
   // Network failure: Could not connect to server.
   xhr.addEventListener('error', function() {
-    FacebookError('Could not ' + verb + " " + resource + ": Could not connect to the server.");
+    console.log('Could not ' + verb + " " + resource + ": Could not connect to the server.");
   });
 
   // Network failure: request took too long to complete.
   xhr.addEventListener('timeout', function() {
-    FacebookError('Could not ' + verb + " " + resource + ": Request timed out.");
+    console.log('Could not ' + verb + " " + resource + ": Request timed out.");
   });
 
   switch (typeof(body)) {

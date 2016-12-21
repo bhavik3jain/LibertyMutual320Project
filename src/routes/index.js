@@ -13,19 +13,9 @@ import App from '../components/App';
 // Child routes
 import home from './home';
 import login from './login';
-import table from './dashboardPages/extras/tables';
-import button from './dashboardPages/extras/buttons';
-import forms from './dashboardPages/extras/forms';
-import grid from './dashboardPages/extras/grid';
-import icons from './dashboardPages/extras/icons';
-import notification from './dashboardPages/extras/notification';
-import panelwells from './dashboardPages/extras/panelWells';
-import typography from './dashboardPages/extras/typography';
-import blank from './dashboardPages/extras/blank';
 import error from './error';
 // added new routes
 import databaseView from './dashboardPages/databaseView';
-import databaseEdit from './dashboardPages/databaseEdit';
 import databaseChangelog from './dashboardPages/databaseChangelog';
 import peerPendingReview from './dashboardPages/peerPendingReview';
 import peerSubmittedReview from './dashboardPages/peerSubmittedReview';
@@ -65,7 +55,6 @@ export default [
       home,
       // contact,
       databaseView,
-      databaseEdit,
       databaseChangelog,
       peerPendingReview,
       peerSubmittedReview,
@@ -77,18 +66,6 @@ export default [
       processFailed,
       processSearch,
       account,
-
-      // extras
-      table,
-      button,
-      forms,
-      grid,
-      icons,
-      notification,
-      panelwells,
-      typography,
-      // register,
-      blank,
 
       // place new routes before...
       // content,

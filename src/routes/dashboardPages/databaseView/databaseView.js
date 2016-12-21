@@ -9,6 +9,7 @@ import Popover from 'react-bootstrap/lib/Popover';
 import Modal, { Footer, Header, Title, Body } from 'react-bootstrap/lib/Modal';
 import PageHeader from 'react-bootstrap/lib/PageHeader';
 import { sendXHR } from '../../../core/util.js';
+import s from './dbView.css'
 
 
 class DatabaseView extends Component {
@@ -34,6 +35,11 @@ class DatabaseView extends Component {
       M_UD_DR_SCHED_START_RN_AID: false,
       //to do//
       M_UD_DR_STEP_ASI_RN: false,
+      hiddenTextBox: false,
+      hiddenDropBox: false,
+
+      user_id: "",
+      reviewer: "",
 
       view: true,
       edit: false,
@@ -42,6 +48,55 @@ class DatabaseView extends Component {
     };
     this.handleMacroFormType = this.handleMacroFormType.bind(this);
     this.handleMacroType = this.handleMacroType.bind(this);
+  }
+
+  handleReviewer(id){
+    switch(id){
+      case 'A':
+        this.setState({reviewer: 'bhavik.jain'});
+        break;
+      case 'B':
+        this.setState({reviewer: 'maya.bergandy'});
+        break;
+      case 'C':
+        this.setState({reviewer: 'matthew.hinsley'});
+        break;
+      case 'D':
+        this.setState({reviewer: 'tony.gao'});
+        break;
+      case 'E':
+        this.setState({reviewer: 'zachary.tousignant'});
+        break;
+      case 'F':
+        this.setState({reviewer: 'bryce.bodleygomes'});
+        break;
+      case 'G':
+        this.setState({reviewer: 'adrian.povedamckay'});
+        break;
+      case 'H':
+        this.setState({reviewer: 'chenhao.huang'});
+        break;
+      case 'I':
+        this.setState({reviewer: 'michael.schiller'});
+        break;
+      case 'J':
+        this.setState({reviewer: 'kevin.silva'});
+        break;
+      default:
+        this.setState({reviewer: 'bhavik.jain'});
+    }
+  }
+
+  getUserId(cb){
+    sendXHR("POST", "http://localhost:3001/readfile", "", (xhr) => {
+           cb(JSON.parse(xhr.responseText));
+      });
+  }
+
+  componentDidMount() {
+    this.getUserId((data) => {
+          this.setState({"user_id": data.user_id});
+    });
   }
 
   getTrueState(){
@@ -54,7 +109,18 @@ class DatabaseView extends Component {
     }
   }
 
+  tb(){
+    if (document.getElementById('blankCheckbox').checked){
+        this.setState({hiddenTextBox: true});
+        this.setState({hiddenDropBox: true});
+    } else {
+        this.setState({hiddenTextBox: false});
+        this.setState({hiddenDropBox: false});
+    }
+  }
+
   runMacro() {
+    var textbox = $('#ta').val();
     var macroName = this.getTrueState();
     var test = $("#" + macroName).serializeArray();
     var parameters = [];
@@ -70,11 +136,40 @@ class DatabaseView extends Component {
       }
     }
     var sql_call = 'CALL ' + macroName + "(" + parameters.join(", ") + ")";
-    //console.log(sql_call);
-    sendXHR("POST", "http://localhost:3001/sql_request", sql_call, (xhr) => {
-      JSON.parse(xhr.responseText);
-    })
 
+    if(document.getElementById('blankCheckbox').checked) {
+      const new_parameters = parameters.map((value) => {return "'" + value + "'"});
+      var new_sql_call = 'CALL ' + macroName + "(" + new_parameters + ")";
+      var query = "INSERT INTO PeerReview (MacroInstanceID, ReviewerID, State, PeerReviewComment, SQL_CALL, SubmittedBy)" +
+                      "values " +
+                      "( " +
+                      "(select MAX(MacroInstanceID) + 100 as MacroInstanceID from PeerReview AS MacroInstanceID) " +
+                      ", " +
+                      "'" + this.state.reviewer + "'" +
+                      ", " +
+                      "'" + "Under Review" + "'" +
+                      ", " +
+                      "'" + textbox + "'" +
+                      ", " +
+                      "'" + new_sql_call + "'" +
+                      ", " +
+                      "'" + this.state.user_id + "'" +
+                      ");"
+      sendXHR("POST", "http://localhost:3001/sql_request", query, (xhr) => {
+        JSON.parse(xhr.responseText);
+      });
+    }
+    else {
+      sendXHR("POST", "http://localhost:3001/sql_request", sql_call, (xhr) => {
+        JSON.parse(xhr.responseText);
+      });
+      const new_parameters = parameters.map((value) => {return "'" + value + "'"});
+      var query = "INSERT INTO CHANGE_LOG (DATE_TIME, Owner, MacroName, Parameters, PeerReviewedBy) values ( NOW() " + ", " + "'" + this.state.user_id + "'" + ", " + "'" + macroName + "'" + ", " + parameters.join(", ") + ", " + "'" + "No Peer Review" + "'" + ");"
+      sendXHR("POST", "http://localhost:3001/sql_request", query, (xhr) => {
+        JSON.parse(xhr.responseText);
+      });
+    }
+    alert("Success");
   }
 
   handleMacroFormType(option) {
@@ -349,7 +444,7 @@ class DatabaseView extends Component {
         this.setState({M_UD_DR_STEP_ASI_RN: true});
         this.setState({M_UD_DR_STEP_ASI_RN_GN: false});
         break;
-      case 'M_UD_DR_STEP_ASI_GN':
+      case 'M_UD_DR_STEP_ASI_RN_GN':
         this.setState({M_DL_DR_SCHED_RN: false});
         this.setState({M_DL_DR_STEP_RN: false});
         this.setState({M_DL_DR_STEP_RN_GN: false});
@@ -496,7 +591,7 @@ class DatabaseView extends Component {
               <form className="form-inline" id="M_DL_DR_SCHED_RN">
                 <div className="form-group">
                   <label for="exampleInputName2">Param 1: </label>
-                  <input type="text" className="form-control" name="M_DL_DR_SCHED_RN_RUN_NAME" id="M_DL_DR_SCHED_RN_RUN_NAME" placeholder="Run Name"></input>
+                  <input type="text" className="form-control" name="RUN_NAME" id="RUN_NAME" placeholder="Run Name"></input>
                 </div>
               </form>
             </Panel>
@@ -509,7 +604,7 @@ class DatabaseView extends Component {
             <form className="form-inline" id="M_DL_DR_STEP_RN">
               <div className="form-group">
                 <label for="exampleInputName2">Param 1: </label>
-                  <input type="text" className="form-control" name="M_DL_DR_STEP_RN_RUN_NAME" id="M_DL_DR_STEP_RN_RUN_NAME" placeholder="Run Name">
+                  <input type="text" className="form-control" name="RUN_NAME" id="RUN_NAME" placeholder="Run Name">
                   </input>
                 </div>
                 </form>
@@ -523,11 +618,11 @@ class DatabaseView extends Component {
               <form className="form-inline" id="M_DL_DR_STEP_RN_GN">
                 <div className="form-group">
                   <label for="exampleInputName2">Param 1: </label>
-                    <input type="text" className="form-control" name="M_DL_DR_STEP_RN_GN_RUN_NAME" id="M_DL_DR_STEP_RN_GN_RUN_NAME" placeholder="Run Name"></input>
+                    <input type="text" className="form-control" name="RUN_NAME" id="RUN_NAME" placeholder="Run Name"></input>
                 </div>
                 <div className="form-group">
                   <label for="exampleInputName2">Param 2: </label>
-                    <input type="text" className="form-control" name="M_DL_DR_STEP_RN_GN_RUN_NAME" id="M_DL_DR_STEP_RN_GN_GROUP_NUMBER" placeholder="Group Number"></input>
+                    <input type="text" className="form-control" name="GROUP_NUMBER" id="GROUP_NUMBER" placeholder="Group Number"></input>
                 </div>
               </form>
             </Panel>
@@ -540,15 +635,11 @@ class DatabaseView extends Component {
               <form className="form-inline" id="M_DL_DR_STEP_RN_SID">
                 <div className="form-group">
                   <label for="exampleInputName2">Param 1: </label>
-                    <input type="text" className="form-control" name="M_DL_DR_STEP_RN_SID_RUN_NAME" id="M_DL_DR_STEP_RN_SID_RUN_NAME" placeholder="Run Name"></input>
+                    <input type="text" className="form-control" name="RUN_NAME" id="RUN_NAME" placeholder="Run Name"></input>
                 </div>
                 <div className="form-group">
                   <label for="exampleInputName2">Param 2: </label>
-                    <input type="text" className="form-control" name="M_DL_DR_STEP_RN_SID_GROUP_NUMBER" id="M_DL_DR_STEP_RN_SID_GROUP_NUMBER" placeholder="Group Number"></input>
-                </div>
-                <div className="form-group">
-                  <label for="exampleInputName2">Param 3: </label>
-                    <input type="text" className="form-control" name="M_DL_DR_STEP_RN_SID_DRIVER_STEP_IP" id="M_DL_DR_STEP_RN_SID_DRIVER_STEP_IP" placeholder="Driver Step ID"></input>
+                    <input type="text" className="form-control" name="DRIVER_STEP_ID" id="DRIVER_STEP_ID" placeholder="Driver Step ID"></input>
                 </div>
               </form>
             </Panel>
@@ -561,7 +652,7 @@ class DatabaseView extends Component {
               <form className="form-inline" id="M_DL_DR_STEP_DTL_RN">
                 <div className="form-group">
                   <label for="exampleInputName2">Param 1: </label>
-                    <input type="text" className="form-control" name="M_DL_DR_STEP_DTL_RN_RUN_NAME" id="M_DL_DR_STEP_DTL_RN_RUN_NAME" placeholder="Run Name"></input>
+                    <input type="text" className="form-control" name="RUN_NAME" id="RUN_NAME" placeholder="Run Name"></input>
                 </div>
               </form>
             </Panel>
@@ -570,19 +661,19 @@ class DatabaseView extends Component {
         }
         {this.state.M_UD_DR_SCHED_STTS_RN_AID ?
           <div className="col-lg-10">
-            <Panel header={<span>Update Driver Schedule Statusby Run Name and Audit ID</span>} >
+            <Panel header={<span>Update Driver Schedule Status by Run Name and Audit ID</span>} >
               <form className="form-inline" id="M_UD_DR_SCHED_STTS_RN_AID">
                 <div className="form-group">
                   <label for="exampleInputName2">Param 1: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_SCHED_STTS_RN_AID_RUN_NAME" id="M_UD_DR_SCHED_STTS_RN_AID_RUN_NAME" placeholder="Run Name"></input>
+                    <input type="text" className="form-control" name="RUN_NAME" id="RUN_NAME" placeholder="Run Name"></input>
                 </div>
                 <div className="form-group">
                   <label for="exampleInputName2">Param 2: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_SCHED_STTS_RN_AID_RUN_NAME_AUDIT_ID" id="M_UD_DR_SCHED_STTS_RN_AID_RUN_NAME_AUDIT_ID" placeholder="Audit ID"></input>
+                    <input type="text" className="form-control" name="AUDIT_ID" id="AUDIT_ID" placeholder="Audit ID"></input>
                 </div>
                 <div className="form-group">
                   <label for="exampleInputName2">Param 3: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_SCHED_STTS_RN_AID_RUN_NAME_STATUS" id="M_UD_DR_SCHED_STTS_RN_AID_RUN_NAME_STATUS" placeholder="Status"></input>
+                    <input type="text" className="form-control" name="STATUS" id="STATUS" placeholder="Status"></input>
                 </div>
               </form>
             </Panel>
@@ -595,15 +686,15 @@ class DatabaseView extends Component {
               <form className="form-inline" id="M_UD_DR_SCHED_VAL_END_RN_AID">
                 <div className="form-group">
                   <label for="exampleInputName2">Param 1: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_SCHED_VAL_END_RN_AID_RUN_NAME" id="M_UD_DR_SCHED_VAL_END_RN_AID_RUN_NAME" placeholder="Run Name"></input>
+                    <input type="text" className="form-control" name="RUN_NAME" id="RUN_NAME" placeholder="Run Name"></input>
                 </div>
                 <div className="form-group">
                   <label for="exampleInputName2">Param 2: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_SCHED_VAL_END_RN_AID_AUDIT_ID" id="M_UD_DR_SCHED_VAL_END_RN_AID_AUDIT_ID" placeholder="Audit ID"></input>
+                    <input type="text" className="form-control" name="AUDIT_ID" id="AUDIT_ID" placeholder="Audit ID"></input>
                 </div>
                 <div className="form-group">
                   <label for="exampleInputName2">Param 3: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_SCHED_VAL_END_RN_AID_END_TIME" id="M_UD_DR_SCHED_VAL_END_RN_AID_END_TIME" placeholder="End Time"></input>
+                    <input type="text" className="form-control" name="VAL_END_TIME" id="VAL_END_TIME" placeholder="End Time"></input>
                 </div>
               </form>
             </Panel>
@@ -616,15 +707,15 @@ class DatabaseView extends Component {
               <form className="form-inline" id="M_UD_DR_SCHED_VAL_START_RN_AID">
                 <div className="form-group">
                   <label for="exampleInputName2">Param 1: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_SCHED_VAL_START_RN_AID_RUN_NAME" id="M_UD_DR_SCHED_VAL_START_RN_AID_RUN_NAME" placeholder="Run Name"></input>
+                    <input type="text" className="form-control" name="VAL_START_RUN_NAME" id="VAL_START_RUN_NAME" placeholder="Run Name"></input>
                 </div>
                 <div className="form-group">
                   <label for="exampleInputName2">Param 2: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_SCHED_VAL_START_RN_AID_AUDIT_ID" id="M_UD_DR_SCHED_VAL_START_RN_AID_AUDIT_ID" placeholder="Audit ID"></input>
+                    <input type="text" className="form-control" name="AUDIT_ID" id="AUDIT_ID" placeholder="Audit ID"></input>
                 </div>
                 <div className="form-group">
                   <label for="exampleInputName2">Param 3: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_SCHED_VAL_START_RN_AID_START_TIME" id="M_UD_DR_SCHED_VAL_START_RN_AID_START_TIME" placeholder="Start Time"></input>
+                    <input type="text" className="form-control" name="VAL_START_TIME" id="VAL_START_TIME" placeholder="Start Time"></input>
                 </div>
               </form>
             </Panel>
@@ -637,15 +728,15 @@ class DatabaseView extends Component {
               <form className="form-inline" id="M_UD_DR_SCHED_SLA_AID">
                 <div className="form-group">
                   <label for="exampleInputName2">Param 1: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_SCHED_SLA_AID_SLA_DATE" id="M_UD_DR_SCHED_SLA_AID_SLA_DATE" placeholder="SLA Date"></input>
+                    <input type="text" className="form-control" name="SLA_DATE" id="SLA_DATE" placeholder="SLA Date"></input>
                 </div>
                 <div className="form-group">
                   <label for="exampleInputName2">Param 2: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_SCHED_SLA_AID_SLA_TIME" id="M_UD_DR_SCHED_SLA_AID_SLA_TIME" placeholder="SLA Time"></input>
+                    <input type="text" className="form-control" name="SLA_TIME" id="SLA_TIME" placeholder="SLA Time"></input>
                 </div>
                 <div className="form-group">
                   <label for="exampleInputName2">Param 3: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_SCHED_SLA_AID_AUDIT_ID" id="M_UD_DR_SCHED_SLA_AID_AUDIT_ID" placeholder="Audit ID"></input>
+                    <input type="text" className="form-control" name="AUDIT_ID" id="AUDIT_ID" placeholder="Audit ID"></input>
                 </div>
               </form>
             </Panel>
@@ -654,15 +745,15 @@ class DatabaseView extends Component {
         }
         {this.state.M_UD_DR_SCHED_SLA_RN ?
           <div className="col-lg-10">
-            <Panel header={<span>Update Driver Schedule SLA Date and Time by Run Name and Time</span>} >
+            <Panel header={<span>Update Driver Schedule SLA Date and Time by Run Name</span>} >
               <form className="form-inline" id="M_UD_DR_SCHED_SLA_RN">
                 <div className="form-group">
                   <label for="exampleInputName2">Param 1: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_SCHED_SLA_RN_SLA_TIME" id="M_UD_DR_SCHED_SLA_RN_SLA_TIME" placeholder="SLA Time"></input>
+                    <input type="text" className="form-control" name="SLA_TIME" id="SLA_TIME" placeholder="SLA Time"></input>
                 </div>
                 <div className="form-group">
                   <label for="exampleInputName2">Param 2: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_SCHED_SLA_RN_RUN_NAME" id="M_UD_DR_SCHED_SLA_RN_RUN_NAME" placeholder="Run Name"></input>
+                    <input type="text" className="form-control" name="RUN_NAME" id="RUN_NAME" placeholder="Run Name"></input>
                 </div>
               </form>
             </Panel>
@@ -671,19 +762,19 @@ class DatabaseView extends Component {
         }
         {this.state.M_UD_DR_STEP_DTL_RN_GN ?
           <div className="col-lg-10">
-            <Panel header={<span>Update Driver Step Status by Run Name and Group Number</span>} >
+            <Panel header={<span>Update Driver Step Detail Status by Run Name and Group Number</span>} >
               <form className="form-inline" id="M_UD_DR_STEP_DTL_RN_GN">
                 <div className="form-group">
                   <label for="exampleInputName2">Param 1: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_STEP_DTL_RN_GN_RUN_NAME" id="M_UD_DR_STEP_DTL_RN_GN_RUN_NAME" placeholder="Run Name"></input>
+                    <input type="text" className="form-control" name="RUN_NAME" id="RUN_NAME" placeholder="Run Name"></input>
                 </div>
                 <div className="form-group">
                   <label for="exampleInputName2">Param 2: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_STEP_DTL_RN_GN_GROUP_NUMBER" id="M_UD_DR_STEP_DTL_RN_GN_GROUP_NUMBER" placeholder="Group Number"></input>
+                    <input type="text" className="form-control" name="GROUP_NUMBER" id="GROUP_NUMBER" placeholder="Group Number"></input>
                 </div>
                 <div className="form-group">
                   <label for="exampleInputName2">Param 3: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_STEP_DTL_RN_GN_STATUS" id="M_UD_DR_STEP_DTL_RN_GN_STATUS" placeholder="Status"></input>
+                    <input type="text" className="form-control" name="STATUS" id="STATUS" placeholder="Status"></input>
                 </div>
               </form>
             </Panel>
@@ -696,15 +787,15 @@ class DatabaseView extends Component {
               <form className="form-inline" id="M_UD_DR_STEP_DTL_RN_STPDTLID">
                 <div className="form-group">
                   <label for="exampleInputName2">Param 1: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_STEP_DTL_RN_STPDTLID_RUN_NAME" id="M_UD_DR_STEP_DTL_RN_STPDTLID_RUN_NAME" placeholder="Run Name"></input>
+                    <input type="text" className="form-control" name="RUN_NAME" id="RUN_NAME" placeholder="Run Name"></input>
                 </div>
                 <div className="form-group">
                   <label for="exampleInputName2">Param 2: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_STEP_DTL_RN_STPDTLID_DRIVER_STEP_DETAIL" id="M_UD_DR_STEP_DTL_RN_STPDTLID_DRIVER_STEP_DETAIL" placeholder="Driver Step Detail ID"></input>
+                    <input type="text" className="form-control" name="STEP_DETAIL" id="STEP_DETAIL" placeholder="Driver Step Detail ID"></input>
                 </div>
                 <div className="form-group">
                   <label for="exampleInputName2">Param 3: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_STEP_DTL_RN_STPDTLID_STATUS" id="M_UD_DR_STEP_DTL_RN_STPDTLID_STATUS" placeholder="Status"></input>
+                    <input type="text" className="form-control" name="STATUS" id="STATUS" placeholder="Status"></input>
                 </div>
               </form>
             </Panel>
@@ -717,11 +808,11 @@ class DatabaseView extends Component {
               <form className="form-inline" id="M_UD_DR_STEP_ASI_SID">
                 <div className="form-group">
                   <label for="exampleInputName2">Param 1: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_STEP_ASI_SID_DRIVER_STEP_ID" id="M_UD_DR_STEP_ASI_SID_DRIVER_STEP_ID" placeholder="Driver Step ID"></input>
+                    <input type="text" className="form-control" name="DRIVER_STEP_ID" id="DRIVER_STEP_ID" placeholder="Driver Step ID"></input>
                 </div>
                 <div className="form-group">
                   <label for="exampleInputName2">Param 2: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_STEP_ASI_SID_ACTIVE_STEP_INDICATOR" id="M_UD_DR_STEP_ASI_SID_ACTIVE_STEP_INDICATOR" placeholder="Active Step Indicator"></input>
+                    <input type="text" className="form-control" name="ACTIVE_STEP_INDICATOR" id="ACTIVE_STEP_INDICATOR" placeholder="Active Step Indicator"></input>
                 </div>
               </form>
             </Panel>
@@ -734,11 +825,11 @@ class DatabaseView extends Component {
               <form className="form-inline" id="M_UD_DR_STEP_ASI_RN">
                 <div className="form-group">
                   <label for="exampleInputName2">Param 1: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_STEP_ASI_RN_RUN_NAME" id="M_UD_DR_STEP_ASI_RN_RUN_NAME" placeholder="Run Name"></input>
+                    <input type="text" className="form-control" name="RUN_NAME" id="RUN_NAME" placeholder="Run Name"></input>
                 </div>
                 <div className="form-group">
                   <label for="exampleInputName2">Param 2: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_STEP_ASI_RN_ACTIVE_STEP_INDICATOR" id="M_UD_DR_STEP_ASI_RN_ACTIVE_STEP_INDICATOR" placeholder="Active Step Indicator"></input>
+                    <input type="text" className="form-control" name="ACTIVE_STEP_INDICATOR" id="ACTIVE_STEP_INDICATOR" placeholder="Active Step Indicator"></input>
                 </div>
               </form>
             </Panel>
@@ -751,15 +842,15 @@ class DatabaseView extends Component {
               <form className="form-inline" id="M_UD_DR_STEP_ASI_RN_SID">
                 <div className="form-group">
                   <label for="exampleInputName2">Param 1: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_STEP_ASI_RN_SID_RUN_NAME" id="M_UD_DR_STEP_ASI_RN_SID_RUN_NAME" placeholder="Run Name"></input>
+                    <input type="text" className="form-control" name="RUN_NAME" id="RUN_NAME" placeholder="Run Name"></input>
                 </div>
                 <div>
                   <label for="exampleInputName2">Param 2: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_STEP_ASI_RN_SID_DRIVER_STEP_ID" id="M_UD_DR_STEP_ASI_RN_SID_DRIVER_STEP_ID" placeholder="Driver Step ID"></input>
+                    <input type="text" className="form-control" name="DRIVER_STEP_ID" id="DRIVER_STEP_ID" placeholder="Driver Step ID"></input>
                 </div>
                 <div className="form-group">
                   <label for="exampleInputName2">Param 3: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_STEP_ASI_RN_SID_ACTIVE_STEP_INDICATOR" id="M_UD_DR_STEP_ASI_RN_SID_ACTIVE_STEP_INDICATOR" placeholder="Active Step Indicator"></input>
+                    <input type="text" className="form-control" name="ACTIVE_STEP_INDICATOR" id="ACTIVE_STEP_INDICATOR" placeholder="Active Step Indicator"></input>
                 </div>
               </form>
             </Panel>
@@ -772,15 +863,15 @@ class DatabaseView extends Component {
               <form className="form-inline" id="M_UD_DR_STEP_ASI_RN_GN">
                 <div className="form-group">
                   <label for="exampleInputName2">Param 1: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_STEP_ASI_RN_GN_RUN_NAME" id="M_UD_DR_STEP_ASI_RN_GN_RUN_NAME" placeholder="Run Name"></input>
+                    <input type="text" className="form-control" name="RUN_NAME" id="RUN_NAME" placeholder="Run Name"></input>
                 </div>
                 <div>
                   <label for="exampleInputName2">Param 2: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_STEP_ASI_RN_GN_GROUP_NUMBER" id="M_UD_DR_STEP_ASI_RN_GN_GROUP_NUMBER" placeholder="Group Number"></input>
+                    <input type="text" className="form-control" name="GROUP_NUMBER" id="GROUP_NUMBER" placeholder="Group Number"></input>
                 </div>
                 <div className="form-group">
                   <label for="exampleInputName2">Param 3: </label>
-                    <input type="text" className="form-control" name="M_UD_DR_STEP_ASI_RN_GN_ACTIVE_STEP_INDEX" id="M_UD_DR_STEP_ASI_RN_GN_ACTIVE_STEP_INDEX" placeholder="Active Step Index"></input>
+                    <input type="text" className="form-control" name="ACTIVE_STEP_INDEX" id="ACTIVE_STEP_INDEX" placeholder="Active Step Index"></input>
                 </div>
               </form>
             </Panel>
@@ -790,11 +881,39 @@ class DatabaseView extends Component {
         <div className="col-lg-8 col-lg-offset-4">
           <div className="checkbox">
             <label>
-              <input type="checkbox" id="blankCheckbox" value="option1" aria-label="Peer Review"></input>
+              <input type="checkbox" id="blankCheckbox" value="option1" aria-label="Peer Review" onClick={() =>{this.tb()}}></input>
               Peer Review
             </label>
           </div>
         </div>
+        <br/>
+        {this.state.hiddenTextBox ?
+          <div className="col-lg-5">
+            <Panel header={<span>Enter Comments</span>} >
+              <textarea id='ta' rows="4" cols="50" placeholder="Enter some comments"></textarea>
+              </Panel>
+          </div> :
+          null
+        }
+        {this.state.hiddenDropBox ?
+          <div className="col-lg-7">
+            <Panel header={<span>Select Reviewer</span>} >
+              <select multiple id="myOptions" className="form-control">
+                <option value='bhavik.jain' onClick={() =>{this.handleReviewer('A')}}>bhavik.jain</option>
+                <option value='maya.bergandy' onClick={() =>{this.handleReviewer('B')}}>maya.bergandy</option>
+                <option value='matthew.hinsley' onClick={() =>{this.handleReviewer('C')}}>matthew.hinsley</option>
+                <option value='tony.gao' onClick={() =>{this.handleReviewer('D')}}>tony.gao</option>
+                <option value='zachary.tousignant' onClick={() =>{this.handleReviewer('E')}}>zachary.tousignant</option>
+                <option value='bryce.bodleygomes' onClick={() =>{this.handleReviewer('F')}}>bryce.bodleygomes</option>
+                <option value='adrian.povedamckay' onClick={() =>{this.handleReviewer('G')}}>adrian.povedamckay</option>
+                <option value='chenhao.huang' onClick={() =>{this.handleReviewer('H')}}>chenhao.huang</option>
+                <option value='michael.schiller' onClick={() =>{this.handleReviewer('I')}}>michael.schiller</option>
+                <option value='kevin.silva' onClick={() =>{this.handleReviewer('J')}}>kevin.silva</option>
+              </select>
+            </Panel>
+          </div>:
+          null
+        }
         <div className="col-lg-8 col-lg-offset-4">
           <Button className="btn btn-primary" id="submitButton" onClick={() =>{this.runMacro()}}>
             Enter
