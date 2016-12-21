@@ -11,9 +11,10 @@ import PageHeader from 'react-bootstrap/lib/PageHeader';
 import Well from 'react-bootstrap/lib/Well';
 import { sendXHR } from '../../../core/util.js';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
-
-import s from "./react-table.css"
-
+import $ from "jquery";
+import s from "./react-table.css";
+import review from "../review/review"
+import history from '../../../core/history';
 class SubmittedPeerReview extends Component {
 
   constructor(props) {
@@ -37,7 +38,6 @@ class SubmittedPeerReview extends Component {
       });
   }
 
-
   componentDidMount() {
 
     this.getPeerReview((results) => {
@@ -50,17 +50,20 @@ class SubmittedPeerReview extends Component {
 
     $(document).ready(function() {
       $('#dataTables-example').DataTable();
-    });
+  });
 
   }
+
 
   createTableStructure(){
     var ids = []
     for(var result in this.state.peer_review) {
+      break;
       ids.push(<tr className="gradeA odd" key={result}><td className="sorting_1">{this.state.peer_review[result].AUDIT_ID}</td></tr>);
     }
     return this.state.peer_review;
   }
+
 
   render() {
     var ids = this.state.peer_review;
@@ -81,10 +84,12 @@ class SubmittedPeerReview extends Component {
       nextPage: 'Next', // Next page button text
       firstPage: 'First', // First page button text
       lastPage: 'Last', // Last page button text
-      paginationShowsTotal: this.renderShowsTotal  // Accept bool or function
-      // hideSizePerPage: true > You can hide the dropdown for sizePerPage
+      paginationShowsTotal: this.renderShowsTotal,  // Accept bool or function
+      onRowClick: function(row) {
+        history.push('/app/review');
+      }
     };
-    // console.log(ids);
+
     return (
       <div>
         <div className="row">
@@ -97,7 +102,8 @@ class SubmittedPeerReview extends Component {
           <BootstrapTable
             data={ ids }
             pagination={true}
-            options={opts}>
+            options={opts}
+            id='table1'>
             <TableHeaderColumn dataAlign="center" dataField='PeerReviewID' isKey>Peer Review ID</TableHeaderColumn>
             <TableHeaderColumn dataAlign="center" dataField='MacroInstanceID'>Macro Instance ID</TableHeaderColumn>
             <TableHeaderColumn dataAlign="center" dataField='ReviewerID'>Reviewer ID</TableHeaderColumn>
