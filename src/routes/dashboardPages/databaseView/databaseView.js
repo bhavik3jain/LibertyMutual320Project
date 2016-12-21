@@ -349,7 +349,7 @@ class DatabaseView extends Component {
         this.setState({M_UD_DR_STEP_ASI_RN: true});
         this.setState({M_UD_DR_STEP_ASI_RN_GN: false});
         break;
-      case 'M_UD_DR_STEP_ASI_GN':
+      case 'M_UD_DR_STEP_ASI_RN_GN':
         this.setState({M_DL_DR_SCHED_RN: false});
         this.setState({M_DL_DR_STEP_RN: false});
         this.setState({M_DL_DR_STEP_RN_GN: false});
@@ -566,7 +566,7 @@ class DatabaseView extends Component {
         }
         {this.state.M_UD_DR_SCHED_STTS_RN_AID ?
           <div className="col-lg-10">
-            <Panel header={<span>Update Driver Schedule Statusby Run Name and Audit ID</span>} >
+            <Panel header={<span>Update Driver Schedule Status by Run Name and Audit ID</span>} >
               <form className="form-inline" id="M_UD_DR_SCHED_STTS_RN_AID">
                 <div className="form-group">
                   <label for="exampleInputName2">Param 1: </label>
@@ -650,7 +650,7 @@ class DatabaseView extends Component {
         }
         {this.state.M_UD_DR_SCHED_SLA_RN ?
           <div className="col-lg-10">
-            <Panel header={<span>Update Driver Schedule SLA Date and Time by Run Name and Time</span>} >
+            <Panel header={<span>Update Driver Schedule SLA Date and Time by Run Name</span>} >
               <form className="form-inline" id="M_UD_DR_SCHED_SLA_RN">
                 <div className="form-group">
                   <label for="exampleInputName2">Param 1: </label>
@@ -667,7 +667,7 @@ class DatabaseView extends Component {
         }
         {this.state.M_UD_DR_STEP_DTL_RN_GN ?
           <div className="col-lg-10">
-            <Panel header={<span>Update Driver Step Status by Run Name and Group Number</span>} >
+            <Panel header={<span>Update Driver Step Detail Status by Run Name and Group Number</span>} >
               <form className="form-inline" id="M_UD_DR_STEP_DTL_RN_GN">
                 <div className="form-group">
                   <label for="exampleInputName2">Param 1: </label>
