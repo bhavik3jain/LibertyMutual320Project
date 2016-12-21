@@ -87,12 +87,12 @@ class DatabaseChangelog extends Component {
             data={ ids }
             pagination={true}
             options={opts}>
-            <TableHeaderColumn dataField='ID' isKey>Audit ID</TableHeaderColumn>
-            <TableHeaderColumn dataField='DATE_TIME'>Audit ID</TableHeaderColumn>
-            <TableHeaderColumn dataField='Owner'>Audit ID</TableHeaderColumn>
-            <TableHeaderColumn dataField='MacroName'>Audit ID</TableHeaderColumn>
-            <TableHeaderColumn dataField='Parameters'>Audit ID</TableHeaderColumn>
-            <TableHeaderColumn dataField='PeerReviewedBy'>Audit ID</TableHeaderColumn>
+            <TableHeaderColumn dataField='ID' isKey>ID</TableHeaderColumn>
+            <TableHeaderColumn dataField='DATE_TIME'>Date Changed</TableHeaderColumn>
+            <TableHeaderColumn dataField='Owner'>Owner</TableHeaderColumn>
+            <TableHeaderColumn dataField='MacroName'>Macro Name</TableHeaderColumn>
+            <TableHeaderColumn dataField='Parameters'>Parameters</TableHeaderColumn>
+            <TableHeaderColumn dataField='PeerReviewedBy'>Peer Reviewer</TableHeaderColumn>
           </BootstrapTable>
         </div>
       </div>
