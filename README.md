@@ -53,12 +53,6 @@ $ cd SQL_Server
 ```sh
 $ node sql_thing.js
 ```
-```sh
-$ npm install
-```
-```sh
-$ npm start
-```
 
 ####4. To build
 ```sh
