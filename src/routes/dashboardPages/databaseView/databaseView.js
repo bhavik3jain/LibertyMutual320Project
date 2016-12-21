@@ -81,6 +81,7 @@ class DatabaseView extends Component {
   runMacro() {
     var macroName = this.getTrueState();
     var test = $("#" + macroName).serializeArray();
+    console.log(test);
     var parameters = [];
     for(var val in test) {
       var value = test[val].value;

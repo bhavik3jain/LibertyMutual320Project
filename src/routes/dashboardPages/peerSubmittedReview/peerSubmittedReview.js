@@ -1,145 +1,115 @@
 import React, { Component } from 'react';
 import Panel from 'react-bootstrap/lib/Panel';
+import Alert from 'react-bootstrap/lib/Alert';
+import Button from 'react-bootstrap/lib/Button';
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import Tooltip from 'react-bootstrap/lib/Tooltip';
+import Popover from 'react-bootstrap/lib/Popover';
+import Modal, { Footer, Header, Title, Body } from 'react-bootstrap/lib/Modal';
+import Pagination from 'react-bootstrap/lib/Pagination';
 import PageHeader from 'react-bootstrap/lib/PageHeader';
+import Well from 'react-bootstrap/lib/Well';
+import { sendXHR } from '../../../core/util.js';
+import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
+import $ from "jquery";
+import s from "./react-table.css";
+import review from "../review/review"
+import history from '../../../core/history';
 
 class SubmittedPeerReview extends Component {
 
-  handleRowClick(e, index) {
-    e.preventDefault();
-    alert('row ' + index + ' clicked!');
+  constructor(props) {
+    super(props);
+    this.state = {
+      peer_review: [],
+      user_id: ""
+    };
   }
 
+  getPeerReview(cb) {
+    sendXHR("POST", "http://localhost:3001/sql_request", 'select PeerReviewID, MacroInstanceID, ReviewerID, State, PeerReviewComment, DateReviewed from PeerReview where SubmittedBy = ' + "'" + this.state.user_id + "'", (xhr) => {
+           console.log(xhr.responseText);
+           cb(JSON.parse(xhr.responseText));
+      });
+  }
+
+  getUserId(cb){
+    sendXHR("POST", "http://localhost:3001/readfile", "", (xhr) => {
+           cb(JSON.parse(xhr.responseText));
+      });
+  }
+
+  componentDidMount() {
+
+    this.getPeerReview((results) => {
+          this.setState({"peer_review": results});
+    });
+
+    this.getUserId((data) => {
+          this.setState({"user_id": data.user_id});
+    });
+
+  }
+
+
+  createTableStructure(){
+    var ids = []
+    for(var result in this.state.peer_review) {
+      break;
+      ids.push(<tr className="gradeA odd" key={result}><td className="sorting_1">{this.state.peer_review[result].AUDIT_ID}</td></tr>);
+    }
+    return this.state.peer_review;
+  }
+
+
   render() {
+    var ids = this.state.peer_review;
+    console.log(this.state.user_id);
+    const opts = {
+      page: 1,  // which page you want to show as default
+      sizePerPageList: [ {
+        text: '5', value: 5
+      }, {
+        text: '10', value: 10
+      }, {
+        text: 'All', value: ids.length
+      } ], // you can change the dropdown list for size per page
+      sizePerPage: 10,  // which size per page you want to locate as default
+      pageStartIndex: 1, // where to start counting the pages
+      paginationSize: 5,  // the pagination bar size.
+      prePage: 'Prev', // Previous page button text
+      nextPage: 'Next', // Next page button text
+      firstPage: 'First', // First page button text
+      lastPage: 'Last', // Last page button text
+      paginationShowsTotal: this.renderShowsTotal,  // Accept bool or function
+      onRowClick: function(row) {
+        history.push('/app/review?id=' + row.PeerReviewID);
+      }
+    };
+
     return (
       <div>
-
         <div className="row">
           <div className="col-lg-12">
-            <PageHeader>Submitted Peer Review</PageHeader>
+            <PageHeader>Pending Peer Review</PageHeader>
           </div>
         </div>
-        <Panel header={<span></span>} >
-          <div>
-            <div className="dataTable_wrapper">
-              <div
-                id="dataTables-example_wrapper"
-                className="dataTables_wrapper form-inline dt-bootstrap no-footer">
-                <div className="row">
-                  <div className="col-sm-12">
-                    <table
-                      className="table table-striped table-bordered table-hover dataTable no-footer"
-                      id="dataTables-example"
-                      role="grid"
-                      aria-describedby="dataTables-example_info"
-                    >
-                      <thead>
-                        <tr role="row">
-                          <th
-                            className="sorting_asc"
-                            tabIndex="0"
-                            aria-controls="dataTables-example"
-                            rowSpan="1"
-                            colSpan="1"
-                            aria-label="Rendering engine: activate to sort column descending"
-                            aria-sort="ascending"
-                            style={{ width: 265 }}
-                          >
-                          ID
-                          </th>
-                          <th
-                            className="sorting"
-                            tabIndex="0"
-                            aria-controls="dataTables-example"
-                            rowSpan="1"
-                            colSpan="1"
-                            aria-label="Browser: activate to sort column ascending"
-                            style={{ width: 321 }}
-                          >
-                          Owner Name
-                          </th>
-                          <th
-                            className="sorting"
-                            tabIndex="0"
-                            aria-controls="dataTables-example"
-                            rowSpan="1"
-                            colSpan="1"
-                            aria-label="Platform(s): activate to sort column ascending"
-                            style={{ width: 299 }}
-                          >
-                          Reviewer
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr className="gradeA odd" role="row"
-                          onClick={(e) => this.handleRowClick(e, 1)}>
-                          <td className="sorting_1">n</td>
-                          <td>Nick W.</td>
-                          <td>Gordon A.</td>
-                        </tr>
-                        <tr className="gradeA even" role="row">
-                          <td className="sorting_1">n</td>
-                          <td>Nick W.</td>
-                          <td>Gordon A.</td>
 
-                        </tr>
-                        <tr className="gradeA odd" role="row">
-                          <td className="sorting_1">n</td>
-                          <td>Nick W.</td>
-                          <td>Gordon A.</td>
-
-                        </tr>
-                        <tr className="gradeA even" role="row">
-                          <td className="sorting_1">n</td>
-                          <td>Nick W.</td>
-                          <td>Gordon A.</td>
-
-                        </tr>
-                        <tr className="gradeA odd" role="row">
-                          <td className="sorting_1">n</td>
-                          <td>Nick W.</td>
-                          <td>Gordon A.</td>
-
-                        </tr>
-                        <tr className="gradeA even" role="row">
-                          <td className="sorting_1">n</td>
-                          <td>Nick W.</td>
-                          <td>Gordon A.</td>
-
-                        </tr>
-                        <tr className="gradeA odd" role="row">
-                          <td className="sorting_1">n</td>
-                          <td>Nick W.</td>
-                          <td>Gordon A.</td>
-
-                        </tr>
-                        <tr className="gradeA even" role="row">
-                          <td className="sorting_1">n</td>
-                          <td>Nick W.</td>
-                          <td>Gordon A.</td>
-
-                        </tr>
-                        <tr className="gradeA odd" role="row">
-                          <td className="sorting_1">n</td>
-                          <td>Nick W.</td>
-                          <td>Gordon A.</td>
-
-                        </tr>
-                        <tr className="gradeA even" role="row">
-                          <td className="sorting_1">n</td>
-                          <td>Nick W.</td>
-                          <td>Gordon A.</td>
-
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Panel>
+        <div>
+          <BootstrapTable
+            data={ ids }
+            pagination={true}
+            options={opts}>
+            <TableHeaderColumn  dataField='PeerReviewID' isKey>Peer Review ID</TableHeaderColumn>
+            <TableHeaderColumn  dataField='MacroInstanceID'>Macro Instance ID</TableHeaderColumn>
+            <TableHeaderColumn  dataField='ReviewerID' width='100'>Reviewer ID</TableHeaderColumn>
+            <TableHeaderColumn  dataField='State' width='100'>State</TableHeaderColumn>
+            <TableHeaderColumn  dataField='PeerReviewComment'>Peer Review Comment</TableHeaderColumn>
+            <TableHeaderColumn  dataField='DateReviewed'>Date Reviewed</TableHeaderColumn>
+          </BootstrapTable>
+        </div>
       </div>
+
     );
   }
 }

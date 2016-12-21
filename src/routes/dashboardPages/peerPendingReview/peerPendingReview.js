@@ -47,10 +47,6 @@ class SubmittedPeerReview extends Component {
           this.setState({"user_id": data});
     });
 
-    $(document).ready(function() {
-      $('#dataTables-example').DataTable();
-    });
-
   }
 
 
